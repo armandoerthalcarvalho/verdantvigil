@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#101d1b">
+<title>Verdant Vigil — Defend the Heartroot</title>
+<style>
+:root{color-scheme:dark;--ink:#f3f6e9;--muted:#a9b9a9;--panel:#172825;--panel2:#203631;--line:rgba(207,231,202,.13);--mint:#b7ed9e;--gold:#f4d37a;--rose:#ef9a83;--shadow:0 18px 60px rgba(0,0,0,.35)}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#0c1716;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+body{background:radial-gradient(ellipse at 48% -20%,#294b3e 0,#12221f 42%,#0c1716 78%);padding:18px 20px 28px;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid #e6d18b;outline-offset:3px}
+.shell{width:min(1320px,100%);margin:0 auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:0 0 14px;padding:0 4px}
+.brand{display:flex;align-items:center;gap:12px;min-width:220px}
+.brand-mark{width:42px;height:42px;border-radius:15px;background:linear-gradient(145deg,#b5e88e,#528f67);box-shadow:0 6px 22px #7cbf6b40;display:grid;place-items:center;position:relative;overflow:hidden}
+.brand-mark svg{width:27px;height:27px;filter:drop-shadow(0 2px 2px #274b32)}
+.brand-copy{line-height:1.03}
+.brand-name{font-size:17px;font-weight:900;letter-spacing:.17em}
+.brand-sub{font-size:9px;letter-spacing:.23em;color:#93aa9b;margin-top:6px;font-weight:700}
+.top-meta{display:flex;align-items:center;gap:9px;flex:1;justify-content:center}
+.meta-chip{background:#182b27;border:1px solid var(--line);border-radius:12px;padding:8px 13px;display:flex;align-items:center;gap:9px;min-height:43px;box-shadow:0 7px 20px #00000016}
+.meta-label{font-size:9px;color:#91a99a;letter-spacing:.15em;text-transform:uppercase;font-weight:800}
+.meta-value{font-size:13px;font-weight:850;letter-spacing:.025em;white-space:nowrap}
+.wave-readout{min-width:116px}.weather-readout{min-width:145px}
+.weather-dot{width:8px;height:8px;border-radius:50%;background:#b9e9a0;box-shadow:0 0 12px #b9e9a0}
+.hud-right{display:flex;align-items:center;gap:8px;min-width:238px;justify-content:flex-end}
+.energy-box{display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,#3c3320,#292819);border:1px solid #d8bb6d44;border-radius:13px;padding:8px 12px;min-width:100px}
+.energy-icon{width:18px;height:18px;background:#f4cf69;border-radius:50% 50% 48% 8%;transform:rotate(-35deg);box-shadow:0 0 14px #f4cf6970}
+.energy-value{font-size:18px;font-weight:950;color:#ffe49a;font-variant-numeric:tabular-nums}
+.icon-btn{width:40px;height:40px;border-radius:12px;background:#1a302b;border:1px solid var(--line);display:grid;place-items:center;transition:.18s ease;color:#dce9d9}
+.icon-btn:hover{background:#29463d;transform:translateY(-1px)}
+.icon-btn svg{width:17px;height:17px}
+.game-frame{position:relative;border-radius:24px;padding:10px;background:linear-gradient(145deg,#294b3e,#142a25 50%,#172522);border:1px solid #b4d4a51c;box-shadow:0 26px 80px #0007,inset 0 1px #e0f2c61a;overflow:hidden}
+.stage-wrap{position:relative;overflow:hidden;border-radius:16px;background:#a9c889;line-height:0}
+#game{display:block;width:100%;height:auto;aspect-ratio:1200/610;touch-action:manipulation;cursor:crosshair}
+.stage-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;line-height:normal;background:linear-gradient(120deg,#071713c9,#071713b8);backdrop-filter:blur(7px);z-index:5;transition:opacity .25s ease}
+.stage-overlay.hidden{opacity:0;pointer-events:none}
+.dialog{width:min(510px,94%);padding:30px 32px 27px;border-radius:23px;background:linear-gradient(155deg,#203d34f5,#142720f7);border:1px solid #d2edc22b;box-shadow:0 30px 80px #0008;text-align:center;position:relative;overflow:hidden}
+.dialog:before{content:"";position:absolute;width:260px;height:260px;right:-110px;top:-170px;background:radial-gradient(circle,#b7ed9e28,transparent 68%);pointer-events:none}
+.eyebrow{font-size:10px;letter-spacing:.24em;font-weight:900;text-transform:uppercase;color:#b6dc9a;margin-bottom:11px}
+.dialog h1{margin:0;font-family:Georgia,serif;font-size:clamp(32px,5vw,52px);font-weight:700;letter-spacing:-.045em;line-height:1;color:#f1f5df;text-shadow:0 4px 20px #0005}
+.dialog h1 span{color:#b7e79c;font-style:italic}
+.dialog p{font-size:13px;line-height:1.65;color:#b6c7b8;margin:15px auto 20px;max-width:390px}
+.primary-btn{border:0;border-radius:13px;padding:14px 22px;background:linear-gradient(135deg,#c7ef9e,#8dce7e);color:#173122;font-weight:950;letter-spacing:.06em;text-transform:uppercase;font-size:12px;box-shadow:0 9px 24px #85c66b35;transition:.18s ease}
+.primary-btn:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 13px 28px #85c66b4a}
+.secondary-btn{border:1px solid #d1e8d22e;background:#ffffff09;border-radius:12px;padding:12px 17px;font-size:11px;font-weight:800;letter-spacing:.04em;color:#dbe9d9;transition:.18s ease}
+.secondary-btn:hover{background:#ffffff15}
+.dialog-actions{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap}
+.dialog-note{margin-top:17px;font-size:10px;color:#8ca596;letter-spacing:.07em}
+.guide{display:none;text-align:left;margin:18px 0 0;padding:15px;border-radius:14px;background:#0b1c17a8;border:1px solid #d5eac91c}
+.guide.open{display:block}
+.guide-row{display:flex;gap:11px;margin:9px 0;color:#c1d1c2;font-size:11px;line-height:1.5}
+.guide-key{flex:0 0 26px;height:26px;border-radius:8px;display:grid;place-items:center;background:#31513f;color:#d3efaa;font-weight:900}
+.bottom-area{display:flex;align-items:stretch;gap:12px;margin-top:12px;transition:opacity .18s ease}.bottom-area.locked{opacity:.58;filter:saturate(.65);pointer-events:none}
+.seed-bank{flex:1;display:flex;gap:8px;align-items:stretch;min-width:0;padding:8px;border-radius:16px;background:linear-gradient(135deg,#1b302a,#172823);border:1px solid var(--line);box-shadow:0 12px 28px #0002}
+.seed-card{position:relative;display:flex;align-items:center;gap:9px;flex:1;min-width:0;border:1px solid #b5d3b01a;background:linear-gradient(145deg,#2b4439,#1d332b);border-radius:12px;padding:9px 8px;text-align:left;transition:transform .16s ease,border-color .16s ease,background .16s ease;overflow:hidden}
+.seed-card:hover{transform:translateY(-2px);border-color:#b9e59c77;background:linear-gradient(145deg,#365741,#234033)}
+.seed-card.selected{border:1.5px solid #c2ed9c;background:linear-gradient(145deg,#476b49,#294532);box-shadow:0 0 0 2px #a3d98120,0 7px 18px #0002}
+.seed-card.disabled{filter:saturate(.45);opacity:.57}
+.seed-card .art{flex:0 0 38px;width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:#0d201b66;border:1px solid #d8edce14}
+.seed-card svg{width:31px;height:31px;overflow:visible}
+.seed-copy{min-width:0;display:flex;flex-direction:column;gap:3px}
+.seed-name{font-size:10px;line-height:1.15;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seed-cost{font-size:10px;color:#f2d27b;font-weight:850;display:flex;align-items:center;gap:5px}
+.seed-cost:before{content:"";width:6px;height:6px;border-radius:50%;background:#f1cd69;display:inline-block}
+.seed-cool{position:absolute;inset:auto 0 0;height:3px;background:#a9e28b;transform-origin:left;transform:scaleX(1);transition:transform .1s linear}
+.seed-hotkey{position:absolute;right:6px;top:5px;font-size:8px;color:#8ea996;font-weight:900}
+.tools-panel{display:flex;gap:8px;padding:8px;border-radius:16px;background:#1b302a;border:1px solid var(--line)}
+.tool-btn{width:72px;min-width:72px;border:1px solid #b5d3b01a;border-radius:11px;background:#243b32;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#acc0b0;font-weight:900;transition:.15s}
+.tool-btn svg{width:19px;height:19px}
+.tool-btn:hover{background:#335242;color:#eff7df}
+.tool-btn.active{border-color:#eab77c;background:#67422e;color:#ffdfae;box-shadow:0 0 0 2px #efb87d22}
+.footer-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:10px 5px 0;color:#7e9688;font-size:10px;letter-spacing:.025em}
+.footer-hint{display:flex;align-items:center;gap:8px}
+.keycap{border:1px solid #6d89783d;background:#192b25;padding:3px 6px;border-radius:5px;color:#b3c6b1;font-weight:800;font-size:9px}
+#toast{position:absolute;left:50%;top:17px;transform:translate(-50%,-12px);z-index:7;padding:10px 15px;border:1px solid #e9d18a55;border-radius:11px;background:#26352deF;color:#ffe4a1;font-size:11px;font-weight:850;letter-spacing:.03em;box-shadow:0 12px 30px #0005;opacity:0;pointer-events:none;transition:.2s;white-space:nowrap}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+#pauseBadge{position:absolute;right:17px;top:16px;z-index:3;padding:7px 10px;border-radius:8px;background:#17241edb;border:1px solid #d9edc52a;font-size:9px;letter-spacing:.16em;font-weight:900;color:#f2d68e;opacity:0;transition:.15s;pointer-events:none}
+#pauseBadge.show{opacity:1}
+@media(max-width:1000px){body{padding:12px}.topbar{flex-wrap:wrap}.brand{min-width:unset}.top-meta{order:3;flex-basis:100%;justify-content:flex-start}.hud-right{margin-left:auto}.seed-bank{flex-wrap:wrap}.seed-card{min-width:30%;flex-basis:30%}.bottom-area{flex-direction:column}.tools-panel{justify-content:flex-end}.tool-btn{flex-direction:row;width:auto;flex:1;min-height:43px}}
+@media(max-width:560px){.stage-overlay{position:fixed;inset:0;z-index:50;overflow-y:auto;align-items:center;background:linear-gradient(120deg,#071713ed,#071713e8);padding:14px}.dialog{width:min(410px,100%);max-height:calc(100vh - 28px);overflow-y:auto;padding:24px 20px}.guide{margin-top:13px}body{padding:8px}.topbar{gap:9px;margin-bottom:9px}.brand-mark{width:36px;height:36px}.brand-name{font-size:14px}.brand-sub{font-size:8px}.hud-right{min-width:0;gap:5px}.icon-btn{width:35px;height:35px}.energy-box{min-width:78px;padding:7px 9px}.energy-value{font-size:16px}.top-meta{gap:5px}.meta-chip{padding:7px 9px;min-height:37px;flex:1}.meta-label{font-size:8px}.meta-value{font-size:11px}.weather-readout{min-width:0}.wave-readout{min-width:0}.game-frame{padding:5px;border-radius:17px}.stage-wrap{border-radius:12px}.seed-bank{gap:6px;padding:6px}.seed-card{flex-basis:31%;min-width:31%;padding:7px 5px;gap:5px}.seed-card .art{width:30px;height:30px;flex-basis:30px}.seed-card svg{width:25px;height:25px}.seed-name{font-size:9px}.seed-cost{font-size:9px}.seed-hotkey{display:none}.tools-panel{padding:6px}.tool-btn{font-size:8px}.footer-row{font-size:9px;align-items:flex-start}.footer-hint:last-child{display:none}.dialog{padding:25px 20px}.dialog p{font-size:12px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Verdant Vigil: immersive desktop composition and refined garden-console UI */
+html,body{width:100%;height:100%;min-height:0;overflow:hidden}
+body{padding:clamp(8px,1.25vh,14px) clamp(10px,1.4vw,20px);overscroll-behavior:none;background:radial-gradient(ellipse at 50% -25%,#315b47 0,#142b24 45%,#091512 100%)}
+.shell{width:min(1600px,100%);height:100%;min-height:0;margin:0 auto;display:flex;flex-direction:column;gap:9px}
+.topbar{flex:0 0 auto;min-height:49px;margin:0;padding:0 4px;gap:15px}
+.brand{min-width:220px;gap:11px}.brand-mark{width:40px;height:40px;border-radius:14px}.brand-name{font-size:15px;letter-spacing:.19em}.brand-sub{font-size:8px;letter-spacing:.24em}
+.top-meta{gap:8px}.meta-chip{min-height:42px;padding:7px 12px;border-radius:13px;background:linear-gradient(145deg,#1d3930,#162923);border-color:#c7e4c31c;box-shadow:0 8px 22px #0000001c,inset 0 1px #efffe20a}.meta-label{font-size:8px;letter-spacing:.16em}.meta-value{font-size:12px}.wave-readout{min-width:126px;display:block}.weather-readout{min-width:142px}.wave-track{height:3px;border-radius:5px;background:#081a14;overflow:hidden;margin-top:5px}.wave-track i{display:block;width:0;height:100%;border-radius:5px;background:linear-gradient(90deg,#8acb79,#e7d18a);box-shadow:0 0 8px #b4e69688;transition:width .25s ease}.heart-mark{color:#e9a28a;margin-right:5px;text-shadow:0 0 10px #e9a28a55}
+.hud-right{min-width:222px;gap:7px}.energy-box{padding:7px 12px;border-radius:13px;background:linear-gradient(145deg,#493e25,#2c2d20);box-shadow:inset 0 1px #fff4c31b,0 7px 20px #0002}.energy-value{font-size:17px}.icon-btn{width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,#203b31,#162a24);border-color:#d2e5d31e}.icon-btn:hover{background:#355744;transform:translateY(-1px);box-shadow:0 6px 16px #0003}
+.game-frame{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:8px;padding:8px;border-radius:22px;background:linear-gradient(145deg,#315a45 0%,#18392d 37%,#12251f 100%);border:1px solid #d2f0c12b;box-shadow:0 24px 72px #0007,inset 0 1px #efffe22a}
+.stage-wrap{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;border-radius:14px;background:radial-gradient(ellipse at 50% 42%,#a4c78f 0,#759969 100%);box-shadow:inset 0 0 0 1px #e2f0c733,inset 0 10px 28px #233e2d1b}
+#game{height:100%;width:auto;max-width:100%;aspect-ratio:1200/530;object-fit:fill;border-radius:12px;touch-action:manipulation}
+.bottom-area{flex:0 0 76px;min-height:76px;max-height:76px;margin:0;gap:9px;align-items:stretch}
+.seed-bank{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;padding:6px;border-radius:15px;background:linear-gradient(145deg,#203b30,#162a24);border:1px solid #d3e9cc21;box-shadow:0 10px 24px #0003,inset 0 1px #ffffff0a}
+.seed-card{min-width:0;width:100%;padding:7px 8px;gap:7px;border-radius:11px;background:linear-gradient(145deg,#304c3b,#1d3329);border-color:#c7e1b51c;box-shadow:inset 0 1px #ffffff08;}
+.seed-card:hover{transform:translateY(-2px);border-color:#c9ec9d88;background:linear-gradient(145deg,#426449,#244331);box-shadow:0 8px 16px #0003}
+.seed-card.selected{border:1.5px solid #d3efa8;background:linear-gradient(145deg,#50794e,#2d5037);box-shadow:0 0 0 2px #c0e99d28,0 8px 19px #0003,inset 0 1px #ffffff22}
+.seed-card .art{flex:0 0 36px;width:36px;height:36px;border-radius:11px;background:linear-gradient(145deg,#10271eaa,#1e3a2a88);border-color:#d9eecb20;box-shadow:inset 0 1px #ffffff10}.seed-card svg{width:30px;height:30px}
+.seed-copy{gap:1px}.seed-name{font-size:10px;letter-spacing:.005em}.seed-role{font-size:8px;color:#a8c3a6;font-weight:750;letter-spacing:.04em}.seed-cost{font-size:10px;margin-top:1px}.seed-hotkey{right:5px;top:4px;font-size:8px;color:#b0c4a9}.seed-cool{height:3px;background:linear-gradient(90deg,#9bdc80,#e8d98b)}
+.tools-panel{flex:0 0 148px;gap:6px;padding:6px;border-radius:15px;background:linear-gradient(145deg,#203b30,#172c25);border-color:#d3e9cc21;box-shadow:0 10px 24px #0003,inset 0 1px #ffffff0a}.tool-btn{flex:1;width:auto;min-width:0;border-radius:11px;background:linear-gradient(145deg,#2c4939,#1d352a);border-color:#d0e6c51b;font-size:8px;letter-spacing:.07em}.tool-btn:hover{background:#3a5e46;box-shadow:0 6px 14px #0002}.tool-btn.active{border-color:#f0c28a;background:linear-gradient(145deg,#80533a,#573a2c);color:#ffe2ba}
+.footer-row{flex:0 0 17px;min-height:17px;margin:0 5px;gap:12px;font-size:9px;color:#9bb39f;letter-spacing:.035em}.keycap{background:#182c24;border-color:#89a98a42;color:#c4d6b7;padding:2px 5px}
+#toast{top:14px;padding:9px 14px;border-radius:12px;background:linear-gradient(145deg,#304637f5,#192b22f5);border-color:#ecd49388;box-shadow:0 12px 34px #0006;font-size:10px;letter-spacing:.07em}
+#pauseBadge{background:#15261fdc;backdrop-filter:blur(8px);border-color:#d5eccb44;letter-spacing:.18em}
+.stage-overlay{background:linear-gradient(135deg,#071712d9,#091e17d2);backdrop-filter:blur(10px)}.dialog{background:linear-gradient(155deg,#274b3bf5,#142820f8);border:1px solid #d2edc24a;box-shadow:0 34px 90px #000a,inset 0 1px #ffffff1c}.dialog p{font-size:13px;color:#c4d3c4}.eyebrow{color:#c6e8a8}.primary-btn{background:linear-gradient(135deg,#d5f4ab,#8bd17d);box-shadow:0 10px 28px #85c66b47}.secondary-btn{background:#ffffff0d;border-color:#d1e8d244}
+@media(max-height:720px){.shell{gap:6px}.topbar{min-height:43px}.brand-mark{width:35px;height:35px}.meta-chip{min-height:37px;padding:6px 10px}.icon-btn{width:34px;height:34px}.game-frame{padding:6px;gap:6px}.bottom-area{flex-basis:67px;min-height:67px;max-height:67px}.seed-bank{padding:5px;gap:5px}.seed-card{padding:5px 6px;gap:5px}.seed-card .art{width:31px;height:31px;flex-basis:31px}.seed-card svg{width:26px;height:26px}.tools-panel{flex-basis:130px;padding:5px}.footer-row{flex-basis:14px;min-height:14px}}
+@media(max-width:1050px){.brand{min-width:180px}.brand-name{font-size:13px}.top-meta{gap:5px}.meta-chip{padding-left:8px;padding-right:8px}.hud-right{min-width:190px}.seed-card{gap:5px}.seed-card .art{width:30px;height:30px;flex-basis:30px}.seed-card svg{width:25px;height:25px}.seed-name{font-size:9px}.seed-role{font-size:7px}}
+@media(max-width:800px){html,body{height:auto;min-height:100%;overflow:auto}body{padding:8px}.shell{height:auto;min-height:100dvh;gap:8px}.topbar{flex-wrap:wrap}.top-meta{order:3;flex-basis:100%;justify-content:flex-start}.hud-right{margin-left:auto}.game-frame{flex:none}.stage-wrap{height:auto;min-height:0;aspect-ratio:1200/530}#game{width:100%;height:auto;max-width:100%}.bottom-area{flex:0 0 auto;max-height:none;min-height:0;flex-direction:column}.seed-bank{grid-template-columns:repeat(3,minmax(0,1fr))}.tools-panel{flex:0 0 auto;min-height:48px}.footer-row{min-height:20px;flex-wrap:wrap}.footer-hint:last-child{display:none}}
+@media(prefers-reduced-motion:reduce){#game{image-rendering:auto}}
+
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand" aria-label="Verdant Vigil">
+      <div class="brand-mark"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M25.8 5.2C15.4 4.4 7.2 8.8 7.2 17.1c0 5.2 3.9 8.5 8.4 7.4 8.1-2 10.4-10.3 10.2-19.3Z" fill="#153D2B"/><path d="M7 27c3.8-7.4 8.1-11.6 15-16.4" stroke="#E5F6C9" stroke-width="2.1" stroke-linecap="round"/><path d="M13.5 18.2c-3.8-.1-6.2-2.4-6.2-5.4 4.3-.3 7.1 1.2 8 4.1M18.1 13.8c.1-3.8 2.4-6.1 5.6-6.1.2 4.1-1.3 6.8-4.4 7.6" fill="#A8DF83"/></svg></div>
+      <div class="brand-copy"><div class="brand-name">VERDANT VIGIL</div><div class="brand-sub">A HEARTROOT DEFENSE</div></div>
+    </div>
+    <div class="top-meta">
+      <div class="meta-chip wave-readout"><div><div class="meta-label">Wave</div><div class="meta-value" id="waveText">— / 10</div><div class="wave-track"><i id="waveProgress"></i></div></div></div>
+      <div class="meta-chip weather-readout"><span class="weather-dot" id="weatherDot"></span><div><div class="meta-label">Garden weather</div><div class="meta-value" id="weatherText">Clear morning</div></div></div>
+      <div class="meta-chip"><div><div class="meta-label">Garden hearts</div><div class="meta-value"><span class="heart-mark">♥</span><span id="heartsText">3 / 3</span></div></div></div>
+    </div>
+    <div class="hud-right">
+      <div class="energy-box"><span class="energy-icon"></span><span class="energy-value" id="energyText">175</span></div>
+      <button class="icon-btn" id="pauseBtn" aria-label="Pause game" title="Pause (Esc)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 5v14M15 5v14"/></svg></button>
+      <button class="icon-btn" id="speedBtn" aria-label="Toggle game speed" title="Toggle speed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m5 4 14 8-14 8V4Z"/></svg></button>
+      <button class="icon-btn" id="soundBtn" aria-label="Toggle sound" title="Toggle sound"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M17 9a5 5 0 0 1 0 6M19.5 6.5a9 9 0 0 1 0 11"/></svg></button>
+    </div>
+  </header>
+
+  <main class="game-frame">
+    <div class="stage-wrap">
+      <canvas id="game" width="1200" height="530" aria-label="Verdant Vigil game board. Place garden defenders to stop the Witherlings from reaching the Heartroot."></canvas>
+      <div id="pauseBadge">GARDEN PAUSED</div>
+      <div id="toast" role="status" aria-live="polite"></div>
+      <section class="stage-overlay" id="overlay">
+        <div class="dialog" id="dialog">
+          <div class="eyebrow" id="dialogEyebrow">THE LAST GREEN PLACE</div>
+          <h1 id="dialogTitle">Verdant <span>Vigil</span></h1>
+          <p id="dialogText">The Heartroot is the last light in this valley. Build a living defense, harvest every drop of dew, and outlast ten increasingly ferocious waves of Witherlings.</p>
+          <div class="dialog-actions" id="dialogActions"><button class="primary-btn" id="startBtn">Enter fullscreen garden</button><button class="secondary-btn" id="guideBtn">Field guide</button></div>
+          <div class="guide" id="guideBox">
+            <div class="guide-row"><span class="guide-key">1–6</span><span>Choose a seed card, then click an empty garden tile to plant it. Each plant has a different role.</span></div>
+            <div class="guide-row"><span class="guide-key">D</span><span>Collect golden dew drops before they fade. Sunbuds also create dew over time.</span></div>
+            <div class="guide-row"><span class="guide-key">X</span><span>Toggle the shears, then click a plant to remove it. Escape pauses or cancels selection.</span></div>
+            <div class="guide-row"><span class="guide-key">✦</span><span>Dewfall boosts energy income. Crosswind slows Witherlings and quickens your shots.</span></div>
+            <div class="guide-row"><span class="guide-key">♥</span><span>Three Heartroot lives. Armor-breakers and Rootmaws arrive in later waves. Clear all 10 waves to win.</span></div>
+          </div>
+          <div class="dialog-note" id="dialogNote">Fullscreen required · Strategy, timing & resource management</div>
+        </div>
+      </section>
+    </div>
+    <div class="bottom-area">
+      <div class="seed-bank" id="seedBank" aria-label="Seed selection"></div>
+      <div class="tools-panel">
+        <button class="tool-btn" id="shovelBtn" aria-label="Select shears tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 4 7 7M4 20l7-7M11 11l8-8M11 13l8 8"/><circle cx="4" cy="4" r="2"/><circle cx="4" cy="20" r="2"/></svg><span>Shears <b class="keycap">X</b></span></button>
+        <button class="tool-btn" id="cancelBtn" aria-label="Cancel current selection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg><span>Cancel <b class="keycap">Esc</b></span></button>
+      </div>
+    </div>
+  </main>
+  <div class="footer-row"><div class="footer-hint"><span class="keycap">CLICK</span> Collect dew · Place seeds · Defend all lanes</div><div class="footer-hint"><span id="statusText">Ready when you are.</span></div><div class="footer-hint">BEST GARDEN <strong id="bestText" style="color:#c6e99e;margin-left:4px">0</strong></div></div>
+</div>
+<script>
+(() => {
+'use strict';
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+const W = 1200, H = 530;
+const BX = 210, BY = 45, CW = 102, CH = 86, COLS = 9, ROWS = 5;
+const BR = BX + CW * COLS, BB = BY + CH * ROWS;
+const $ = id => document.getElementById(id);
+const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
+const rand = (a,b) => a + Math.random()*(b-a);
+const dist = (a,b) => Math.hypot(a.x-b.x,a.y-b.y);
+const seedDefs = [
+  {id:'sunbud',name:'Sunbud',cost:50,cool:4.5,desc:'Creates dew',role:'Economy',color:'#f6d56d'},
+  {id:'sprout',name:'Sprout Slinger',cost:100,cool:5,desc:'Steady shots',role:'Shooter',color:'#9bd879'},
+  {id:'frost',name:'Frostcap',cost:125,cool:6,desc:'Slows foes',role:'Control',color:'#a5dded'},
+  {id:'bark',name:'Barkshield',cost:75,cool:7,desc:'Soaks damage',role:'Defense',color:'#c69b69'},
+  {id:'twin',name:'Twinbloom',cost:200,cool:10,desc:'Double shots',role:'Heavy',color:'#e7a2c5'},
+  {id:'ember',name:'Emberbud',cost:175,cool:12,desc:'Lane burst',role:'Burst',color:'#f59a69'}
+];
+const seedSVG = {
+ sunbud:`<svg viewBox="0 0 40 40"><g fill="#F7D66F"><ellipse cx="20" cy="5.8" rx="4.1" ry="6.2"/><ellipse cx="20" cy="34.2" rx="4.1" ry="6.2"/><ellipse cx="5.8" cy="20" rx="6.2" ry="4.1"/><ellipse cx="34.2" cy="20" rx="6.2" ry="4.1"/><ellipse cx="9.9" cy="9.9" rx="4.1" ry="6.2" transform="rotate(-45 9.9 9.9)"/><ellipse cx="30.1" cy="9.9" rx="4.1" ry="6.2" transform="rotate(45 30.1 9.9)"/><ellipse cx="9.9" cy="30.1" rx="4.1" ry="6.2" transform="rotate(45 9.9 30.1)"/><ellipse cx="30.1" cy="30.1" rx="4.1" ry="6.2" transform="rotate(-45 30.1 30.1)"/></g><circle cx="20" cy="20" r="9" fill="#9A5A32"/><circle cx="16.8" cy="17.5" r="1.5" fill="#FFF0B3"/><circle cx="23.2" cy="17.5" r="1.5" fill="#FFF0B3"/><path d="M16.5 22q3.5 4 7 0" stroke="#FFF0B3" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>`,
+ sprout:`<svg viewBox="0 0 40 40"><path d="M19 35q-1-12 2-22" stroke="#83BE6D" stroke-width="3" stroke-linecap="round"/><path d="M20 28Q7 27 7 17q12-2 15 8M21 23q1-12 13-13 2 11-12 16" fill="#74B967" stroke="#B9E99A" stroke-width="1.2"/><ellipse cx="24" cy="12" rx="10" ry="8.5" fill="#A9DC7B"/><ellipse cx="25" cy="12" rx="5" ry="5.2" fill="#D9F1A7"/><circle cx="23" cy="11" r="1" fill="#244731"/><circle cx="28" cy="11" r="1" fill="#244731"/><path d="M23.5 14q2 2 4 0" fill="none" stroke="#31523A" stroke-width="1" stroke-linecap="round"/><path d="M29 12h8" stroke="#E8F4C0" stroke-width="2.2" stroke-linecap="round"/></svg>`,
+ frost:`<svg viewBox="0 0 40 40"><path d="M19 35V21" stroke="#77BDAE" stroke-width="3" stroke-linecap="round"/><path d="M19 27q-9 0-11-7 10-3 14 5M20 27q1-9 11-10 2 9-10 13" fill="#83C9C6"/><path d="M8 22q-3-12 12-17 14 2 13 15-8 5-25 2Z" fill="#A8DFF0" stroke="#E3F8F7" stroke-width="1.2"/><path d="M14 12q6-4 12 0" stroke="#F1FEFC" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="17" cy="18" r="1" fill="#365A65"/><circle cx="25" cy="18" r="1" fill="#365A65"/><path d="M18 21q3 2 6 0" stroke="#365A65" fill="none" stroke-linecap="round"/></svg>`,
+ bark:`<svg viewBox="0 0 40 40"><path d="M10 35 12 13 18 7 25 9 30 17 29 35Z" fill="#9B7651" stroke="#D5B17A" stroke-width="1.4"/><path d="m13 18 6-5m-5 13 9-8m-8 13 9-7" stroke="#E4C18C" stroke-width="2" stroke-linecap="round"/><path d="M12 12Q6 4 4 11q1 7 9 6M28 15q6-10 9-3-1 8-9 9" fill="#79A85D" stroke="#A9D17C"/><circle cx="18" cy="21" r="1.3" fill="#2A3528"/><circle cx="25" cy="21" r="1.3" fill="#2A3528"/><path d="M19 26q3 2 6 0" fill="none" stroke="#E7C89A" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+ twin:`<svg viewBox="0 0 40 40"><path d="M19 36q-2-12 1-19m2 18q2-10 8-17" stroke="#78B866" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M19 27q-13-2-12-12 11-1 15 10M23 30q-2-11 8-15 7 8-5 18" fill="#81C876" stroke="#B5E79B"/><ellipse cx="14" cy="10" rx="7" ry="6" fill="#DAA0CC"/><ellipse cx="28" cy="13" rx="7" ry="6" fill="#E8ACD1"/><circle cx="14" cy="10" r="2" fill="#874F79"/><circle cx="28" cy="13" r="2" fill="#874F79"/></svg>`,
+ ember:`<svg viewBox="0 0 40 40"><path d="M20 35V22" stroke="#8FAE5E" stroke-width="3" stroke-linecap="round"/><path d="M20 31Q5 28 9 15q3-6 9-10-2 10 5 10 1-7 8-9 4 13-2 20-4 5-9 5Z" fill="#F28A5D" stroke="#FFD18B" stroke-width="1.3"/><path d="M20 27q-7-7 1-15 0 8 6 8 1 6-7 7Z" fill="#FFD36C"/><circle cx="17" cy="23" r="1.2" fill="#683A2B"/><circle cx="24" cy="23" r="1.2" fill="#683A2B"/></svg>`
+};
+let state='menu', paused=false, speed=1, soundOn=false, audioCtx=null, overlayKind='menu';
+let energy=175, hearts=3, wave=0, phase='idle', phaseTimer=0, spawnQueue=[], spawnTimer=0, spawnedThisWave=0;
+let plants=[], enemies=[], shots=[], drops=[], particles=[], floating=[];
+let selected=null, shears=false, mouse={x:-999,y:-999}, elapsed=0, worldTime=0, dewTimer=4, weather='Clear morning', weatherTimer=20;
+let kills=0, plantedCount=0, best=(()=>{try{return Number(localStorage.getItem('vv_best')||0)}catch(e){return 0}})(), lostCount=0;
+let uiTimer=0, toastTimer=0, lastFrame=0, animationId=0, nextId=1, shake=0;
+const cards = [];
+$('bestText').textContent=best;
+
+function makeCards(){
+ const bank=$('seedBank'); bank.innerHTML='';
+ seedDefs.forEach((d,i)=>{
+   const b=document.createElement('button'); b.className='seed-card'; b.type='button'; b.setAttribute('aria-label',`${i+1}. ${d.name}, costs ${d.cost} dew. ${d.role}: ${d.desc}.`); b.title=`${d.name} · ${d.role}
+${d.desc} · ${d.cost} dew`; b.dataset.id=d.id;
+   b.innerHTML=`<span class="art">${seedSVG[d.id]}</span><span class="seed-copy"><span class="seed-name">${d.name}</span><span class="seed-role">${d.role}</span><span class="seed-cost">${d.cost}</span></span><span class="seed-hotkey">${i+1}</span><span class="seed-cool"></span>`;
+   b.addEventListener('click',()=>chooseSeed(d.id)); bank.appendChild(b); cards.push({el:b,def:d});
+ });
+}
+makeCards();
+function sfx(freq=440,dur=.08,type='sine',vol=.035){
+ if(!soundOn) return;
+ try{audioCtx ||= new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==='suspended')audioCtx.resume(); const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.setValueAtTime(freq,audioCtx.currentTime);g.gain.setValueAtTime(vol,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+dur);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+dur);}catch(e){}
+}
+function showToast(text){$('toast').textContent=text;$('toast').classList.add('show');toastTimer=1.7;}
+function chooseSeed(id){
+ if(state!=='playing'||paused)return;
+ const d=seedDefs.find(x=>x.id===id); if(!d)return;
+ const pCooldown=plantCooldown[id]||0;
+ if(pCooldown>0){showToast(`${d.name.toUpperCase()} IS RESTING`);sfx(180,.07,'triangle',.02);return;}
+ if(energy<d.cost){showToast(`NEED ${d.cost-energy} MORE DEW`);sfx(180,.07,'triangle',.02);return;}
+ selected=id; shears=false;updateCards();$('shovelBtn').classList.remove('active');sfx(560,.045,'sine',.018);
+}
+const plantCooldown={sunbud:0,sprout:0,frost:0,bark:0,twin:0,ember:0};
+function updateCards(){cards.forEach(c=>{c.el.classList.toggle('selected',selected===c.def.id);c.el.classList.toggle('disabled',energy<c.def.cost||(plantCooldown[c.def.id]||0)>0);const rem=plantCooldown[c.def.id]||0;c.el.querySelector('.seed-cool').style.transform=`scaleX(${clamp(1-rem/c.def.cool,0,1)})`;});}
+function startGame(){
+ resetGame();state='playing';paused=false;phase='prep';phaseTimer=5;selected=null;shears=false;hideOverlay();$('pauseBtn').innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 5v14M15 5v14"/></svg>';$('pauseBtn').setAttribute('aria-label','Pause game');
+ $('statusText').textContent='A quiet moment before the first wave.';updateUI(true);sfx(520,.12,'sine',.04);
+}
+
+async function enterFullscreen(){
+ try{
+  if(!document.fullscreenElement){
+   if(!document.documentElement.requestFullscreen) throw new Error('Fullscreen is not supported in this browser.');
+   await document.documentElement.requestFullscreen({navigationUI:'hide'});
+  }
+  if(!document.fullscreenElement) throw new Error('Fullscreen permission was not granted.');
+  if(state==='playing'&&paused){paused=false;$('pauseBadge').classList.remove('show');$('pauseBtn').innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 5v14M15 5v14"/></svg>';$('pauseBtn').setAttribute('aria-label','Pause game');hideOverlay();$('seedBank').parentElement.classList.remove('locked');updateUI(true);}
+  else if(state!=='playing') startGame();
+ }catch(err){
+  $('dialogEyebrow').textContent='FULLSCREEN REQUIRED';$('dialogTitle').innerHTML='One more <span>step</span>';
+  $('dialogText').textContent='Your browser did not allow full-screen mode. Use a desktop browser and allow full-screen access, then try again. The game will not start in a windowed view.';
+  $('dialogActions').innerHTML='<button class="primary-btn" id="retryFullscreenBtn">Try fullscreen again</button>';
+  $('dialogNote').textContent='Keyboard shortcut F11 may enter browser full screen, but the game still needs permission.';
+  $('retryFullscreenBtn').onclick=enterFullscreen;
+ }
+}
+document.addEventListener('fullscreenchange',()=>{
+ if(document.fullscreenElement){
+  if(state==='playing'&&paused&&overlayKind==='fullscreen'){
+   paused=false;$('pauseBadge').classList.remove('show');hideOverlay();$('seedBank').parentElement.classList.remove('locked');updateUI(true);
+  }
+ }else if(state==='playing'){
+  paused=true;selected=null;shears=false;updateCards();$('shovelBtn').classList.remove('active');$('pauseBadge').classList.add('show');showOverlay('fullscreen');
+ }
+});
+
+function resetGame(){
+ energy=175;hearts=3;wave=0;phase='idle';phaseTimer=0;spawnQueue=[];spawnTimer=0;spawnedThisWave=0;plants=[];enemies=[];shots=[];drops=[];particles=[];floating=[];selected=null;shears=false;elapsed=0;worldTime=0;dewTimer=4;weather='Clear morning';weatherTimer=20;kills=0;plantedCount=0;lostCount=0;speed=1;paused=false;shake=0;
+ for(const k in plantCooldown)plantCooldown[k]=0;
+ drops.push({id:nextId++,x:rand(BX+100,BR-80),y:rand(85,180),value:25,life:11,kind:'dew',vy:9,pulse:rand(0,6)});
+ $('speedBtn').style.color='';$('speedBtn').title='Toggle speed';$('pauseBadge').classList.remove('show');updateCards();
+}
+function showOverlay(kind){
+ overlayKind=kind;
+ $('seedBank').parentElement.classList.toggle('locked',state!=='playing'||paused);
+ $('overlay').classList.remove('hidden');$('guideBox').classList.remove('open');
+ if(kind==='menu'){
+  $('dialogEyebrow').textContent='THE LAST GREEN PLACE';$('dialogTitle').innerHTML='Verdant <span>Vigil</span>';
+  $('dialogText').textContent='The Heartroot is the last light in this valley. Build a living defense, harvest every drop of dew, and outlast ten increasingly ferocious waves of Witherlings.';
+  $('dialogActions').innerHTML='<button class="primary-btn" id="startBtn">Enter the garden</button><button class="secondary-btn" id="guideBtn">Field guide</button>';
+  $('dialogNote').textContent='Fullscreen required · Strategy, timing & resource management';
+  $('startBtn').onclick=enterFullscreen;$('guideBtn').onclick=()=>{$('guideBox').classList.toggle('open')};
+ } else if(kind==='pause'){
+  $('dialogEyebrow').textContent='TAKE A BREATH';$('dialogTitle').innerHTML='Garden <span>paused</span>';
+  $('dialogText').textContent='The Witherlings can wait. Your plants are safe while the garden is paused.';
+  $('dialogActions').innerHTML='<button class="primary-btn" id="resumeBtn">Return to garden</button><button class="secondary-btn" id="restartBtn">Restart garden</button>';
+  $('dialogNote').textContent='Press Escape to resume';$('resumeBtn').onclick=togglePause;$('restartBtn').onclick=()=>{startGame()};
+ } else if(kind==='fullscreen'){
+  $('dialogEyebrow').textContent='IMMERSIVE MODE REQUIRED';$('dialogTitle').innerHTML='Return to the <span>garden</span>';
+  $('dialogText').textContent='Verdant Vigil is designed for a full-screen playfield. Re-enter full screen to resume exactly where you left off; the garden is paused until then.';
+  $('dialogActions').innerHTML='<button class="primary-btn" id="fullscreenResumeBtn">Re-enter fullscreen</button><button class="secondary-btn" id="fullscreenMenuBtn">Leave to main menu</button>';
+  $('dialogNote').textContent='Press the button below to restore immersive play';
+  $('fullscreenResumeBtn').onclick=enterFullscreen;$('fullscreenMenuBtn').onclick=()=>{state='menu';paused=false;showOverlay('menu')};
+ } else if(kind==='lost'){
+  $('dialogEyebrow').textContent='THE GARDEN HAS FALLEN QUIET';$('dialogTitle').innerHTML='Root <span>overrun</span>';
+  $('dialogText').textContent=`The Heartroot was reached too many times. You held through wave ${wave} and cleared ${kills} Witherlings. Every garden can grow back.`;
+  $('dialogActions').innerHTML='<button class="primary-btn" id="againBtn">Grow again</button><button class="secondary-btn" id="menuBtn">Main menu</button>';
+  $('dialogNote').textContent=`Plants placed: ${plantedCount} · Witherlings cleared: ${kills}`;$('againBtn').onclick=startGame;$('menuBtn').onclick=()=>{state='menu';showOverlay('menu')};
+ } else if(kind==='win'){
+  $('dialogEyebrow').textContent='THE HEARTROOT STILL GLOWS';$('dialogTitle').innerHTML='Garden <span>saved</span>';
+  $('dialogText').textContent=`All 10 waves have been cleared. The Witherlings have retreated, and the garden is blooming again. A fine defense.`;
+  $('dialogActions').innerHTML='<button class="primary-btn" id="againBtn">Play again</button><button class="secondary-btn" id="menuBtn">Main menu</button>';
+  $('dialogNote').textContent=`${kills} Witherlings cleared · ${plantedCount} plants placed · ${Math.floor(elapsed)}s survived`;$('againBtn').onclick=startGame;$('menuBtn').onclick=()=>{state='menu';showOverlay('menu')};
+ }
+}
+function hideOverlay(){$('overlay').classList.add('hidden');}
+function togglePause(){
+ if(state!=='playing')return;
+ if(!document.fullscreenElement){paused=true;showOverlay('fullscreen');return;}
+ paused=!paused;
+ $('seedBank').parentElement.classList.toggle('locked',state!=='playing'||paused);
+ $('pauseBadge').classList.toggle('show',paused);
+ $('pauseBtn').innerHTML=paused?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 5 11 7-11 7V5Z"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 5v14M15 5v14"/></svg>';
+ $('pauseBtn').setAttribute('aria-label',paused?'Resume game':'Pause game');
+ if(paused){selected=null;shears=false;updateCards();$('shovelBtn').classList.remove('active');showOverlay('pause')}else hideOverlay();
+ sfx(paused?300:540,.08,'sine',.03);
+}
+function toggleShears(){if(state!=='playing'||paused)return;shears=!shears;selected=null;$('shovelBtn').classList.toggle('active',shears);updateCards();showToast(shears?'SHEARS READY — CHOOSE A PLANT':'SHEARS STORED');sfx(350,.06,'triangle',.02);}
+function placePlant(row,col,id){
+ const def=seedDefs.find(s=>s.id===id);if(!def)return;
+ if(plants.some(p=>p.row===row&&p.col===col)){showToast('THIS TILE IS ALREADY OCCUPIED');sfx(170,.07,'triangle',.02);return;}
+ if(energy<def.cost){showToast('NOT ENOUGH DEW');return;}
+ if(plantCooldown[id]>0){showToast('THAT SEED IS STILL RESTING');return;}
+ energy-=def.cost;plantCooldown[id]=def.cool;
+ const p={id:nextId++,type:id,row,col,x:BX+col*CW+CW/2,y:BY+row*CH+CH*.86,hp:id==='bark'?570:id==='twin'?205:id==='sunbud'?150:180,maxHp:id==='bark'?570:id==='twin'?205:id==='sunbud'?150:180,shoot:rand(.2,.7),produce:rand(4.2,6),anim:rand(0,8),flash:0,burst:.58};
+ plants.push(p);plantedCount++;selected=null;updateCards();sfx(380+Math.random()*170,.09,'sine',.03);
+ addParticles(p.x,p.y-26,def.color,12,80);floatText(p.x,p.y-60,'PLANTED',def.color);
+ if(id==='ember'){showToast('EMBERBUD PRIMED — LANE BURST');}
+}
+function removePlant(row,col){const ix=plants.findIndex(p=>p.row===row&&p.col===col);if(ix<0){showToast('NO PLANT ON THIS TILE');return;}const p=plants[ix];plants.splice(ix,1);addParticles(p.x,p.y-25,'#d2b18a',13,65);floatText(p.x,p.y-56,'CLEARED','#e9c18b');sfx(230,.1,'triangle',.025);}
+function canvasPoint(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*(W/r.width),y:(e.clientY-r.top)*(H/r.height)};}
+canvas.addEventListener('pointermove',e=>{mouse=canvasPoint(e)});
+canvas.addEventListener('pointerleave',()=>{mouse={x:-999,y:-999}});
+canvas.addEventListener('contextmenu',e=>{e.preventDefault();selected=null;shears=false;updateCards();$('shovelBtn').classList.remove('active')});
+canvas.addEventListener('pointerdown',e=>{
+ if(state!=='playing'||paused)return;
+ const pt=canvasPoint(e);
+ for(let i=drops.length-1;i>=0;i--){const d=drops[i];if(Math.hypot(pt.x-d.x,pt.y-d.y)<27){collectDrop(i);return;}}
+ if(pt.x<BX||pt.x>BR||pt.y<BY||pt.y>BB)return;
+ const col=Math.floor((pt.x-BX)/CW),row=Math.floor((pt.y-BY)/CH);
+ if(shears){removePlant(row,col);return;}
+ if(selected){placePlant(row,col,selected);return;}
+ const p=plants.find(p=>p.row===row&&p.col===col);if(p){floatText(p.x,p.y-54,`${Math.ceil(p.hp)} / ${p.maxHp} HP`,'#f2e9bc');}
+});
+function collectDrop(i){const d=drops[i];energy+=d.value;drops.splice(i,1);addParticles(d.x,d.y,'#ffdc78',16,105);floatText(d.x,d.y-16,`+${d.value} DEW`,'#ffe28e');sfx(720,.09,'sine',.04);updateUI(true);}
+function toggleSpeed(){if(state!=='playing'||paused)return;speed=speed===1?1.5:1;$('speedBtn').style.color=speed>1?'#d2ee9c':'';$('speedBtn').title=`Game speed ${speed}x`;showToast(`GARDEN SPEED ${speed}×`);sfx(460,.06,'sine',.025);}
+function toggleSound(){soundOn=!soundOn;$('soundBtn').style.color=soundOn?'#c8eb9c':'';$('soundBtn').setAttribute('aria-label',soundOn?'Mute sound':'Enable sound');if(soundOn)sfx(620,.1,'sine',.03);}
+$('pauseBtn').addEventListener('click',togglePause);$('speedBtn').addEventListener('click',toggleSpeed);$('soundBtn').addEventListener('click',toggleSound);$('shovelBtn').addEventListener('click',toggleShears);$('cancelBtn').addEventListener('click',()=>{selected=null;shears=false;updateCards();$('shovelBtn').classList.remove('active')});
+document.addEventListener('keydown',e=>{
+ if(e.repeat)return;
+ if(e.key==='Escape'){
+  if(state==='playing'&&!paused){togglePause()}else if(state==='playing'&&paused){togglePause()}else{selected=null;shears=false;updateCards();$('shovelBtn').classList.remove('active')}
+  return;
+ }
+ if(state!=='playing'||paused)return;
+ if(e.key.toLowerCase()==='x'){toggleShears();return;}
+ if(e.key.toLowerCase()==='d'){const i=drops.findIndex(d=>Math.hypot(mouse.x-d.x,mouse.y-d.y)<27);if(i>=0)collectDrop(i);return;}
+ const n=Number(e.key);if(n>=1&&n<=6)chooseSeed(seedDefs[n-1].id);
+});
+
+function makeWave(w){
+ // The opening remains sparse and threatening. From wave 3 onward, both
+ // the number of attackers and the composition escalate sharply.
+ const count=w===1?5:Math.round(5+(w-1)*3.05+(w>=7?(w-6)*.55:0));
+ const q=[];
+ for(let i=0;i<count;i++){
+  let type='drifter';
+  if(w>=2&&i%3===2)type='skitter';
+  if(w>=4&&i%4===3)type='brute';
+  if(w>=5&&i%6===4)type='ravager';
+  if(w>=7&&i%8===6)type='thornback';
+  if(w>=9&&i===Math.floor(count*.68))type='rootmaw';
+  q.push(type);
+ }
+ if(w===10)q.push('rootmaw'); // a final siege-beast closes the campaign
+ return q;
+}
+function beginWave(){wave++;spawnQueue=makeWave(wave);spawnTimer=1.25;spawnedThisWave=0;phase='wave';phaseTimer=0;showToast(`WAVE ${wave} — THEY'RE COMING`);sfx(300,.2,'sawtooth',.018);updateUI(true);}
+function spawnEnemy(type){
+ const row=(Math.floor(Math.random()*ROWS)+Math.floor(spawnedThisWave/2))%ROWS;
+ const hpScale=1+(wave-1)*.09+Math.max(0,wave-5)*.08;
+ const speedScale=1+Math.min(.34,(wave-1)*.038);
+ const damageScale=1+Math.max(0,wave-3)*.075;
+ const stats={
+  drifter:{hp:115,speed:19,damage:23,bite:1.05,rad:24},
+  skitter:{hp:82,speed:36,damage:17,bite:.78,rad:20},
+  brute:{hp:325,speed:11.5,damage:42,bite:1.18,rad:30},
+  ravager:{hp:145,speed:39,damage:29,bite:.68,rad:21},
+  thornback:{hp:350,speed:13.5,damage:38,bite:1.05,rad:32,armor:190},
+  rootmaw:{hp:690,speed:9.2,damage:72,bite:1.0,rad:38,armor:130}
+ }[type];
+ const hp=stats.hp*hpScale;
+ enemies.push({id:nextId++,type,row,x:BR+48,y:BY+row*CH+CH*.86,hp,maxHp:hp,armor:stats.armor||0,maxArmor:stats.armor||0,speed:stats.speed*speedScale,damage:stats.damage*damageScale,biteRate:stats.bite,rad:stats.rad,attack:0,anim:rand(0,8),flash:0,slow:0,dead:false,dash:rand(1.8,3.8)});
+ addParticles(BR+12,BY+row*CH+CH*.86-8,type==='rootmaw'?'#b7a17b':'#728a68',type==='rootmaw'?15:7,type==='rootmaw'?65:36);
+}
+function tickWeather(dt){
+ weatherTimer-=dt;
+ if(weatherTimer<=0){
+  if(weather==='Clear morning'){weather='Dewfall';weatherTimer=23;showToast('DEWFALL — ENERGY DROPS ARE RICHER');}
+  else if(weather==='Dewfall'){weather='Crosswind';weatherTimer=25;showToast('CROSSWIND — SHOTS FLY FASTER');}
+  else{weather='Clear morning';weatherTimer=20;showToast('THE GARDEN CALMS');}
+  sfx(640,.14,'sine',.02);
+ }
+}
+function update(dt){
+ if(state!=='playing'||paused)return;
+ const step=dt*speed;elapsed+=step;worldTime+=step;tickWeather(step);
+ for(const k in plantCooldown)plantCooldown[k]=Math.max(0,plantCooldown[k]-step);
+ dewTimer-=step;
+ if(dewTimer<=0){
+  const isDew=weather==='Dewfall';
+  drops.push({id:nextId++,x:rand(BX+45,BR-30),y:rand(BY+10,BY+160),value:isDew?35:25,life:12,kind:'dew',vy:rand(6,13),pulse:rand(0,6)});
+  dewTimer=weather==='Dewfall'?5.6:8.8;
+ }
+ if(phase==='prep'){
+  phaseTimer-=step;
+  if(phaseTimer<=0)beginWave();
+ }else if(phase==='wave'){
+  if(spawnQueue.length){spawnTimer-=step;if(spawnTimer<=0){spawnEnemy(spawnQueue.shift());spawnedThisWave++;spawnTimer=Math.max(.58,1.95-wave*.135);}}
+  if(!spawnQueue.length&&enemies.length===0){if(wave>=10){winGame();return;}phase='intermission';phaseTimer=5;showToast(`WAVE ${wave} CLEARED — BREATHE`);sfx(780,.15,'sine',.025);}
+ }else if(phase==='intermission'){
+  phaseTimer-=step;if(phaseTimer<=0)beginWave();
+ }
+ // Plants: economy, firing, timed burst.
+ for(let i=plants.length-1;i>=0;i--){const p=plants[i];p.anim+=step*2.2;p.flash=Math.max(0,p.flash-step*3);
+  if(p.type==='sunbud'){
+   p.produce-=step;if(p.produce<=0){const val=weather==='Dewfall'?40:25;drops.push({id:nextId++,x:p.x+rand(-16,16),y:p.y-47,value:val,life:13,kind:'dew',vy:-5,pulse:0});p.produce=weather==='Dewfall'?5.9:7.3;addParticles(p.x,p.y-46,'#f7d46e',5,32);}
+  } else if(p.type==='sprout'||p.type==='frost'||p.type==='twin'){
+   p.shoot-=step;
+   const target=enemies.some(e=>e.row===p.row&&e.x>p.x+12);
+   if(target&&p.shoot<=0){
+    const rate=p.type==='twin'?1.7:p.type==='frost'?2.55:2.05;
+    const bullets=p.type==='twin'?2:1;
+    for(let b=0;b<bullets;b++)shots.push({x:p.x+25,y:p.y-22+(b?8:-2),row:p.row,vx:(weather==='Crosswind'?470:390),damage:p.type==='frost'?17:p.type==='twin'?23:27,slow:p.type==='frost'?.38:0,kind:p.type==='frost'?'ice':p.type==='twin'?'twin':'leaf',r:p.type==='frost'?8:7});
+    p.shoot=rate; p.flash=.18; sfx(p.type==='frost'?600:520,.035,'sine',.012);
+   }
+  } else if(p.type==='ember'){
+   p.burst-=step;if(p.burst<=0){
+    for(const e of enemies){if(e.row===p.row&&Math.abs(e.x-p.x)<235){e.hp-=220;e.flash=.24;addParticles(e.x,e.y-14,'#ff9b61',12,85);}}
+    addParticles(p.x,p.y-28,'#ffb36c',40,180);shake=7;floatText(p.x,p.y-68,'BLOOM BURST!','#ffc18c');plants.splice(i,1);sfx(120,.32,'sawtooth',.05);
+   }
+  }
+ }
+ // Projectiles travel toward the Witherlings.
+ for(let i=shots.length-1;i>=0;i--){const s=shots[i];s.x+=s.vx*step;if(s.x>BR+100){shots.splice(i,1);continue;}let hit=null;for(const e of enemies){if(e.row===s.row&&Math.abs(e.x-s.x)<e.rad*.72){hit=e;break;}}if(hit){let damage=s.damage;if(hit.armor>0){const absorbed=Math.min(hit.armor,damage);hit.armor-=absorbed;damage-=absorbed;addParticles(hit.x-8,hit.y-28,'#d6bd8d',6,44);}if(damage>0)hit.hp-=damage;hit.flash=.16;if(s.slow)hit.slow=Math.max(hit.slow,2.2);addParticles(s.x,s.y,s.kind==='ice'?'#aeeeff':'#b4e68a',5,38);shots.splice(i,1);if(hit.hp<=0)defeatEnemy(hit);}}
+ // Enemies advance, or chew the nearest plant in their lane.
+ for(let i=enemies.length-1;i>=0;i--){const e=enemies[i];e.anim+=step*2.5;e.flash=Math.max(0,e.flash-step*3);e.slow=Math.max(0,e.slow-step);
+  let blocker=null;for(const p of plants){if(p.row===e.row&&p.x<e.x&&e.x-p.x<e.rad+19){if(!blocker||p.x>blocker.x)blocker=p;}}
+  if(blocker){e.attack-=step;if(e.attack<=0){blocker.hp-=e.damage;e.attack=e.biteRate;blocker.flash=.25;addParticles(blocker.x+rand(-10,10),blocker.y-15,'#d5aa7a',3,26);sfx(100,.04,'triangle',.009);if(blocker.hp<=0){plants=plants.filter(p=>p!==blocker);addParticles(blocker.x,blocker.y-22,'#9b7959',15,70);}}}
+  else{const weatherFactor=weather==='Crosswind'?.82:1;let rush=1;if(e.type==='ravager'){e.dash-=step;if(e.dash<=0){rush=2.35;e.dash=rand(2.4,3.7);}}e.x-=e.speed*weatherFactor*(e.slow>0?.62:1)*rush*step;}
+  if(e.x<BX-2){enemies.splice(i,1);hearts--;lostCount++;shake=9;addParticles(BX-5,e.y,'#d2b77c',18,90);floatText(BX+14,e.y-40,'HEARTROOT HIT!','#ffb28a');sfx(95,.28,'sawtooth',.05);if(hearts<=0){loseGame();return;}}
+ }
+ // Dew drifts gently and expires.
+ for(let i=drops.length-1;i>=0;i--){const d=drops[i];d.life-=step;d.pulse+=step*2;d.y+=d.vy*step;d.x+=Math.sin(d.pulse*.7)*.14;if(d.life<=0){drops.splice(i,1);}}
+ updateParticles(step);
+ if(toastTimer>0){toastTimer-=step;if(toastTimer<=0)$('toast').classList.remove('show');}
+ if(shake>0)shake=Math.max(0,shake-step*18);
+ uiTimer-=step;if(uiTimer<=0){updateUI();uiTimer=.12;}
+}
+function defeatEnemy(e){
+ const i=enemies.indexOf(e);if(i<0)return;enemies.splice(i,1);kills++;addParticles(e.x,e.y-15,e.type==='brute'?'#b1a58b':'#9ebc78',19,90);floatText(e.x,e.y-45,'CLEARED','#c7e9a7');
+ if(Math.random()<.13)drops.push({id:nextId++,x:e.x,y:e.y-22,value:25,life:8,kind:'dew',vy:-10,pulse:0});
+ sfx(e.type==='brute'?170:240,.07,'triangle',.018);
+}
+function loseGame(){state='lost';paused=false;selected=null;updateCards();if(kills>best){best=kills;try{localStorage.setItem('vv_best',best)}catch(e){};$('bestText').textContent=best;}showOverlay('lost');}
+function winGame(){state='win';paused=false;selected=null;updateCards();best=Math.max(best,kills);try{localStorage.setItem('vv_best',best)}catch(e){};$('bestText').textContent=best;showOverlay('win');sfx(880,.5,'sine',.05);}
+function addParticles(x,y,color,n=8,power=60){for(let i=0;i<n;i++){const a=rand(0,Math.PI*2),v=rand(power*.25,power);particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:rand(.25,.7),max:.7,r:rand(2,5),color});}}
+function floatText(x,y,text,color){floating.push({x,y,text,color,life:1.0,max:1.0});}
+function updateParticles(dt){for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.life-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=85*dt;p.vx*=Math.pow(.12,dt);if(p.life<=0)particles.splice(i,1);}for(let i=floating.length-1;i>=0;i--){const f=floating[i];f.life-=dt;f.y-=22*dt;if(f.life<=0)floating.splice(i,1);}}
+function updateUI(force=false){
+ $('energyText').textContent=Math.floor(energy);$('waveText').textContent=wave?`${wave} / 10`:'— / 10';$('heartsText').textContent=`${hearts} / 3`;$('waveProgress').style.width=`${clamp(wave/10*100,0,100)}%`;
+ $('weatherText').textContent=weather;$('weatherDot').style.background=weather==='Dewfall'?'#f2cc68':weather==='Crosswind'?'#a8dded':'#b9e9a0';$('weatherDot').style.boxShadow=`0 0 12px ${weather==='Dewfall'?'#f2cc68':weather==='Crosswind'?'#a8dded':'#b9e9a0'}`;
+ let stat='Ready when you are.';
+ if(state==='playing'){
+  if(phase==='prep')stat=`First wave in ${Math.ceil(phaseTimer)}s · Place your defenses.`;
+  else if(phase==='wave')stat=`${spawnQueue.length+enemies.length} Witherlings remain in wave ${wave}.`;
+  else if(phase==='intermission')stat=`Wave ${wave} cleared · Next wave in ${Math.ceil(phaseTimer)}s.`;
+ }
+ $('statusText').textContent=stat;$('seedBank').parentElement.classList.toggle('locked',state!=='playing'||paused);updateCards();
+}
+
+// ---------- Canvas rendering ----------
+function rounded(x,y,w,h,r,fill,stroke){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill();}if(stroke){ctx.strokeStyle=stroke;ctx.stroke();}}
+function drawBackground(t){
+ const sky=ctx.createLinearGradient(0,0,0,H);sky.addColorStop(0,'#9dbf92');sky.addColorStop(.42,'#bfd29a');sky.addColorStop(1,'#527d51');ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);
+ // Layered valley silhouettes create depth behind the garden.
+ const hills=[['#8eae7b',140,24,.008],['#769966',216,18,.012],['#638653',300,14,.016]];
+ hills.forEach(([color,base,amp,freq],idx)=>{ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(0,base+70);for(let x=0;x<=W;x+=38){const y=base+Math.sin(x*freq+t*(.035+idx*.012)+idx)*amp+Math.sin(x*.027+idx)*5;ctx.lineTo(x,y);}ctx.lineTo(W,base+130);ctx.lineTo(0,base+130);ctx.closePath();ctx.fill();});
+ // Warm, diffused morning light.
+ const sun=ctx.createRadialGradient(960,42,4,960,42,190);sun.addColorStop(0,'#fff9d4b5');sun.addColorStop(.34,'#fff2bd52');sun.addColorStop(1,'#fff2bd00');ctx.fillStyle=sun;ctx.fillRect(750,0,420,250);
+ ctx.fillStyle='#fff5c0';ctx.globalAlpha=.42;ctx.beginPath();ctx.arc(960,36,21,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
+ // Slow drifting cloud clusters.
+ for(let i=0;i<5;i++){const x=((i*286+t*2.5)%(W+240))-120,y=25+(i%3)*28;ctx.fillStyle='#f4f7df30';ctx.beginPath();ctx.ellipse(x,y,48,9,0,0,Math.PI*2);ctx.ellipse(x+25,y-5,27,12,0,0,Math.PI*2);ctx.ellipse(x-18,y-2,25,10,0,0,Math.PI*2);ctx.fill();}
+ // Distant orchard and fence silhouettes.
+ for(let i=0;i<17;i++){const x=i*78+((i%2)*9),y=330+(i%3)*7;ctx.fillStyle=i%2?'#4f754b':'#5e8350';ctx.beginPath();ctx.arc(x,y-16,17+(i%4)*2,0,Math.PI*2);ctx.fill();ctx.fillStyle='#715d3e';ctx.fillRect(x-2,y-8,4,22);}
+ ctx.strokeStyle='#e5efbc25';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,359);ctx.lineTo(W,359);ctx.stroke();
+ // Near-ground grass with a deep edge vignette.
+ const grass=ctx.createLinearGradient(0,365,0,H);grass.addColorStop(0,'#7da45e');grass.addColorStop(.48,'#689452');grass.addColorStop(1,'#315e42');ctx.fillStyle=grass;ctx.fillRect(0,365,W,H-365);
+ for(let i=0;i<190;i++){const x=(i*83+((t*4)%83))%W,y=370+(i*31)%160;ctx.strokeStyle=i%2?'#e0efad2c':'#1c58362e';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x,y+6);ctx.quadraticCurveTo(x-3,y-2,x+Math.sin(i*8.3)*5,y-8);ctx.stroke();}
+ // A soft vignette at the edges keeps attention on the playfield.
+ const vignette=ctx.createRadialGradient(600,260,180,600,260,760);vignette.addColorStop(.55,'#071d1600');vignette.addColorStop(1,'#10251a38');ctx.fillStyle=vignette;ctx.fillRect(0,0,W,H);
+ // Living Heartroot sentinel beside the left lane wall.
+ rounded(174,BY-2,27,CH*ROWS+18,12,'#405c43','#d9e2a455');
+ ctx.fillStyle='#344f3b';ctx.beginPath();ctx.moveTo(185,BY+34);ctx.bezierCurveTo(160,BY+75,160,BY+120,186,BY+151);ctx.bezierCurveTo(210,BY+112,209,BY+72,185,BY+34);ctx.fill();
+ ctx.strokeStyle='#a4c78d';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(185,BY+62);ctx.quadraticCurveTo(185,BY+97,185,BY+125);ctx.stroke();
+ ctx.fillStyle='#c0e79d';ctx.beginPath();ctx.arc(185,BY+56,7,0,Math.PI*2);ctx.fill();
+ for(let i=0;i<13;i++){const x=24+(i*47)%142,y=420+(i*37)%95;ctx.fillStyle=i%2?'#365f40':'#507c4c';ctx.beginPath();ctx.ellipse(x,y,8+(i%3)*4,4+(i%2)*2,(i%5)*.3,0,Math.PI*2);ctx.fill();}
+}
+function drawBoard(t){
+ const boardW=CW*COLS,boardH=CH*ROWS;
+ // Layered enamel-and-wood frame with a warm brass pinstripe.
+ ctx.save();ctx.shadowColor='#173c27bd';ctx.shadowBlur=28;ctx.shadowOffsetY=10;rounded(BX-10,BY-10,boardW+20,boardH+20,20,'#e0e6b1','#f0efc4');ctx.restore();
+ rounded(BX-7,BY-7,boardW+14,boardH+14,17,'#577c4a','#e2edb96e');
+ rounded(BX-3,BY-3,boardW+6,boardH+6,14,'#6f925b','#345c407a');
+ for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++){
+  const x=BX+c*CW,y=BY+r*CH,alt=(r+c)%2;
+  const grad=ctx.createLinearGradient(x,y,x+CW,y+CH);grad.addColorStop(0,alt?'#b0ce8b':'#bfd898');grad.addColorStop(1,alt?'#92b77b':'#a4c783');
+  ctx.save();ctx.shadowColor='#345b3c35';ctx.shadowBlur=3;ctx.shadowOffsetY=1;rounded(x+1.5,y+1.5,CW-3,CH-3,8,grad,'#52764c55');ctx.restore();
+  // Soft inner bevel, fine grain and a restrained botanical inlay.
+  ctx.strokeStyle='#f5f6d84a';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x+9,y+7);ctx.lineTo(x+CW-10,y+7);ctx.stroke();
+  ctx.strokeStyle='#486f4530';ctx.beginPath();ctx.moveTo(x+9,y+CH-6);ctx.lineTo(x+CW-10,y+CH-6);ctx.stroke();
+  for(let k=0;k<4;k++){const dx=x+14+((c*17+k*23)%72),dy=y+18+((r*11+k*19)%52);ctx.fillStyle=alt?'#f5f6da20':'#426d4520';ctx.beginPath();ctx.arc(dx,dy,1+(k%2)*.5,0,Math.PI*2);ctx.fill();}
+  if((r*11+c*7)%9===0){ctx.globalAlpha=.22;drawClover(x+14+(c%3)*12,y+18+(r%2)*8,5,'#f7f7d0');ctx.globalAlpha=1;}
+  if(c===0){ctx.fillStyle='#eaf2c655';ctx.fillRect(x+3,y+12,2,CH-24);}
+ }
+ // Fine lane guides and the Heartroot-side luminous rail.
+ ctx.strokeStyle='#f1f4cb30';ctx.lineWidth=1;for(let r=1;r<ROWS;r++){const y=BY+r*CH;ctx.beginPath();ctx.moveTo(BX,y);ctx.lineTo(BR,y);ctx.stroke();}
+ const rail=ctx.createLinearGradient(BX-5,BY,BX,BB);rail.addColorStop(0,'#d4e9a8');rail.addColorStop(1,'#648e5a');ctx.fillStyle=rail;ctx.fillRect(BX-5,BY,5,boardH);ctx.fillStyle='#eff6c7';ctx.globalAlpha=.72;ctx.fillRect(BX-5,BY,1.5,boardH);ctx.globalAlpha=1;
+ // Lane index jewels on the side rail.
+ for(let r=0;r<ROWS;r++){const cy=BY+r*CH+CH/2;ctx.fillStyle='#e2efb9';ctx.shadowColor='#dff4b5';ctx.shadowBlur=6;ctx.beginPath();ctx.arc(BX-18,cy,4.3,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#618557';ctx.beginPath();ctx.arc(BX-18,cy,1.3,0,Math.PI*2);ctx.fill();}
+ // Spawn edge and tiny corner rivets.
+ ctx.fillStyle='#e4efbd62';ctx.fillRect(BR+5,BY+6,2,boardH-12);
+ for(const [x,y] of [[BX-1,BY-1],[BR+1,BY-1],[BX-1,BB+1],[BR+1,BB+1]]){ctx.fillStyle='#f2eab9';ctx.beginPath();ctx.arc(x,y,2.4,0,Math.PI*2);ctx.fill();}
+ ctx.textAlign='center';ctx.font='900 9px system-ui';ctx.fillStyle='#d7ecaa';ctx.globalAlpha=.95;ctx.fillText('HEARTROOT',185,H-17);ctx.globalAlpha=1;
+}
+function drawClover(x,y,s,color){ctx.fillStyle=color;ctx.beginPath();ctx.arc(x-s*.35,y-s*.16,s*.42,0,Math.PI*2);ctx.arc(x+s*.35,y-s*.16,s*.42,0,Math.PI*2);ctx.arc(x,y-s*.52,s*.4,0,Math.PI*2);ctx.fill();ctx.strokeStyle=color;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+1,y+s);ctx.stroke();}
+function drawPlant(p,t){
+ const x=p.x,y=p.y;const bob=Math.sin(t*2.1+p.anim)*2.1;ctx.save();ctx.translate(x,y+bob);
+ // soft ground shadow and a subtle life-ring beneath each defender
+ ctx.fillStyle='#dff5b322';ctx.beginPath();ctx.ellipse(0,5,37,13,0,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle='#244e315c';ctx.beginPath();ctx.ellipse(0,6,31,8,0,0,Math.PI*2);ctx.fill();
+ if(p.type==='sunbud'){
+  ctx.strokeStyle='#57985b';ctx.lineWidth=6;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(0,0);ctx.quadraticCurveTo(-4,-25,0,-46);ctx.stroke();
+  ctx.fillStyle='#72b96b';ctx.beginPath();ctx.ellipse(-13,-20,14,6,-.55,0,Math.PI*2);ctx.ellipse(14,-14,13,5,.5,0,Math.PI*2);ctx.fill();
+  for(let i=0;i<10;i++){const a=i*Math.PI*2/10+t*.18;ctx.fillStyle=i%2?'#f9df7c':'#f5c85e';ctx.beginPath();ctx.ellipse(Math.cos(a)*15,-55+Math.sin(a)*15,6,10,a,0,Math.PI*2);ctx.fill();}
+  const g=ctx.createRadialGradient(-4,-61,2,0,-54,18);g.addColorStop(0,'#ffe9a0');g.addColorStop(1,'#ad6c36');ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,-54,13,0,Math.PI*2);ctx.fill();
+  drawFace( -4,-56,8,'#623f2b');
+ }else if(p.type==='sprout'||p.type==='frost'||p.type==='twin'){
+  ctx.strokeStyle=p.type==='frost'?'#5ca69d':'#55975a';ctx.lineWidth=7;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(-1,2);ctx.quadraticCurveTo(-5,-22,0,-41);ctx.stroke();
+  ctx.fillStyle=p.type==='frost'?'#79c8bb':'#6eb568';ctx.beginPath();ctx.ellipse(-14,-21,15,6,-.55,0,Math.PI*2);ctx.ellipse(13,-13,14,5,.5,0,Math.PI*2);ctx.fill();
+  if(p.type==='twin'){
+   drawSproutHead(-9,-49,0,t);drawSproutHead(17,-40,.12,t);
+  }else if(p.type==='frost'){
+   const g=ctx.createLinearGradient(-17,-69,18,-38);g.addColorStop(0,'#e2fbf5');g.addColorStop(.55,'#9bd9e4');g.addColorStop(1,'#66aeb7');ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(-19,-48);ctx.quadraticCurveTo(-25,-69,-4,-75);ctx.quadraticCurveTo(19,-80,20,-52);ctx.quadraticCurveTo(7,-37,-13,-43);ctx.closePath();ctx.fill();ctx.strokeStyle='#d9f8f0';ctx.lineWidth=1.5;ctx.stroke();ctx.fillStyle='#effffc';ctx.beginPath();ctx.ellipse(-3,-67,7,2,-.3,0,Math.PI*2);ctx.fill();drawFace(0,-51,10,'#345967');
+  }else drawSproutHead(2,-49,0,t);
+ }else if(p.type==='bark'){
+  ctx.fillStyle='#9a744d';ctx.beginPath();ctx.moveTo(-25,1);ctx.lineTo(-22,-49);ctx.quadraticCurveTo(-15,-63,0,-58);ctx.quadraticCurveTo(19,-63,23,-43);ctx.lineTo(25,2);ctx.closePath();ctx.fill();ctx.strokeStyle='#d0a878';ctx.lineWidth=2;ctx.stroke();
+  ctx.strokeStyle='#d9b786';ctx.lineWidth=2.6;ctx.lineCap='round';for(let i=0;i<3;i++){ctx.beginPath();ctx.moveTo(-13+i*7,-49+i*12);ctx.quadraticCurveTo(-4+i*3,-37+i*9,-12+i*9,-27+i*12);ctx.stroke();}
+  ctx.fillStyle='#75a95d';ctx.beginPath();ctx.ellipse(-19,-56,13,7,-.3,0,Math.PI*2);ctx.ellipse(18,-59,13,7,.4,0,Math.PI*2);ctx.fill();drawFace(0,-35,10,'#302e25');
+ }else if(p.type==='ember'){
+  for(let i=0;i<9;i++){const a=i*Math.PI*2/9+t*.4;ctx.fillStyle=i%2?'#f59a5c':'#ffca70';ctx.beginPath();ctx.ellipse(Math.cos(a)*16,-42+Math.sin(a)*14,7,14,a,0,Math.PI*2);ctx.fill();}
+  const g=ctx.createRadialGradient(-4,-50,2,0,-43,18);g.addColorStop(0,'#ffe69b');g.addColorStop(1,'#c65e42');ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,-43,13,0,Math.PI*2);ctx.fill();drawFace(0,-45,9,'#66352b');
+  ctx.fillStyle='#83ae60';ctx.beginPath();ctx.ellipse(-15,-10,13,5,-.4,0,Math.PI*2);ctx.fill();
+ }
+ // health strip when damaged
+ if(p.hp<p.maxHp*.96){rounded(-24,-82,48,4,2,'#2b4936');rounded(-24,-82,48*clamp(p.hp/p.maxHp,0,1),4,2,p.hp/p.maxHp>.45?'#a9df7b':'#ed9b77');}
+ if(p.flash>0){ctx.globalAlpha=p.flash*2;ctx.fillStyle='#fff7cb';ctx.beginPath();ctx.ellipse(0,-35,28,35,0,0,Math.PI*2);ctx.fill();}
+ ctx.restore();
+}
+function drawFace(x,y,s,color){ctx.fillStyle=color;ctx.beginPath();ctx.arc(x-s*.35,y,s*.13,0,Math.PI*2);ctx.arc(x+s*.35,y,s*.13,0,Math.PI*2);ctx.fill();ctx.strokeStyle=color;ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(x,y+s*.25,s*.25,.15,Math.PI-.15);ctx.stroke();}
+function drawSproutHead(x,y,angle,t){ctx.save();ctx.translate(x,y);ctx.rotate(angle+Math.sin(t*2)*.025);const g=ctx.createLinearGradient(-15,-15,15,15);g.addColorStop(0,'#c7ed94');g.addColorStop(1,'#72b66a');ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(0,0,17,14,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#e0f5b0';ctx.beginPath();ctx.ellipse(5,-3,8,7,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#29462f';ctx.beginPath();ctx.arc(-4,-2,1.7,0,Math.PI*2);ctx.arc(4,-2,1.7,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#31543a';ctx.lineWidth=1.4;ctx.beginPath();ctx.arc(0,3,4,.15,Math.PI-.15);ctx.stroke();ctx.fillStyle='#e6f5b7';ctx.beginPath();ctx.arc(13,1,4,0,Math.PI*2);ctx.fill();ctx.restore();}
+function drawEnemy(e,t){
+ const x=e.x,y=e.y+Math.sin(t*3+e.anim)*1.5;ctx.save();ctx.translate(x,y);
+ const sc=e.type==='rootmaw'?1.52:e.type==='thornback'?1.3:e.type==='brute'?1.22:e.type==='ravager'?.88:e.type==='skitter'?.83:1;
+ ctx.scale(sc,sc);
+ // trailing roots / feet
+ ctx.strokeStyle='#405340';ctx.lineWidth=4;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(-9,3);ctx.lineTo(-13,14+Math.sin(t*7+e.anim)*3);ctx.moveTo(8,2);ctx.lineTo(12,13-Math.sin(t*7+e.anim)*3);ctx.stroke();
+ // body gradient
+ const g=ctx.createLinearGradient(-24,-48,24,12);g.addColorStop(0,e.type==='rootmaw'?'#b7a27d':e.type==='thornback'?'#a4a078':e.type==='brute'?'#9c9a78':e.type==='skitter'?'#738e63':'#829d70');g.addColorStop(1,e.type==='rootmaw'?'#635440':e.type==='thornback'?'#58634a':e.type==='brute'?'#555f4c':e.type==='skitter'?'#3f664a':'#496d4d');
+ ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(0,-19,e.type==='brute'?24:18,e.type==='brute'?29:24,0,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#d1d0a34c';ctx.lineWidth=1.5;ctx.stroke();
+ // moss cap and twig hair
+ ctx.fillStyle=e.type==='brute'?'#a7a17d':'#6c945b';ctx.beginPath();ctx.ellipse(-1,-42,19,8,-.1,Math.PI,Math.PI*2);ctx.fill();
+ ctx.strokeStyle='#534f3b';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(-5,-47);ctx.quadraticCurveTo(-15,-60,-20,-53);ctx.moveTo(4,-47);ctx.quadraticCurveTo(12,-61,19,-54);ctx.stroke();
+ // arms
+ ctx.strokeStyle='#5a714f';ctx.lineWidth=e.type==='brute'?7:5;ctx.beginPath();ctx.moveTo(-14,-22);ctx.lineTo(-26,-12+Math.sin(t*5+e.anim)*3);ctx.moveTo(14,-22);ctx.lineTo(26,-10-Math.sin(t*5+e.anim)*3);ctx.stroke();
+ // eye mask / expression
+ ctx.fillStyle='#263c31';ctx.beginPath();ctx.ellipse(0,-27,13,8,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#e9d59a';ctx.beginPath();ctx.ellipse(-5,-28,3.1,3.8,0,0,Math.PI*2);ctx.ellipse(5,-28,3.1,3.8,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#313a2b';ctx.beginPath();ctx.arc(-4,-28,1.4,0,Math.PI*2);ctx.arc(6,-28,1.4,0,Math.PI*2);ctx.fill();
+ ctx.strokeStyle='#293c2d';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-5,-12);ctx.quadraticCurveTo(0,-9,6,-13);ctx.stroke();
+ if(e.type==='brute'){ctx.fillStyle='#a78c63';ctx.beginPath();ctx.moveTo(-16,-36);ctx.lineTo(-23,-49);ctx.lineTo(-7,-44);ctx.fill();ctx.beginPath();ctx.moveTo(10,-44);ctx.lineTo(22,-50);ctx.lineTo(17,-34);ctx.fill();}
+ // Distinct enemy silhouettes: thornback's shell and Rootmaw's crown of roots.
+ if(e.type==='thornback'||e.type==='rootmaw'){
+  ctx.fillStyle=e.type==='rootmaw'?'#776044':'#78815b';ctx.strokeStyle=e.type==='rootmaw'?'#d6b887':'#c6c18b';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(-20,-28);ctx.lineTo(-25,-44);ctx.lineTo(-12,-39);ctx.lineTo(-3,-52);ctx.lineTo(5,-39);ctx.lineTo(18,-48);ctx.lineTo(21,-28);ctx.quadraticCurveTo(0,-15,-20,-28);ctx.fill();ctx.stroke();
+  if(e.type==='rootmaw'){ctx.strokeStyle='#594a35';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(-14,-39);ctx.quadraticCurveTo(-34,-62,-29,-67);ctx.moveTo(12,-40);ctx.quadraticCurveTo(32,-65,37,-58);ctx.stroke();ctx.fillStyle='#f2d28e';ctx.beginPath();ctx.arc(-5,-28,3.5,0,Math.PI*2);ctx.arc(6,-28,3.5,0,Math.PI*2);ctx.fill();}
+ }
+ // hp bar
+ if(e.maxArmor&&e.armor>0){rounded(-22,-69,44,4,2,'#283b31');rounded(-22,-69,44*clamp(e.armor/e.maxArmor,0,1),4,2,'#d9c18a');}if(e.hp<e.maxHp*.98){rounded(-20,-62,40,4,2,'#2b4936');rounded(-20,-62,40*clamp(e.hp/e.maxHp,0,1),4,2,'#e69c73');}
+ if(e.slow>0){ctx.strokeStyle='#c8f5f3';ctx.globalAlpha=.8;ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,-23,29,0,Math.PI*2);ctx.stroke();}
+ if(e.flash>0){ctx.globalAlpha=e.flash*2;ctx.fillStyle='#fffbdc';ctx.beginPath();ctx.ellipse(0,-20,22,29,0,0,Math.PI*2);ctx.fill();}
+ ctx.restore();
+}
+function drawShots(){for(const s of shots){ctx.save();const color=s.kind==='ice'?'#c4f8f3':s.kind==='twin'?'#f5c4dc':'#c9f39a';ctx.shadowBlur=17;ctx.shadowColor=color;ctx.fillStyle=color;ctx.beginPath();ctx.ellipse(s.x,s.y,s.r*1.25,s.r,0,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.strokeStyle='#ffffffa8';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(s.x-14,s.y);ctx.lineTo(s.x-4,s.y);ctx.stroke();ctx.restore();}}
+function drawDrops(t){for(const d of drops){const pulse=1+Math.sin(t*3+d.pulse)*.08;ctx.save();ctx.translate(d.x,d.y);ctx.scale(pulse,pulse);ctx.globalAlpha=clamp(d.life/1.4,0,1);ctx.shadowColor='#fff0a2';ctx.shadowBlur=18;const g=ctx.createLinearGradient(-8,-15,9,14);g.addColorStop(0,'#fff5ba');g.addColorStop(.45,'#f7ce60');g.addColorStop(1,'#d58a42');ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(0,-16);ctx.bezierCurveTo(13,-1,13,6,0,13);ctx.bezierCurveTo(-13,6,-13,-1,0,-16);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#fff8d6';ctx.globalAlpha*=.8;ctx.beginPath();ctx.ellipse(-4,-3,2.4,5,-.4,0,Math.PI*2);ctx.fill();ctx.restore();ctx.globalAlpha=1;}}
+function drawParticles(){for(const p of particles){ctx.globalAlpha=clamp(p.life/.7,0,1);ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.r*clamp(p.life/.2,0.25,1),0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;for(const f of floating){ctx.globalAlpha=clamp(f.life/.3,0,1);ctx.font='900 11px system-ui';ctx.textAlign='center';ctx.fillStyle='#294332';ctx.fillText(f.text,f.x+1,f.y+1);ctx.fillStyle=f.color;ctx.fillText(f.text,f.x,f.y);}ctx.globalAlpha=1;}
+function drawDecor(t){
+ // garden path beyond board
+ ctx.fillStyle='#56784d';ctx.fillRect(BX,BY-19,CW*COLS,12);ctx.fillStyle='#d8e9ae';ctx.globalAlpha=.6;ctx.fillRect(BX,BY-19,CW*COLS,2);ctx.globalAlpha=1;
+ ctx.font='800 9px system-ui';ctx.textAlign='left';ctx.fillStyle='#f3f3cf';ctx.globalAlpha=.8;ctx.fillText('THE MEADOW OF FIRST LIGHT',BX+10,BY-25);ctx.globalAlpha=1;
+ // little flowers along lower border
+ for(let i=0;i<18;i++){const x=BX+i*54+Math.sin(i*3)*8,y=H-26+(i%3)*6;ctx.fillStyle=i%2?'#e7d78f':'#f3e5bb';ctx.beginPath();ctx.arc(x,y,3.3,0,Math.PI*2);ctx.arc(x+4,y+2,2.8,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#6d9a5c';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x+1,y+3);ctx.lineTo(x,y+14);ctx.stroke();}
+ // weather veil
+ if(weather==='Dewfall'){ctx.fillStyle='#c9e9ed0c';ctx.fillRect(0,0,W,H);for(let i=0;i<28;i++){const x=(i*83+t*31)%W,y=(i*47+t*55)%H;ctx.strokeStyle='#e9fff04d';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-3,y+9);ctx.stroke();}}
+ if(weather==='Crosswind'){for(let i=0;i<9;i++){const x=(i*149+t*45)%(W+100)-50,y=BY+((i*73)%460);ctx.strokeStyle='#effbd72c';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y);ctx.quadraticCurveTo(x+20,y-3,x+43,y+1);ctx.stroke();}}
+}
+function drawHover(){if(state!=='playing'||paused||mouse.x<BX||mouse.x>BR||mouse.y<BY||mouse.y>BB)return;const c=Math.floor((mouse.x-BX)/CW),r=Math.floor((mouse.y-BY)/CH);const x=BX+c*CW,y=BY+r*CH;ctx.save();if(shears){ctx.fillStyle='#efaa8030';ctx.strokeStyle='#f1bc8b';}else{ctx.fillStyle=selected?'#d8f7a432':'#f2f4d21d';ctx.strokeStyle=selected?'#d8f7a4':'#f4f4cc';}ctx.lineWidth=2;rounded(x+3,y+3,CW-6,CH-6,8,ctx.fillStyle);ctx.stroke();if(selected){const d=seedDefs.find(s=>s.id===selected);ctx.globalAlpha=.6;ctx.fillStyle=d.color;ctx.beginPath();ctx.arc(x+CW/2,y+CH/2,13+Math.sin(worldTime*5)*2,0,Math.PI*2);ctx.fill();}ctx.restore();}
+function render(t){
+ ctx.clearRect(0,0,W,H);ctx.save();if(shake>0)ctx.translate(rand(-shake,shake),rand(-shake,shake));
+ drawBackground(t);drawDecor(t);drawBoard(t);
+ for(const p of plants)drawPlant(p,t);
+ drawShots();for(const e of enemies)drawEnemy(e,t);drawDrops(t);drawParticles();drawHover();
+ // low-key top-right level marker on canvas
+ ctx.textAlign='right';ctx.font='900 9px system-ui';ctx.fillStyle='#f3f4d0';ctx.globalAlpha=.8;ctx.fillText('DEFEND THE HEARTROOT',BR-7,H-18);ctx.globalAlpha=1;
+ ctx.restore();
+}
+function frame(now){const dt=clamp((now-lastFrame)/1000||0,0,.05);lastFrame=now;update(dt);render(worldTime);animationId=requestAnimationFrame(frame);}
+
+// Initial title backdrop: draw the garden before the first animation frame.
+updateUI(true);render(0);$('startBtn').onclick=enterFullscreen;$('guideBtn').onclick=()=>{$('guideBox').classList.toggle('open')};
+$('overlay').classList.remove('hidden');
+lastFrame=performance.now();animationId=requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
