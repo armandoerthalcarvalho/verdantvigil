@@ -80,6 +80,22 @@ button:focus-visible{outline:3px solid #e6d18b;outline-offset:3px}
 #toast.show{opacity:1;transform:translate(-50%,0)}
 #pauseBadge{position:absolute;right:17px;top:16px;z-index:3;padding:7px 10px;border-radius:8px;background:#17241edb;border:1px solid #d9edc52a;font-size:9px;letter-spacing:.16em;font-weight:900;color:#f2d68e;opacity:0;transition:.15s;pointer-events:none}
 #pauseBadge.show{opacity:1}
+.world-select{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:0 auto 13px;max-width:440px;text-align:left}
+.world-option{display:grid;grid-template-columns:40px minmax(0,1fr);grid-template-rows:auto auto;align-items:center;gap:2px 9px;min-width:0;padding:10px 11px;border-radius:13px;border:1px solid #d1e8d22e;background:linear-gradient(145deg,#ffffff10,#ffffff05);color:#e9f1df;text-align:left;transition:.18s}
+.world-option:hover:not(:disabled){transform:translateY(-2px);border-color:#c7e8aa88;background:#ffffff16}
+.world-option.selected{border-color:#c7ef9e;background:linear-gradient(140deg,#a5d9872b,#ffffff09);box-shadow:inset 0 0 0 1px #b8e89a22}
+.world-option:disabled{opacity:.46;cursor:not-allowed;filter:saturate(.55)}
+.world-art{grid-row:1 / span 2;width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-size:22px;background:linear-gradient(145deg,#9bc47e,#355d43);color:#f4f8df;box-shadow:inset 0 1px #ffffff70}
+.snow-art{background:linear-gradient(145deg,#d5f3fa,#598aa7);color:#f4ffff;text-shadow:0 2px 8px #306b8f}
+.world-option b{font-size:10px;letter-spacing:.02em;white-space:nowrap}
+.world-option small{display:block;font-size:7px;letter-spacing:.12em;color:#a9c0b1;font-weight:800;margin-top:3px}
+.world-option i{grid-column:2;font-style:normal;font-size:7px;letter-spacing:.12em;color:#bce49e;font-weight:900;margin-top:3px}
+.world-option.locked i{color:#b5c1c0}
+.dialog-actions .primary-btn{min-width:180px}
+body.snow-world{background:radial-gradient(ellipse at 48% -20%,#24465b 0,#101f2b 42%,#0a131d 78%)}
+body.snow-world .brand-mark{background:linear-gradient(145deg,#d4f5f7,#5089a5);box-shadow:0 6px 22px #76d1e340}
+body.snow-world .brand-mark svg{filter:drop-shadow(0 2px 2px #274b62)}
+@media(max-width:420px){.world-select{grid-template-columns:1fr}.dialog-actions .primary-btn{width:100%}}
 @media(max-width:1000px){body{padding:12px}.topbar{flex-wrap:wrap}.brand{min-width:unset}.top-meta{order:3;flex-basis:100%;justify-content:flex-start}.hud-right{margin-left:auto}.seed-bank{flex-wrap:wrap}.seed-card{min-width:30%;flex-basis:30%}.bottom-area{flex-direction:column}.tools-panel{justify-content:flex-end}.tool-btn{flex-direction:row;width:auto;flex:1;min-height:43px}}
 @media(max-width:560px){.stage-overlay{position:fixed;inset:0;z-index:50;overflow-y:auto;align-items:center;background:linear-gradient(120deg,#071713ed,#071713e8);padding:14px}.dialog{width:min(410px,100%);max-height:calc(100vh - 28px);overflow-y:auto;padding:24px 20px}.guide{margin-top:13px}body{padding:8px}.topbar{gap:9px;margin-bottom:9px}.brand-mark{width:36px;height:36px}.brand-name{font-size:14px}.brand-sub{font-size:8px}.hud-right{min-width:0;gap:5px}.icon-btn{width:35px;height:35px}.energy-box{min-width:78px;padding:7px 9px}.energy-value{font-size:16px}.top-meta{gap:5px}.meta-chip{padding:7px 9px;min-height:37px;flex:1}.meta-label{font-size:8px}.meta-value{font-size:11px}.weather-readout{min-width:0}.wave-readout{min-width:0}.game-frame{padding:5px;border-radius:17px}.stage-wrap{border-radius:12px}.seed-bank{gap:6px;padding:6px}.seed-card{flex-basis:31%;min-width:31%;padding:7px 5px;gap:5px}.seed-card .art{width:30px;height:30px;flex-basis:30px}.seed-card svg{width:25px;height:25px}.seed-name{font-size:9px}.seed-cost{font-size:9px}.seed-hotkey{display:none}.tools-panel{padding:6px}.tool-btn{font-size:8px}.footer-row{font-size:9px;align-items:flex-start}.footer-hint:last-child{display:none}.dialog{padding:25px 20px}.dialog p{font-size:12px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
@@ -111,6 +127,87 @@ body{padding:clamp(8px,1.25vh,14px) clamp(10px,1.4vw,20px);overscroll-behavior:n
 @media(max-width:1050px){.brand{min-width:180px}.brand-name{font-size:13px}.top-meta{gap:5px}.meta-chip{padding-left:8px;padding-right:8px}.hud-right{min-width:190px}.seed-card{gap:5px}.seed-card .art{width:30px;height:30px;flex-basis:30px}.seed-card svg{width:25px;height:25px}.seed-name{font-size:9px}.seed-role{font-size:7px}}
 @media(max-width:800px){html,body{height:auto;min-height:100%;overflow:auto}body{padding:8px}.shell{height:auto;min-height:100dvh;gap:8px}.topbar{flex-wrap:wrap}.top-meta{order:3;flex-basis:100%;justify-content:flex-start}.hud-right{margin-left:auto}.game-frame{flex:none}.stage-wrap{height:auto;min-height:0;aspect-ratio:1200/530}#game{width:100%;height:auto;max-width:100%}.bottom-area{flex:0 0 auto;max-height:none;min-height:0;flex-direction:column}.seed-bank{grid-template-columns:repeat(3,minmax(0,1fr))}.tools-panel{flex:0 0 auto;min-height:48px}.footer-row{min-height:20px;flex-wrap:wrap}.footer-hint:last-child{display:none}}
 @media(prefers-reduced-motion:reduce){#game{image-rendering:auto}}
+
+
+/* Mobile garden refit: the board is the primary surface, not a thumbnail. */
+@media(max-width:560px){
+ body{padding:6px 6px 14px}
+ .shell{width:100%}
+ .topbar{display:grid;grid-template-columns:1fr auto;gap:7px;margin-bottom:7px}
+ .brand{min-width:0;gap:8px}.brand-mark{width:33px;height:33px;border-radius:11px}.brand-name{font-size:12px;letter-spacing:.13em}.brand-sub{font-size:7px;letter-spacing:.15em;margin-top:4px}
+ .top-meta{grid-column:1/-1;grid-row:2;justify-content:stretch;gap:5px}
+ .meta-chip{min-width:0;flex:1;padding:6px 8px;min-height:34px;border-radius:9px}.meta-label{font-size:7px}.meta-value{font-size:10px}
+ .hud-right{min-width:0;gap:4px}.energy-box{min-width:65px;padding:6px 8px;gap:6px}.energy-value{font-size:14px}.energy-icon{width:14px;height:14px}.icon-btn{width:33px;height:33px;border-radius:10px}
+ .game-frame{padding:4px;border-radius:14px}.stage-wrap{border-radius:10px;position:relative;overflow:hidden;min-height:0}
+ #game{width:130%;max-width:none;height:auto;aspect-ratio:1200/530;transform:translateX(-17.2%);transform-origin:top left;display:block}
+ .bottom-area{display:flex;flex-direction:column;gap:6px;margin-top:7px}
+ .seed-bank{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding:5px;border-radius:12px}
+ .seed-card{min-height:55px;padding:5px 4px;gap:5px;border-radius:9px}.seed-card .art{width:29px;height:29px;flex-basis:29px;border-radius:8px}.seed-card svg{width:25px;height:25px}.seed-name{font-size:8px}.seed-cost{font-size:8px}.seed-hotkey{display:none}
+ .tools-panel{padding:5px;gap:5px;border-radius:11px}.tool-btn{width:auto;min-width:0;flex:1;min-height:40px;font-size:8px;gap:3px}.tool-btn svg{width:16px;height:16px}
+ .footer-row{font-size:8px;margin:6px 3px 0}.footer-hint{gap:4px}.keycap{font-size:8px;padding:2px 4px}
+ .stage-overlay{padding:9px}.dialog{width:min(430px,96%);padding:19px 15px 16px;border-radius:17px}.dialog h1{font-size:clamp(29px,8vw,40px)}.dialog p{font-size:11px;margin:10px auto 13px}.world-select{gap:6px;margin-bottom:9px}.world-option{grid-template-columns:32px minmax(0,1fr);padding:7px 8px;font-size:10px}.world-art{width:30px;height:30px}.primary-btn{padding:11px 17px;font-size:11px}
+}
+@media(max-width:380px){#game{width:128%;transform:translateX(-16.5%)}.seed-card .art{width:25px;height:25px;flex-basis:25px}.seed-name{font-size:7px}}
+
+
+/* Landscape-first mobile layout. Desktop rules above remain untouched. */
+@media screen and (max-width:800px) and (orientation:portrait){
+ body::after{content:"ROTATE YOUR DEVICE\A PLAY IN LANDSCAPE";white-space:pre;position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;background:radial-gradient(ellipse at 50% 35%,#254a3c,#091512 72%);color:#eaf5dc;font-weight:950;font-size:clamp(18px,6vw,28px);letter-spacing:.12em;line-height:1.8;text-shadow:0 3px 24px #000;}
+ body::before{content:"↻";position:fixed;z-index:10000;top:calc(50% - 82px);left:50%;transform:translateX(-50%);font-size:48px;color:#b7ed9e;pointer-events:none}
+}
+@media screen and (max-width:800px) and (orientation:landscape){
+ html,body{width:100%;height:100%;min-height:0;overflow:hidden}
+ body{padding:5px 7px;background:#0c1716}
+ .shell{width:100%;height:calc(100dvh - 10px);min-height:0;max-width:none;margin:0;display:flex;flex-direction:column;gap:5px;overflow:hidden}
+ .topbar{flex:0 0 38px;height:38px;min-height:38px;margin:0;padding:0 2px;display:flex;flex-wrap:nowrap;gap:8px;align-items:center}
+ .brand{min-width:0;flex:0 0 auto;gap:6px}.brand-mark{width:29px;height:29px;border-radius:9px}.brand-mark svg{width:20px;height:20px}.brand-name{font-size:10px;letter-spacing:.12em}.brand-sub{font-size:6px;letter-spacing:.13em;margin-top:3px}
+ .top-meta{order:0;flex:1 1 auto;min-width:0;justify-content:center;gap:4px}
+ .meta-chip{min-width:0;min-height:30px;padding:4px 7px;border-radius:8px;gap:5px;flex:1 1 0}.meta-label{font-size:6px;letter-spacing:.1em}.meta-value{font-size:9px}.wave-readout,.weather-readout{min-width:0}
+ .weather-dot{width:6px;height:6px}.hud-right{min-width:0;flex:0 0 auto;gap:4px}.energy-box{min-width:57px;padding:5px 7px;gap:5px;border-radius:9px}.energy-icon{width:12px;height:12px}.energy-value{font-size:12px}.icon-btn{width:29px;height:29px;border-radius:8px}.icon-btn svg{width:14px;height:14px}
+ .game-frame{flex:1 1 auto;min-height:0;height:auto;margin:0;padding:5px;border-radius:13px;display:flex;gap:5px;overflow:hidden}
+ .stage-wrap{flex:1 1 auto;width:auto;height:100%;min-width:0;min-height:0;aspect-ratio:auto;display:flex;align-items:center;justify-content:center;border-radius:9px;overflow:hidden}
+ #game{display:block;width:100%;height:auto;max-width:100%;max-height:100%;aspect-ratio:1200/530;object-fit:contain;transform:none;border-radius:7px}
+ .bottom-area{position:relative;inset:auto;flex:0 0 158px;width:158px;min-width:158px;max-width:158px;height:100%;min-height:0;max-height:none;margin:0;display:flex;flex-direction:column;gap:5px;overflow:hidden}
+ .seed-bank{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:4px;padding:4px;border-radius:10px;overflow:hidden}
+ .seed-card{min-height:0;height:100%;padding:3px 4px;gap:3px;border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+ .seed-card .art{width:25px;height:25px;flex:0 0 25px;border-radius:7px}.seed-card svg{width:22px;height:22px}.seed-copy{align-items:center;gap:1px;max-width:100%}.seed-name{font-size:7px;max-width:100%}.seed-role{display:none}.seed-cost{font-size:8px;margin:0}.seed-hotkey{display:none}
+ .tools-panel{flex:0 0 39px;min-height:39px;height:39px;padding:3px;gap:3px;border-radius:9px;display:flex;overflow:hidden}.tool-btn{flex:1;min-width:0;width:auto;min-height:0;padding:2px;border-radius:7px;font-size:6px;letter-spacing:.02em;gap:1px}.tool-btn svg{width:13px;height:13px}
+ .footer-row{display:none}
+ .stage-overlay{padding:6px}.dialog{width:min(440px,94%);max-height:calc(100% - 8px);overflow:auto;padding:13px 16px 11px;border-radius:14px}.dialog h1{font-size:clamp(24px,4vw,36px)}.dialog p{font-size:10px;line-height:1.45;margin:7px auto 10px}.eyebrow{font-size:8px;margin-bottom:6px}.world-select{max-width:390px;margin-bottom:7px;gap:6px}.world-option{padding:5px 7px;grid-template-columns:27px minmax(0,1fr);font-size:9px}.world-art{width:25px;height:25px}.primary-btn{padding:9px 14px;font-size:9px}.secondary-btn{padding:8px 11px;font-size:9px}.dialog-note{margin-top:8px;font-size:8px}
+ #toast{top:8px;font-size:8px;padding:6px 9px}#pauseBadge{top:8px;right:8px;font-size:7px;padding:5px 7px}
+}
+
+
+
+/* Verdant Vigil 6.0: mobile layout is selected by touch capability, not a narrow CSS width. */
+@media (pointer:coarse) and (orientation:landscape) and (max-width:1400px){
+ html,body{width:100%;height:100%;min-height:0;overflow:hidden;overscroll-behavior:none}
+ body{padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px);background:#0c1716}
+ .shell{width:100%;height:100dvh;min-height:0;max-width:none;margin:0;padding:5px 7px;display:flex;flex-direction:column;gap:5px;overflow:hidden}
+ .topbar{flex:0 0 36px;height:36px;min-height:36px;margin:0;padding:0 2px;display:flex;flex-wrap:nowrap;gap:7px;align-items:center;min-width:0}
+ .brand{min-width:0;flex:0 1 150px;gap:6px;overflow:hidden}.brand-mark{width:28px;height:28px;min-width:28px;border-radius:9px}.brand-mark svg{width:19px;height:19px}.brand-copy{min-width:0;overflow:hidden}.brand-name{font-size:9px;letter-spacing:.1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.brand-sub{font-size:5px;letter-spacing:.1em;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .top-meta{order:0;flex:1 1 auto;min-width:0;justify-content:center;gap:4px;overflow:hidden}.meta-chip{min-width:0;min-height:29px;padding:3px 6px;border-radius:8px;gap:4px;flex:1 1 0;overflow:hidden}.meta-label{font-size:6px;letter-spacing:.07em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta-value{font-size:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wave-readout,.weather-readout{min-width:0}.weather-dot{width:5px;height:5px;flex:0 0 5px}
+ .hud-right{min-width:0;flex:0 0 auto;gap:3px;justify-content:flex-end}.energy-box{min-width:48px;padding:4px 6px;gap:4px;border-radius:8px}.energy-icon{width:10px;height:10px}.energy-value{font-size:11px}.icon-btn{width:27px;height:27px;min-width:27px;border-radius:8px}.icon-btn svg{width:13px;height:13px}
+ .game-frame{flex:1 1 0;min-height:0;height:auto;margin:0;padding:5px;border-radius:12px;display:flex;flex-direction:row;align-items:stretch;gap:6px;overflow:hidden}
+ .stage-wrap{position:relative;flex:1 1 0;width:0;height:100%;min-width:0;min-height:0;aspect-ratio:auto;display:grid;place-items:center;border-radius:8px;overflow:hidden;line-height:0}
+ #game{display:block;width:100%;height:100%;max-width:100%;max-height:100%;aspect-ratio:1200/530;object-fit:contain;transform:none;border-radius:6px;touch-action:manipulation}
+ .bottom-area{position:relative;inset:auto;flex:0 0 clamp(116px,20vw,154px);width:clamp(116px,20vw,154px);min-width:clamp(116px,20vw,154px);max-width:clamp(116px,20vw,154px);height:100%;min-height:0;max-height:none;margin:0;display:flex;flex-direction:column;gap:4px;overflow:hidden}
+ .seed-bank{flex:1 1 0;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:4px;padding:4px;border-radius:9px;overflow:hidden}
+ .seed-card{min-width:0;min-height:0;height:100%;padding:2px;gap:2px;border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}.seed-card .art{width:clamp(19px,5vh,25px);height:clamp(19px,5vh,25px);flex:0 0 clamp(19px,5vh,25px);border-radius:6px}.seed-card svg{width:100%;height:100%}.seed-copy{min-width:0;max-width:100%;align-items:center;gap:1px;overflow:hidden}.seed-name{max-width:100%;font-size:clamp(6px,1.65vh,8px);line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.seed-role,.seed-hotkey{display:none}.seed-cost{font-size:clamp(7px,1.7vh,9px);line-height:1}
+ .tools-panel{flex:0 0 34px;min-height:34px;height:34px;padding:3px;gap:3px;border-radius:8px;display:flex;overflow:hidden}.tool-btn{flex:1 1 0;min-width:0;width:auto;min-height:0;padding:2px;border-radius:6px;font-size:6px;letter-spacing:0;gap:2px;white-space:nowrap;overflow:hidden}.tool-btn svg{width:12px;height:12px;flex:0 0 12px}.tool-btn span{overflow:hidden;text-overflow:ellipsis}
+ .footer-row{display:none}
+ /* Menu and pause screens are viewport overlays, never clipped by the canvas box. */
+ .stage-overlay{position:fixed;inset:0;z-index:10000;width:100%;height:100%;padding:8px;display:flex;align-items:center;justify-content:center;overflow:auto;background:linear-gradient(120deg,#071713ed,#071713e8)}
+ .stage-overlay.hidden{display:none;opacity:0;pointer-events:none}.dialog{width:min(440px,calc(100vw - 24px));max-width:100%;max-height:calc(100dvh - 16px);overflow:auto;padding:12px 15px;border-radius:14px}.dialog h1{font-size:clamp(23px,5vh,34px);white-space:normal}.dialog p{font-size:clamp(9px,2.1vh,11px);line-height:1.4;margin:6px auto 9px}.eyebrow{font-size:7px;margin-bottom:5px}.world-select{max-width:390px;margin:0 auto 7px;gap:5px}.world-option{min-width:0;padding:5px 7px;grid-template-columns:25px minmax(0,1fr);font-size:8px;gap:2px 6px}.world-option b,.world-option small,.world-option i{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.world-art{width:24px;height:24px}.primary-btn{padding:8px 13px;font-size:9px}.secondary-btn{padding:7px 10px;font-size:8px}.dialog-note{margin-top:6px;font-size:7px}.guide{max-height:22dvh;overflow:auto;margin-top:8px;padding:8px}.guide-row{font-size:8px;margin:5px 0}
+ #toast{top:7px;font-size:8px;padding:5px 8px;max-width:80vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#pauseBadge{top:7px;right:7px;font-size:7px;padding:4px 6px}
+}
+@media (pointer:coarse) and (orientation:portrait) and (max-width:1400px){
+ html,body{min-height:100%;overflow:hidden;overscroll-behavior:none}
+ body::after{content:"ROTATE YOUR DEVICE\A PLAY IN LANDSCAPE";white-space:pre;position:fixed;inset:0;z-index:10001;display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;background:radial-gradient(ellipse at 50% 35%,#254a3c,#091512 72%);color:#eaf5dc;font-weight:950;font-size:clamp(18px,6vw,28px);letter-spacing:.12em;line-height:1.8;text-shadow:0 3px 24px #000;pointer-events:none}
+ body::before{content:"↻";position:fixed;z-index:10002;top:calc(50% - 82px);left:50%;transform:translateX(-50%);font-size:48px;color:#b7ed9e;pointer-events:none}
+}
+/* Single-line labels must truncate inside their own cells, never create page-level scroll. */
+@media (pointer:coarse){.meta-value,.meta-label,.brand-name,.brand-sub,.seed-name,.seed-cost,.tool-btn span{min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis}.stage-overlay,.dialog{overscroll-behavior:contain}}
 
 </style>
 </head>
@@ -144,13 +241,18 @@ body{padding:clamp(8px,1.25vh,14px) clamp(10px,1.4vw,20px);overscroll-behavior:n
           <div class="eyebrow" id="dialogEyebrow">THE LAST GREEN PLACE</div>
           <h1 id="dialogTitle">Verdant <span>Vigil</span></h1>
           <p id="dialogText">The Heartroot is the last light in this valley. Build a living defense, harvest every drop of dew, and outlast ten increasingly ferocious waves of Witherlings.</p>
+          <div class="world-select" id="worldSelect" aria-label="Choose a world">
+            <button class="world-option selected" id="meadowWorldBtn" type="button" aria-pressed="true"><span class="world-art meadow-art">✦</span><span><b>First Light Meadow</b><small>THE WITHERLING FRONT</small></span><i>AVAILABLE</i></button>
+            <button class="world-option locked" id="snowWorldBtn" type="button" aria-pressed="false"><span class="world-art snow-art">❄</span><span><b>Snowveil Reach</b><small>THE FROSTBOUND FRONT</small></span><i id="snowWorldState">LOCKED</i></button>
+          </div>
           <div class="dialog-actions" id="dialogActions"><button class="primary-btn" id="startBtn">Enter fullscreen garden</button><button class="secondary-btn" id="guideBtn">Field guide</button></div>
           <div class="guide" id="guideBox">
             <div class="guide-row"><span class="guide-key">1–6</span><span>Choose a seed card, then click an empty garden tile to plant it. Each plant has a different role.</span></div>
             <div class="guide-row"><span class="guide-key">D</span><span>Collect golden dew drops before they fade. Sunbuds also create dew over time.</span></div>
             <div class="guide-row"><span class="guide-key">X</span><span>Toggle the shears, then click a plant to remove it. Escape pauses or cancels selection.</span></div>
             <div class="guide-row"><span class="guide-key">✦</span><span>Dewfall boosts energy income. Crosswind slows Witherlings and quickens your shots.</span></div>
-            <div class="guide-row"><span class="guide-key">♥</span><span>Three Heartroot lives. Armor-breakers and Rootmaws arrive in later waves. Clear all 10 waves to win.</span></div>
+            <div class="guide-row"><span class="guide-key">♥</span><span>Three Heartroot lives. Enemies now move, endure and strike twice as hard. Clear all 10 waves to win.</span></div>
+            <div class="guide-row"><span class="guide-key">❄</span><span>Snowveil Reach adds Ice Wisps, Frost Archers and Glacier Wardens. Their ranged ice attacks can freeze your plants.</span></div>
           </div>
           <div class="dialog-note" id="dialogNote">Fullscreen required · Strategy, timing & resource management</div>
         </div>
@@ -195,12 +297,22 @@ const seedSVG = {
  ember:`<svg viewBox="0 0 40 40"><path d="M20 35V22" stroke="#8FAE5E" stroke-width="3" stroke-linecap="round"/><path d="M20 31Q5 28 9 15q3-6 9-10-2 10 5 10 1-7 8-9 4 13-2 20-4 5-9 5Z" fill="#F28A5D" stroke="#FFD18B" stroke-width="1.3"/><path d="M20 27q-7-7 1-15 0 8 6 8 1 6-7 7Z" fill="#FFD36C"/><circle cx="17" cy="23" r="1.2" fill="#683A2B"/><circle cx="24" cy="23" r="1.2" fill="#683A2B"/></svg>`
 };
 let state='menu', paused=false, speed=1, soundOn=false, audioCtx=null, overlayKind='menu';
+let worldId='meadow', selectedWorld='meadow', resumeRequested=false;
 let energy=175, hearts=3, wave=0, phase='idle', phaseTimer=0, spawnQueue=[], spawnTimer=0, spawnedThisWave=0;
-let plants=[], enemies=[], shots=[], drops=[], particles=[], floating=[];
+let plants=[], enemies=[], shots=[], enemyShots=[], drops=[], particles=[], floating=[];
 let selected=null, shears=false, mouse={x:-999,y:-999}, elapsed=0, worldTime=0, dewTimer=4, weather='Clear morning', weatherTimer=20;
 let kills=0, plantedCount=0, best=(()=>{try{return Number(localStorage.getItem('vv_best')||0)}catch(e){return 0}})(), lostCount=0;
-let uiTimer=0, toastTimer=0, lastFrame=0, animationId=0, nextId=1, shake=0;
+let uiTimer=0, toastTimer=0, lastFrame=0, animationId=0, nextId=1, shake=0, saveTimer=0;
+const SAVE_KEY='verdant_vigil_campaign_v3', RUN_KEY='verdant_vigil_active_run_v3';
 const cards = [];
+function readCampaign(){try{return JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{}}catch(e){return {}}}
+let campaign=readCampaign();
+let unlockedSnow=!!campaign.unlockedSnow;
+let savedRun=(()=>{try{const v=JSON.parse(localStorage.getItem(RUN_KEY)||'null');return v&&(v.version===3||v.version===4)?v:null}catch(e){return null}})();
+function persistCampaign(){try{localStorage.setItem(SAVE_KEY,JSON.stringify({...campaign,unlockedSnow,best,selectedWorld,updatedAt:Date.now()}));localStorage.setItem('vv_best',String(best));}catch(e){}}
+function clearSavedRun(){savedRun=null;try{localStorage.removeItem(RUN_KEY)}catch(e){}}
+function persistRun(){if(state!=='playing')return;try{const snap={version:4,worldId,energy,hearts,wave,phase,phaseTimer,spawnQueue,spawnTimer,spawnedThisWave,plants,enemies,shots,enemyShots,drops,selected,shears,elapsed,worldTime,dewTimer,weather,weatherTimer,kills,plantedCount,lostCount,speed,plantCooldown,nextId};localStorage.setItem(RUN_KEY,JSON.stringify(snap));savedRun=snap;}catch(e){/* Storage may be disabled or full; the game remains playable. */}}
+function restoreSavedRun(){if(!savedRun)return false;try{const v=savedRun;if(!['meadow','snow'].includes(v.worldId)||!Array.isArray(v.plants)||!Array.isArray(v.enemies))return false;if(v.version===3){for(const e of v.enemies){if(Number.isFinite(e.hp))e.hp=Math.max(1,e.hp*.5);if(Number.isFinite(e.maxHp))e.maxHp=Math.max(1,e.maxHp*.5);}v.version=4;}worldId=v.worldId;selectedWorld=worldId;energy=v.energy;hearts=v.hearts;wave=v.wave;phase=v.phase;phaseTimer=v.phaseTimer;spawnQueue=v.spawnQueue||[];spawnTimer=v.spawnTimer;spawnedThisWave=v.spawnedThisWave;plants=v.plants;enemies=v.enemies;shots=v.shots||[];enemyShots=v.enemyShots||[];drops=v.drops||[];selected=null;shears=false;elapsed=v.elapsed;worldTime=v.worldTime;dewTimer=v.dewTimer;weather=v.weather;weatherTimer=v.weatherTimer;kills=v.kills;plantedCount=v.plantedCount;lostCount=v.lostCount;speed=v.speed||1;for(const k in plantCooldown)plantCooldown[k]=(v.plantCooldown&&v.plantCooldown[k])||0;nextId=v.nextId||1;paused=false;state='playing';saveTimer=2;document.body.classList.toggle('snow-world',worldId==='snow');$('speedBtn').style.color=speed>1?'#d2ee9c':'';$('speedBtn').title=`Game speed ${speed}x`;$('pauseBadge').classList.remove('show');$('seedBank').parentElement.classList.remove('locked');hideOverlay();updateUI(true);showToast('SAVED GARDEN RESTORED');return true;}catch(e){return false;}}
 $('bestText').textContent=best;
 
 function makeCards(){
@@ -229,39 +341,59 @@ function chooseSeed(id){
 const plantCooldown={sunbud:0,sprout:0,frost:0,bark:0,twin:0,ember:0};
 function updateCards(){cards.forEach(c=>{c.el.classList.toggle('selected',selected===c.def.id);c.el.classList.toggle('disabled',energy<c.def.cost||(plantCooldown[c.def.id]||0)>0);const rem=plantCooldown[c.def.id]||0;c.el.querySelector('.seed-cool').style.transform=`scaleX(${clamp(1-rem/c.def.cool,0,1)})`;});}
 function startGame(){
+ worldId=selectedWorld;document.body.classList.toggle('snow-world',worldId==='snow');
  resetGame();state='playing';paused=false;phase='prep';phaseTimer=5;selected=null;shears=false;hideOverlay();$('pauseBtn').innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 5v14M15 5v14"/></svg>';$('pauseBtn').setAttribute('aria-label','Pause game');
- $('statusText').textContent='A quiet moment before the first wave.';updateUI(true);sfx(520,.12,'sine',.04);
+ $('statusText').textContent='A quiet moment before the first wave.';updateUI(true);persistRun();persistCampaign();sfx(520,.12,'sine',.04);
 }
 
+function updateWorldPicker(){
+ const meadow=$('meadowWorldBtn'),snow=$('snowWorldBtn');if(!meadow||!snow)return;
+ meadow.classList.toggle('selected',selectedWorld==='meadow');meadow.setAttribute('aria-pressed',String(selectedWorld==='meadow'));
+ snow.disabled=!unlockedSnow;snow.classList.toggle('locked',!unlockedSnow);snow.classList.toggle('selected',selectedWorld==='snow');snow.setAttribute('aria-pressed',String(selectedWorld==='snow'));
+ $('snowWorldState').textContent=unlockedSnow?'AVAILABLE':'CLEAR MEADOW TO UNLOCK';$('startBtn').textContent=selectedWorld==='snow'?'Enter Snowveil Reach':'Enter First Light';
+}
+$('meadowWorldBtn').addEventListener('click',()=>{selectedWorld='meadow';updateWorldPicker();persistCampaign()});
+$('snowWorldBtn').addEventListener('click',()=>{if(!unlockedSnow)return;selectedWorld='snow';updateWorldPicker();persistCampaign()});
 async function enterFullscreen(){
+ const root=document.documentElement;
  try{
-  if(!document.fullscreenElement){
-   if(!document.documentElement.requestFullscreen) throw new Error('Fullscreen is not supported in this browser.');
-   await document.documentElement.requestFullscreen({navigationUI:'hide'});
+  const active=!!(document.fullscreenElement||document.webkitFullscreenElement);
+  if(!active){
+   const request=root.requestFullscreen||root.webkitRequestFullscreen;
+   if(!request) throw new Error('This browser does not expose the Fullscreen API. Open the downloaded HTML directly in a current version of Chrome or Edge.');
+   try{await request.call(root,{navigationUI:'hide'});}catch(firstError){
+    // Some mobile browsers reject the options dictionary although fullscreen itself is supported.
+    if(root.requestFullscreen){await root.requestFullscreen();}else throw firstError;
+   }
   }
-  if(!document.fullscreenElement) throw new Error('Fullscreen permission was not granted.');
+  const nowActive=!!(document.fullscreenElement||document.webkitFullscreenElement);
+  if(!nowActive) throw new Error('The browser declined fullscreen. Tap the button again from the browser tab, not an embedded preview.');
+  const isTouchMobile=window.matchMedia('(pointer:coarse)').matches;
+  if(isTouchMobile && screen.orientation && screen.orientation.lock){try{await screen.orientation.lock('landscape');}catch(_){/* Rotation remains user-controlled on browsers that prohibit orientation lock. */}}
   if(state==='playing'&&paused){paused=false;$('pauseBadge').classList.remove('show');$('pauseBtn').innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 5v14M15 5v14"/></svg>';$('pauseBtn').setAttribute('aria-label','Pause game');hideOverlay();$('seedBank').parentElement.classList.remove('locked');updateUI(true);}
-  else if(state!=='playing') startGame();
+  else if(state!=='playing'){if(resumeRequested&&savedRun){resumeRequested=false;if(!restoreSavedRun())startGame();}else startGame();}
  }catch(err){
-  $('dialogEyebrow').textContent='FULLSCREEN REQUIRED';$('dialogTitle').innerHTML='One more <span>step</span>';
-  $('dialogText').textContent='Your browser did not allow full-screen mode. Use a desktop browser and allow full-screen access, then try again. The game will not start in a windowed view.';
+  $('dialogEyebrow').textContent='FULLSCREEN COULD NOT START';$('dialogTitle').innerHTML='Open the <span>full garden</span>';
+  $('dialogText').textContent=String(err&&err.message||'Your browser blocked fullscreen.').slice(0,220);
   $('dialogActions').innerHTML='<button class="primary-btn" id="retryFullscreenBtn">Try fullscreen again</button>';
-  $('dialogNote').textContent='Keyboard shortcut F11 may enter browser full screen, but the game still needs permission.';
+  $('dialogNote').textContent='Fullscreen must be started by a direct tap in a normal browser tab. Embedded previews may block it.';
   $('retryFullscreenBtn').onclick=enterFullscreen;
  }
 }
-document.addEventListener('fullscreenchange',()=>{
+const onFullscreenChange=()=>{
  if(document.fullscreenElement){
   if(state==='playing'&&paused&&overlayKind==='fullscreen'){
    paused=false;$('pauseBadge').classList.remove('show');hideOverlay();$('seedBank').parentElement.classList.remove('locked');updateUI(true);
   }
  }else if(state==='playing'){
-  paused=true;selected=null;shears=false;updateCards();$('shovelBtn').classList.remove('active');$('pauseBadge').classList.add('show');showOverlay('fullscreen');
+  paused=true;selected=null;shears=false;updateCards();$('shovelBtn').classList.remove('active');$('pauseBadge').classList.add('show');persistRun();showOverlay('fullscreen');
  }
-});
+};
+document.addEventListener('fullscreenchange',onFullscreenChange);
+document.addEventListener('webkitfullscreenchange',onFullscreenChange);
 
 function resetGame(){
- energy=175;hearts=3;wave=0;phase='idle';phaseTimer=0;spawnQueue=[];spawnTimer=0;spawnedThisWave=0;plants=[];enemies=[];shots=[];drops=[];particles=[];floating=[];selected=null;shears=false;elapsed=0;worldTime=0;dewTimer=4;weather='Clear morning';weatherTimer=20;kills=0;plantedCount=0;lostCount=0;speed=1;paused=false;shake=0;
+ energy=175;hearts=3;wave=0;phase='idle';phaseTimer=0;spawnQueue=[];spawnTimer=0;spawnedThisWave=0;plants=[];enemies=[];shots=[];enemyShots=[];drops=[];particles=[];floating=[];selected=null;shears=false;elapsed=0;worldTime=0;dewTimer=4;weather=worldId==='snow'?'Blue hour':'Clear morning';weatherTimer=20;kills=0;plantedCount=0;lostCount=0;speed=1;paused=false;shake=0;saveTimer=2;
  for(const k in plantCooldown)plantCooldown[k]=0;
  drops.push({id:nextId++,x:rand(BX+100,BR-80),y:rand(85,180),value:25,life:11,kind:'dew',vy:9,pulse:rand(0,6)});
  $('speedBtn').style.color='';$('speedBtn').title='Toggle speed';$('pauseBadge').classList.remove('show');updateCards();
@@ -270,13 +402,14 @@ function showOverlay(kind){
  overlayKind=kind;
  $('seedBank').parentElement.classList.toggle('locked',state!=='playing'||paused);
  $('overlay').classList.remove('hidden');$('guideBox').classList.remove('open');
+ $('worldSelect').style.display=kind==='menu'?'grid':'none';
  if(kind==='menu'){
-  $('dialogEyebrow').textContent='THE LAST GREEN PLACE';$('dialogTitle').innerHTML='Verdant <span>Vigil</span>';
-  $('dialogText').textContent='The Heartroot is the last light in this valley. Build a living defense, harvest every drop of dew, and outlast ten increasingly ferocious waves of Witherlings.';
-  $('dialogActions').innerHTML='<button class="primary-btn" id="startBtn">Enter the garden</button><button class="secondary-btn" id="guideBtn">Field guide</button>';
-  $('dialogNote').textContent='Fullscreen required · Strategy, timing & resource management';
-  $('startBtn').onclick=enterFullscreen;$('guideBtn').onclick=()=>{$('guideBox').classList.toggle('open')};
- } else if(kind==='pause'){
+  $('worldSelect').style.display='grid';$('dialogEyebrow').textContent='TWO WORLDS · ONE HEARTROOT';$('dialogTitle').innerHTML='Verdant <span>Vigil</span>';
+  $('dialogText').textContent='Choose your frontier. Build a living defense, harvest every drop of dew, and survive ten increasingly dangerous waves. The Frostbound Reach unlocks when the meadow is saved.';
+  $('dialogActions').innerHTML='<button class="primary-btn" id="startBtn">Enter First Light</button><button class="secondary-btn" id="guideBtn">Field guide</button>'+(savedRun?'<button class="secondary-btn" id="continueBtn">Resume saved run</button>':'');
+  $('dialogNote').textContent='Fullscreen required · Progress and active runs save automatically';
+  $('startBtn').onclick=enterFullscreen;$('guideBtn').onclick=()=>{$('guideBox').classList.toggle('open')};if($('continueBtn'))$('continueBtn').onclick=()=>{resumeRequested=true;enterFullscreen()};updateWorldPicker();
+ } else if(kind==='pause'){ $('worldSelect').style.display='none';
   $('dialogEyebrow').textContent='TAKE A BREATH';$('dialogTitle').innerHTML='Garden <span>paused</span>';
   $('dialogText').textContent='The Witherlings can wait. Your plants are safe while the garden is paused.';
   $('dialogActions').innerHTML='<button class="primary-btn" id="resumeBtn">Return to garden</button><button class="secondary-btn" id="restartBtn">Restart garden</button>';
@@ -294,9 +427,9 @@ function showOverlay(kind){
   $('dialogNote').textContent=`Plants placed: ${plantedCount} · Witherlings cleared: ${kills}`;$('againBtn').onclick=startGame;$('menuBtn').onclick=()=>{state='menu';showOverlay('menu')};
  } else if(kind==='win'){
   $('dialogEyebrow').textContent='THE HEARTROOT STILL GLOWS';$('dialogTitle').innerHTML='Garden <span>saved</span>';
-  $('dialogText').textContent=`All 10 waves have been cleared. The Witherlings have retreated, and the garden is blooming again. A fine defense.`;
+  $('dialogText').textContent=worldId==='meadow'?'All 10 waves have been cleared. The Witherlings have retreated, and the meadow is blooming again. Snowveil Reach has been unlocked.':'All 10 waves of the Frostbound Reach have been cleared. The blizzard has broken, and the Heartroot shines across both worlds.';
   $('dialogActions').innerHTML='<button class="primary-btn" id="againBtn">Play again</button><button class="secondary-btn" id="menuBtn">Main menu</button>';
-  $('dialogNote').textContent=`${kills} Witherlings cleared · ${plantedCount} plants placed · ${Math.floor(elapsed)}s survived`;$('againBtn').onclick=startGame;$('menuBtn').onclick=()=>{state='menu';showOverlay('menu')};
+  $('dialogNote').textContent=`${kills} enemies cleared · ${plantedCount} plants placed · ${Math.floor(elapsed)}s survived`;$('againBtn').onclick=startGame;$('menuBtn').onclick=()=>{state='menu';showOverlay('menu')};
  }
 }
 function hideOverlay(){$('overlay').classList.add('hidden');}
@@ -308,7 +441,7 @@ function togglePause(){
  $('pauseBadge').classList.toggle('show',paused);
  $('pauseBtn').innerHTML=paused?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 5 11 7-11 7V5Z"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 5v14M15 5v14"/></svg>';
  $('pauseBtn').setAttribute('aria-label',paused?'Resume game':'Pause game');
- if(paused){selected=null;shears=false;updateCards();$('shovelBtn').classList.remove('active');showOverlay('pause')}else hideOverlay();
+ if(paused){selected=null;shears=false;updateCards();$('shovelBtn').classList.remove('active');persistRun();showOverlay('pause')}else hideOverlay();
  sfx(paused?300:540,.08,'sine',.03);
 }
 function toggleShears(){if(state!=='playing'||paused)return;shears=!shears;selected=null;$('shovelBtn').classList.toggle('active',shears);updateCards();showToast(shears?'SHEARS READY — CHOOSE A PLANT':'SHEARS STORED');sfx(350,.06,'triangle',.02);}
@@ -319,7 +452,7 @@ function placePlant(row,col,id){
  if(plantCooldown[id]>0){showToast('THAT SEED IS STILL RESTING');return;}
  energy-=def.cost;plantCooldown[id]=def.cool;
  const p={id:nextId++,type:id,row,col,x:BX+col*CW+CW/2,y:BY+row*CH+CH*.86,hp:id==='bark'?570:id==='twin'?205:id==='sunbud'?150:180,maxHp:id==='bark'?570:id==='twin'?205:id==='sunbud'?150:180,shoot:rand(.2,.7),produce:rand(4.2,6),anim:rand(0,8),flash:0,burst:.58};
- plants.push(p);plantedCount++;selected=null;updateCards();sfx(380+Math.random()*170,.09,'sine',.03);
+ p.freezeTimer=0;plants.push(p);plantedCount++;selected=null;updateCards();persistRun();sfx(380+Math.random()*170,.09,'sine',.03);
  addParticles(p.x,p.y-26,def.color,12,80);floatText(p.x,p.y-60,'PLANTED',def.color);
  if(id==='ember'){showToast('EMBERBUD PRIMED — LANE BURST');}
 }
@@ -338,7 +471,7 @@ canvas.addEventListener('pointerdown',e=>{
  if(selected){placePlant(row,col,selected);return;}
  const p=plants.find(p=>p.row===row&&p.col===col);if(p){floatText(p.x,p.y-54,`${Math.ceil(p.hp)} / ${p.maxHp} HP`,'#f2e9bc');}
 });
-function collectDrop(i){const d=drops[i];energy+=d.value;drops.splice(i,1);addParticles(d.x,d.y,'#ffdc78',16,105);floatText(d.x,d.y-16,`+${d.value} DEW`,'#ffe28e');sfx(720,.09,'sine',.04);updateUI(true);}
+function collectDrop(i){const d=drops[i];energy+=d.value;drops.splice(i,1);addParticles(d.x,d.y,'#ffdc78',16,105);floatText(d.x,d.y-16,`+${d.value} DEW`,'#ffe28e');sfx(720,.09,'sine',.04);updateUI(true);persistRun();}
 function toggleSpeed(){if(state!=='playing'||paused)return;speed=speed===1?1.5:1;$('speedBtn').style.color=speed>1?'#d2ee9c':'';$('speedBtn').title=`Game speed ${speed}x`;showToast(`GARDEN SPEED ${speed}×`);sfx(460,.06,'sine',.025);}
 function toggleSound(){soundOn=!soundOn;$('soundBtn').style.color=soundOn?'#c8eb9c':'';$('soundBtn').setAttribute('aria-label',soundOn?'Mute sound':'Enable sound');if(soundOn)sfx(620,.1,'sine',.03);}
 $('pauseBtn').addEventListener('click',togglePause);$('speedBtn').addEventListener('click',toggleSpeed);$('soundBtn').addEventListener('click',toggleSound);$('shovelBtn').addEventListener('click',toggleShears);$('cancelBtn').addEventListener('click',()=>{selected=null;shears=false;updateCards();$('shovelBtn').classList.remove('active')});
@@ -355,46 +488,63 @@ document.addEventListener('keydown',e=>{
 });
 
 function makeWave(w){
- // The opening remains sparse and threatening. From wave 3 onward, both
- // the number of attackers and the composition escalate sharply.
- const count=w===1?5:Math.round(5+(w-1)*3.05+(w>=7?(w-6)*.55:0));
+ // The opening count is intentionally unchanged. Later waves keep their
+ // original spawn counts while introducing increasingly specialized threats.
+ const count=w===1?3:Math.round(5+(w-1)*3.05+(w>=7?(w-6)*.55:0));
  const q=[];
  for(let i=0;i<count;i++){
   let type='drifter';
-  if(w>=2&&i%3===2)type='skitter';
-  if(w>=4&&i%4===3)type='brute';
-  if(w>=5&&i%6===4)type='ravager';
-  if(w>=7&&i%8===6)type='thornback';
-  if(w>=9&&i===Math.floor(count*.68))type='rootmaw';
+  if(worldId==='snow'){
+   type='icewisp';
+   if(w>=2&&i%3===1)type='frostarcher';
+   if(w>=4&&i%5===3)type='glacierwarden';
+   if(w>=7&&i%7===5)type='frostarcher';
+   if(w>=9&&i===Math.floor(count*.68))type='glacierwarden';
+  }else{
+   if(w>=2&&i%3===2)type='skitter';
+   if(w>=4&&i%4===3)type='brute';
+   if(w>=5&&i%6===4)type='ravager';
+   if(w>=7&&i%8===6)type='thornback';
+   if(w>=9&&i===Math.floor(count*.68))type='rootmaw';
+  }
   q.push(type);
  }
- if(w===10)q.push('rootmaw'); // a final siege-beast closes the campaign
+ if(w===10)q.push(worldId==='snow'?'glacierwarden':'rootmaw');
  return q;
 }
-function beginWave(){wave++;spawnQueue=makeWave(wave);spawnTimer=1.25;spawnedThisWave=0;phase='wave';phaseTimer=0;showToast(`WAVE ${wave} — THEY'RE COMING`);sfx(300,.2,'sawtooth',.018);updateUI(true);}
+function beginWave(){wave++;spawnQueue=makeWave(wave);spawnTimer=1.25;spawnedThisWave=0;phase='wave';phaseTimer=0;showToast(`${worldId==='snow'?'FROST FRONT':'WAVE'} ${wave} — THEY'RE COMING`);sfx(300,.2,'sawtooth',.018);updateUI(true);persistRun();}
 function spawnEnemy(type){
  const row=(Math.floor(Math.random()*ROWS)+Math.floor(spawnedThisWave/2))%ROWS;
- const hpScale=1+(wave-1)*.09+Math.max(0,wave-5)*.08;
- const speedScale=1+Math.min(.34,(wave-1)*.038);
- const damageScale=1+Math.max(0,wave-3)*.075;
+ const hpScale=1*(1+(wave-1)*.09+Math.max(0,wave-5)*.08); // Half the previous enemy HP at every wave; progression remains unchanged.
+ const speedScale=2*(1+Math.min(.34,(wave-1)*.038));
+ const damageScale=2*(1+Math.max(0,wave-3)*.075);
  const stats={
   drifter:{hp:115,speed:19,damage:23,bite:1.05,rad:24},
   skitter:{hp:82,speed:36,damage:17,bite:.78,rad:20},
   brute:{hp:325,speed:11.5,damage:42,bite:1.18,rad:30},
   ravager:{hp:145,speed:39,damage:29,bite:.68,rad:21},
   thornback:{hp:350,speed:13.5,damage:38,bite:1.05,rad:32,armor:190},
-  rootmaw:{hp:690,speed:9.2,damage:72,bite:1.0,rad:38,armor:130}
+  rootmaw:{hp:690,speed:9.2,damage:72,bite:1.0,rad:38,armor:130},
+  icewisp:{hp:145,speed:25,damage:30,bite:.9,rad:23,range:440,fire:1.75,rangedDamage:34,freeze:1.15},
+  frostarcher:{hp:210,speed:16,damage:38,bite:1.0,rad:25,range:565,fire:2.15,rangedDamage:48},
+  glacierwarden:{hp:470,speed:10,damage:68,bite:1.25,rad:35,armor:230,range:635,fire:2.8,rangedDamage:72,freeze:2.0}
  }[type];
  const hp=stats.hp*hpScale;
- enemies.push({id:nextId++,type,row,x:BR+48,y:BY+row*CH+CH*.86,hp,maxHp:hp,armor:stats.armor||0,maxArmor:stats.armor||0,speed:stats.speed*speedScale,damage:stats.damage*damageScale,biteRate:stats.bite,rad:stats.rad,attack:0,anim:rand(0,8),flash:0,slow:0,dead:false,dash:rand(1.8,3.8)});
- addParticles(BR+12,BY+row*CH+CH*.86-8,type==='rootmaw'?'#b7a17b':'#728a68',type==='rootmaw'?15:7,type==='rootmaw'?65:36);
+ enemies.push({id:nextId++,type,row,x:BR+48,y:BY+row*CH+CH*.86,hp,maxHp:hp,armor:(stats.armor||0)*2,maxArmor:(stats.armor||0)*2,speed:stats.speed*speedScale,damage:stats.damage*damageScale,biteRate:stats.bite,rad:stats.rad,attack:0,anim:rand(0,8),flash:0,slow:0,dead:false,dash:rand(1.8,3.8),range:stats.range||0,fireRate:stats.fire||0,rangedDamage:(stats.rangedDamage||0)*damageScale,freeze:stats.freeze||0,rangedCooldown:rand(.45,1.2)});
+ addParticles(BR+12,BY+row*CH+CH*.86-8,type==='rootmaw'||type==='glacierwarden'?'#b7a17b':type==='icewisp'||type==='frostarcher'?'#aee8f8':'#728a68',type==='rootmaw'||type==='glacierwarden'?15:7,type==='rootmaw'||type==='glacierwarden'?65:36);
 }
 function tickWeather(dt){
  weatherTimer-=dt;
  if(weatherTimer<=0){
-  if(weather==='Clear morning'){weather='Dewfall';weatherTimer=23;showToast('DEWFALL — ENERGY DROPS ARE RICHER');}
-  else if(weather==='Dewfall'){weather='Crosswind';weatherTimer=25;showToast('CROSSWIND — SHOTS FLY FASTER');}
-  else{weather='Clear morning';weatherTimer=20;showToast('THE GARDEN CALMS');}
+  if(worldId==='snow'){
+   if(weather==='Blue hour'){weather='Snow squall';weatherTimer=22;showToast('SNOW SQUALL — VISIBILITY FALLS');}
+   else if(weather==='Snow squall'){weather='Aurora';weatherTimer=24;showToast('AURORA — THE FROST GLEAMS');}
+   else{weather='Blue hour';weatherTimer=21;showToast('THE BLUE HOUR RETURNS');}
+  }else{
+   if(weather==='Clear morning'){weather='Dewfall';weatherTimer=23;showToast('DEWFALL — ENERGY DROPS ARE RICHER');}
+   else if(weather==='Dewfall'){weather='Crosswind';weatherTimer=25;showToast('CROSSWIND — SHOTS FLY FASTER');}
+   else{weather='Clear morning';weatherTimer=20;showToast('THE GARDEN CALMS');}
+  }
   sfx(640,.14,'sine',.02);
  }
 }
@@ -404,9 +554,9 @@ function update(dt){
  for(const k in plantCooldown)plantCooldown[k]=Math.max(0,plantCooldown[k]-step);
  dewTimer-=step;
  if(dewTimer<=0){
-  const isDew=weather==='Dewfall';
+  const isDew=worldId==='meadow'&&weather==='Dewfall';
   drops.push({id:nextId++,x:rand(BX+45,BR-30),y:rand(BY+10,BY+160),value:isDew?35:25,life:12,kind:'dew',vy:rand(6,13),pulse:rand(0,6)});
-  dewTimer=weather==='Dewfall'?5.6:8.8;
+  dewTimer=worldId==='meadow'&&weather==='Dewfall'?5.6:8.8;
  }
  if(phase==='prep'){
   phaseTimer-=step;
@@ -418,9 +568,10 @@ function update(dt){
   phaseTimer-=step;if(phaseTimer<=0)beginWave();
  }
  // Plants: economy, firing, timed burst.
- for(let i=plants.length-1;i>=0;i--){const p=plants[i];p.anim+=step*2.2;p.flash=Math.max(0,p.flash-step*3);
+ for(let i=plants.length-1;i>=0;i--){const p=plants[i];p.anim+=step*2.2;p.flash=Math.max(0,p.flash-step*3);p.freezeTimer=Math.max(0,(p.freezeTimer||0)-step);p.frozen=p.freezeTimer>0;
+  if(p.frozen)continue;
   if(p.type==='sunbud'){
-   p.produce-=step;if(p.produce<=0){const val=weather==='Dewfall'?40:25;drops.push({id:nextId++,x:p.x+rand(-16,16),y:p.y-47,value:val,life:13,kind:'dew',vy:-5,pulse:0});p.produce=weather==='Dewfall'?5.9:7.3;addParticles(p.x,p.y-46,'#f7d46e',5,32);}
+   p.produce-=step;if(p.produce<=0){const rich=worldId==='meadow'&&weather==='Dewfall';const val=rich?40:25;drops.push({id:nextId++,x:p.x+rand(-16,16),y:p.y-47,value:val,life:13,kind:'dew',vy:-5,pulse:0});p.produce=rich?5.9:7.3;addParticles(p.x,p.y-46,worldId==='snow'?'#b5efff':'#f7d46e',5,32);}
   } else if(p.type==='sprout'||p.type==='frost'||p.type==='twin'){
    p.shoot-=step;
    const target=enemies.some(e=>e.row===p.row&&e.x>p.x+12);
@@ -439,11 +590,15 @@ function update(dt){
  }
  // Projectiles travel toward the Witherlings.
  for(let i=shots.length-1;i>=0;i--){const s=shots[i];s.x+=s.vx*step;if(s.x>BR+100){shots.splice(i,1);continue;}let hit=null;for(const e of enemies){if(e.row===s.row&&Math.abs(e.x-s.x)<e.rad*.72){hit=e;break;}}if(hit){let damage=s.damage;if(hit.armor>0){const absorbed=Math.min(hit.armor,damage);hit.armor-=absorbed;damage-=absorbed;addParticles(hit.x-8,hit.y-28,'#d6bd8d',6,44);}if(damage>0)hit.hp-=damage;hit.flash=.16;if(s.slow)hit.slow=Math.max(hit.slow,2.2);addParticles(s.x,s.y,s.kind==='ice'?'#aeeeff':'#b4e68a',5,38);shots.splice(i,1);if(hit.hp<=0)defeatEnemy(hit);}}
- // Enemies advance, or chew the nearest plant in their lane.
+ // Ranged enemies fire physical ice projectiles at the front-most plant in their lane.
+ for(let i=enemyShots.length-1;i>=0;i--){const q=enemyShots[i];q.x-=q.speed*step;q.life-=step;const target=plants.find(p=>p.id===q.targetId);if(!target||q.life<=0){enemyShots.splice(i,1);continue;}if(q.x<=target.x+17){target.hp-=q.damage;target.flash=.32;if(q.freeze)target.freezeTimer=Math.max(target.freezeTimer||0,q.freeze);addParticles(target.x,target.y-24,q.kind==='shard'?'#e7fbff':'#9ce6fa',13,64);floatText(target.x,target.y-48,q.freeze?'FROSTBOUND':`-${Math.ceil(q.damage)}`,'#b9edff');if(target.hp<=0){plants=plants.filter(p=>p!==target);addParticles(target.x,target.y-24,'#a4dbe9',19,75);}enemyShots.splice(i,1);sfx(165,.07,'sine',.012);}}
+ // Enemies advance, chew blockers, or hold their ground to bombard from range.
  for(let i=enemies.length-1;i>=0;i--){const e=enemies[i];e.anim+=step*2.5;e.flash=Math.max(0,e.flash-step*3);e.slow=Math.max(0,e.slow-step);
-  let blocker=null;for(const p of plants){if(p.row===e.row&&p.x<e.x&&e.x-p.x<e.rad+19){if(!blocker||p.x>blocker.x)blocker=p;}}
-  if(blocker){e.attack-=step;if(e.attack<=0){blocker.hp-=e.damage;e.attack=e.biteRate;blocker.flash=.25;addParticles(blocker.x+rand(-10,10),blocker.y-15,'#d5aa7a',3,26);sfx(100,.04,'triangle',.009);if(blocker.hp<=0){plants=plants.filter(p=>p!==blocker);addParticles(blocker.x,blocker.y-22,'#9b7959',15,70);}}}
-  else{const weatherFactor=weather==='Crosswind'?.82:1;let rush=1;if(e.type==='ravager'){e.dash-=step;if(e.dash<=0){rush=2.35;e.dash=rand(2.4,3.7);}}e.x-=e.speed*weatherFactor*(e.slow>0?.62:1)*rush*step;}
+  let rangedTarget=null;if(e.range){for(const p of plants){if(p.row===e.row&&p.x<e.x&&e.x-p.x<=e.range&&(!rangedTarget||p.x>rangedTarget.x))rangedTarget=p;}}
+  if(rangedTarget){e.rangedCooldown-=step;if(e.rangedCooldown<=0){enemyShots.push({id:nextId++,targetId:rangedTarget.id,row:e.row,x:e.x-19,y:e.y-35,targetX:rangedTarget.x,targetY:rangedTarget.y-22,speed:e.type==='icewisp'?390:e.type==='frostarcher'?470:410,damage:e.rangedDamage,freeze:e.freeze||0,kind:e.type==='frostarcher'?'shard':'bolt',life:3.2});e.rangedCooldown=e.fireRate;addParticles(e.x-20,e.y-34,'#b9efff',7,42);sfx(e.type==='glacierwarden'?245:430,.055,'sine',.012);}}
+  else{let blocker=null;for(const p of plants){if(p.row===e.row&&p.x<e.x&&e.x-p.x<e.rad+19){if(!blocker||p.x>blocker.x)blocker=p;}}
+   if(blocker){e.attack-=step;if(e.attack<=0){blocker.hp-=e.damage;e.attack=e.biteRate;blocker.flash=.25;addParticles(blocker.x+rand(-10,10),blocker.y-15,'#d5aa7a',3,26);sfx(100,.04,'triangle',.009);if(blocker.hp<=0){plants=plants.filter(p=>p!==blocker);addParticles(blocker.x,blocker.y-22,worldId==='snow'?'#9bc9d9':'#9b7959',15,70);}}}
+   else{const weatherFactor=worldId==='meadow'&&weather==='Crosswind'?.82:1;let rush=1;if(e.type==='ravager'){e.dash-=step;if(e.dash<=0){rush=2.35;e.dash=rand(2.4,3.7);}}e.x-=e.speed*weatherFactor*(e.slow>0?.62:1)*rush*step;}}
   if(e.x<BX-2){enemies.splice(i,1);hearts--;lostCount++;shake=9;addParticles(BX-5,e.y,'#d2b77c',18,90);floatText(BX+14,e.y-40,'HEARTROOT HIT!','#ffb28a');sfx(95,.28,'sawtooth',.05);if(hearts<=0){loseGame();return;}}
  }
  // Dew drifts gently and expires.
@@ -451,6 +606,7 @@ function update(dt){
  updateParticles(step);
  if(toastTimer>0){toastTimer-=step;if(toastTimer<=0)$('toast').classList.remove('show');}
  if(shake>0)shake=Math.max(0,shake-step*18);
+ saveTimer-=step;if(saveTimer<=0){persistRun();saveTimer=2.4;}
  uiTimer-=step;if(uiTimer<=0){updateUI();uiTimer=.12;}
 }
 function defeatEnemy(e){
@@ -458,18 +614,20 @@ function defeatEnemy(e){
  if(Math.random()<.13)drops.push({id:nextId++,x:e.x,y:e.y-22,value:25,life:8,kind:'dew',vy:-10,pulse:0});
  sfx(e.type==='brute'?170:240,.07,'triangle',.018);
 }
-function loseGame(){state='lost';paused=false;selected=null;updateCards();if(kills>best){best=kills;try{localStorage.setItem('vv_best',best)}catch(e){};$('bestText').textContent=best;}showOverlay('lost');}
-function winGame(){state='win';paused=false;selected=null;updateCards();best=Math.max(best,kills);try{localStorage.setItem('vv_best',best)}catch(e){};$('bestText').textContent=best;showOverlay('win');sfx(880,.5,'sine',.05);}
+function loseGame(){state='lost';paused=false;selected=null;updateCards();if(kills>best)best=kills;campaign.losses=(campaign.losses||0)+1;campaign.lastOutcome='loss';persistCampaign();clearSavedRun();$('bestText').textContent=best;showOverlay('lost');}
+function winGame(){state='win';paused=false;selected=null;updateCards();best=Math.max(best,kills);campaign.wins=(campaign.wins||0)+1;campaign.lastOutcome='victory';campaign.lastWorld=worldId;if(worldId==='meadow')unlockedSnow=true;campaign[`best_${worldId}`]=Math.max(campaign[`best_${worldId}`]||0,kills);persistCampaign();clearSavedRun();$('bestText').textContent=best;showOverlay('win');sfx(880,.5,'sine',.05);}
 function addParticles(x,y,color,n=8,power=60){for(let i=0;i<n;i++){const a=rand(0,Math.PI*2),v=rand(power*.25,power);particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:rand(.25,.7),max:.7,r:rand(2,5),color});}}
 function floatText(x,y,text,color){floating.push({x,y,text,color,life:1.0,max:1.0});}
 function updateParticles(dt){for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.life-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=85*dt;p.vx*=Math.pow(.12,dt);if(p.life<=0)particles.splice(i,1);}for(let i=floating.length-1;i>=0;i--){const f=floating[i];f.life-=dt;f.y-=22*dt;if(f.life<=0)floating.splice(i,1);}}
 function updateUI(force=false){
  $('energyText').textContent=Math.floor(energy);$('waveText').textContent=wave?`${wave} / 10`:'— / 10';$('heartsText').textContent=`${hearts} / 3`;$('waveProgress').style.width=`${clamp(wave/10*100,0,100)}%`;
- $('weatherText').textContent=weather;$('weatherDot').style.background=weather==='Dewfall'?'#f2cc68':weather==='Crosswind'?'#a8dded':'#b9e9a0';$('weatherDot').style.boxShadow=`0 0 12px ${weather==='Dewfall'?'#f2cc68':weather==='Crosswind'?'#a8dded':'#b9e9a0'}`;
+ $('weatherText').textContent=weather;$('weatherDot').style.background=weather==='Dewfall'?'#f2cc68':weather==='Crosswind'?'#a8dded':worldId==='snow'?'#a9e9ff':'#b9e9a0';$('weatherDot').style.boxShadow=`0 0 12px ${weather==='Dewfall'?'#f2cc68':weather==='Crosswind'?'#a8dded':worldId==='snow'?'#a9e9ff':'#b9e9a0'}`;
+ $('weatherText').parentElement.querySelector('.meta-label').textContent=worldId==='snow'?'Frost conditions':'Garden weather';
+ document.querySelector('.brand-sub').textContent=worldId==='snow'?'SNOWVEIL REACH':'A HEARTROOT DEFENSE';
  let stat='Ready when you are.';
  if(state==='playing'){
   if(phase==='prep')stat=`First wave in ${Math.ceil(phaseTimer)}s · Place your defenses.`;
-  else if(phase==='wave')stat=`${spawnQueue.length+enemies.length} Witherlings remain in wave ${wave}.`;
+  else if(phase==='wave')stat=`${spawnQueue.length+enemies.length+enemyShots.length*0} ${worldId==='snow'?'Frostborn':'Witherlings'} remain in wave ${wave}.`;
   else if(phase==='intermission')stat=`Wave ${wave} cleared · Next wave in ${Math.ceil(phaseTimer)}s.`;
  }
  $('statusText').textContent=stat;$('seedBank').parentElement.classList.toggle('locked',state!=='playing'||paused);updateCards();
@@ -478,50 +636,57 @@ function updateUI(force=false){
 // ---------- Canvas rendering ----------
 function rounded(x,y,w,h,r,fill,stroke){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill();}if(stroke){ctx.strokeStyle=stroke;ctx.stroke();}}
 function drawBackground(t){
- const sky=ctx.createLinearGradient(0,0,0,H);sky.addColorStop(0,'#9dbf92');sky.addColorStop(.42,'#bfd29a');sky.addColorStop(1,'#527d51');ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);
- // Layered valley silhouettes create depth behind the garden.
- const hills=[['#8eae7b',140,24,.008],['#769966',216,18,.012],['#638653',300,14,.016]];
- hills.forEach(([color,base,amp,freq],idx)=>{ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(0,base+70);for(let x=0;x<=W;x+=38){const y=base+Math.sin(x*freq+t*(.035+idx*.012)+idx)*amp+Math.sin(x*.027+idx)*5;ctx.lineTo(x,y);}ctx.lineTo(W,base+130);ctx.lineTo(0,base+130);ctx.closePath();ctx.fill();});
- // Warm, diffused morning light.
- const sun=ctx.createRadialGradient(960,42,4,960,42,190);sun.addColorStop(0,'#fff9d4b5');sun.addColorStop(.34,'#fff2bd52');sun.addColorStop(1,'#fff2bd00');ctx.fillStyle=sun;ctx.fillRect(750,0,420,250);
- ctx.fillStyle='#fff5c0';ctx.globalAlpha=.42;ctx.beginPath();ctx.arc(960,36,21,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
- // Slow drifting cloud clusters.
- for(let i=0;i<5;i++){const x=((i*286+t*2.5)%(W+240))-120,y=25+(i%3)*28;ctx.fillStyle='#f4f7df30';ctx.beginPath();ctx.ellipse(x,y,48,9,0,0,Math.PI*2);ctx.ellipse(x+25,y-5,27,12,0,0,Math.PI*2);ctx.ellipse(x-18,y-2,25,10,0,0,Math.PI*2);ctx.fill();}
- // Distant orchard and fence silhouettes.
- for(let i=0;i<17;i++){const x=i*78+((i%2)*9),y=330+(i%3)*7;ctx.fillStyle=i%2?'#4f754b':'#5e8350';ctx.beginPath();ctx.arc(x,y-16,17+(i%4)*2,0,Math.PI*2);ctx.fill();ctx.fillStyle='#715d3e';ctx.fillRect(x-2,y-8,4,22);}
- ctx.strokeStyle='#e5efbc25';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,359);ctx.lineTo(W,359);ctx.stroke();
- // Near-ground grass with a deep edge vignette.
- const grass=ctx.createLinearGradient(0,365,0,H);grass.addColorStop(0,'#7da45e');grass.addColorStop(.48,'#689452');grass.addColorStop(1,'#315e42');ctx.fillStyle=grass;ctx.fillRect(0,365,W,H-365);
- for(let i=0;i<190;i++){const x=(i*83+((t*4)%83))%W,y=370+(i*31)%160;ctx.strokeStyle=i%2?'#e0efad2c':'#1c58362e';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x,y+6);ctx.quadraticCurveTo(x-3,y-2,x+Math.sin(i*8.3)*5,y-8);ctx.stroke();}
- // A soft vignette at the edges keeps attention on the playfield.
- const vignette=ctx.createRadialGradient(600,260,180,600,260,760);vignette.addColorStop(.55,'#071d1600');vignette.addColorStop(1,'#10251a38');ctx.fillStyle=vignette;ctx.fillRect(0,0,W,H);
- // Living Heartroot sentinel beside the left lane wall.
- rounded(174,BY-2,27,CH*ROWS+18,12,'#405c43','#d9e2a455');
- ctx.fillStyle='#344f3b';ctx.beginPath();ctx.moveTo(185,BY+34);ctx.bezierCurveTo(160,BY+75,160,BY+120,186,BY+151);ctx.bezierCurveTo(210,BY+112,209,BY+72,185,BY+34);ctx.fill();
- ctx.strokeStyle='#a4c78d';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(185,BY+62);ctx.quadraticCurveTo(185,BY+97,185,BY+125);ctx.stroke();
- ctx.fillStyle='#c0e79d';ctx.beginPath();ctx.arc(185,BY+56,7,0,Math.PI*2);ctx.fill();
- for(let i=0;i<13;i++){const x=24+(i*47)%142,y=420+(i*37)%95;ctx.fillStyle=i%2?'#365f40':'#507c4c';ctx.beginPath();ctx.ellipse(x,y,8+(i%3)*4,4+(i%2)*2,(i%5)*.3,0,Math.PI*2);ctx.fill();}
+ const snow=worldId==='snow';
+ const sky=ctx.createLinearGradient(0,0,0,H);
+ if(snow){sky.addColorStop(0,'#294c69');sky.addColorStop(.38,'#789eae');sky.addColorStop(1,'#d5e7e8');}else{sky.addColorStop(0,'#829f82');sky.addColorStop(.42,'#b6cc99');sky.addColorStop(1,'#47734c');}
+ ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);
+ if(snow){
+  // Polar dawn with a layered aurora ribbon and distant glacial peaks.
+  const glow=ctx.createRadialGradient(915,35,8,915,35,260);glow.addColorStop(0,'#d8fbff99');glow.addColorStop(.35,'#8ddaf044');glow.addColorStop(1,'#8ddaf000');ctx.fillStyle=glow;ctx.fillRect(650,0,500,280);
+  ctx.save();ctx.globalAlpha=.24;ctx.lineWidth=20;ctx.strokeStyle='#a0f3e6';ctx.beginPath();ctx.moveTo(560,22);ctx.bezierCurveTo(700,110+Math.sin(t*.18)*22,810,-22,1000,46);ctx.bezierCurveTo(1090,80,1140,12,1210,24);ctx.stroke();ctx.globalAlpha=.13;ctx.lineWidth=35;ctx.strokeStyle='#8cc8f4';ctx.beginPath();ctx.moveTo(640,55);ctx.bezierCurveTo(790,135,930,-10,1200,74);ctx.stroke();ctx.restore();
+  const peaks=[['#7595a8',142,28,.008],['#a9c4ce',219,21,.012],['#d3e3e4',294,16,.016]];peaks.forEach(([c,b,a,f],i)=>{ctx.fillStyle=c;ctx.beginPath();ctx.moveTo(0,b+100);for(let x=0;x<=W;x+=25){let y=b+Math.sin(x*f+t*.025+i)*a+Math.sin(x*.021+i)*8;if(i===0&&x%150<25)y-=Math.abs(Math.sin(x*.17))*8;ctx.lineTo(x,y);}ctx.lineTo(W,b+150);ctx.lineTo(0,b+150);ctx.closePath();ctx.fill();});
+  // Mountain ice faces.
+  for(let i=0;i<8;i++){const x=i*175-30,y=135+(i%3)*26;ctx.fillStyle='#e9f7f4a0';ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+37,y+49);ctx.lineTo(x+18,y+37);ctx.lineTo(x+5,y+43);ctx.closePath();ctx.fill();}
+  const ground=ctx.createLinearGradient(0,360,0,H);ground.addColorStop(0,'#b7d0d0');ground.addColorStop(.55,'#8baeb8');ground.addColorStop(1,'#466b83');ctx.fillStyle=ground;ctx.fillRect(0,360,W,H-360);
+  for(let i=0;i<180;i++){const x=(i*83+((t*3)%83))%W,y=365+(i*31)%160;ctx.strokeStyle=i%2?'#f2ffff35':'#37657c29';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x,y+6);ctx.quadraticCurveTo(x-3,y-2,x+Math.sin(i*8.3)*5,y-8);ctx.stroke();}
+  // Animated snowfall at multiple depths.
+  for(let i=0;i<95;i++){const x=(i*137+t*(10+(i%4)*5))%(W+20),y=(i*71+t*(20+(i%5)*5))%(H+12);ctx.globalAlpha=.26+(i%4)*.13;ctx.fillStyle='#f5ffff';ctx.beginPath();ctx.arc(x,y,1+(i%3)*.55,0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;
+ }else{
+  const hills=[['#8eae7b',140,24,.008],['#769966',216,18,.012],['#638653',300,14,.016]];hills.forEach(([color,base,amp,freq],idx)=>{ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(0,base+70);for(let x=0;x<=W;x+=38){const y=base+Math.sin(x*freq+t*(.035+idx*.012)+idx)*amp+Math.sin(x*.027+idx)*5;ctx.lineTo(x,y);}ctx.lineTo(W,base+130);ctx.lineTo(0,base+130);ctx.closePath();ctx.fill();});
+  const sun=ctx.createRadialGradient(960,42,4,960,42,190);sun.addColorStop(0,'#fff9d4b5');sun.addColorStop(.34,'#fff2bd52');sun.addColorStop(1,'#fff2bd00');ctx.fillStyle=sun;ctx.fillRect(750,0,420,250);ctx.fillStyle='#fff5c0';ctx.globalAlpha=.42;ctx.beginPath();ctx.arc(960,36,21,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
+  for(let i=0;i<5;i++){const x=((i*286+t*2.5)%(W+240))-120,y=25+(i%3)*28;ctx.fillStyle='#f4f7df30';ctx.beginPath();ctx.ellipse(x,y,48,9,0,0,Math.PI*2);ctx.ellipse(x+25,y-5,27,12,0,0,Math.PI*2);ctx.ellipse(x-18,y-2,25,10,0,0,Math.PI*2);ctx.fill();}
+  for(let i=0;i<17;i++){const x=i*78+((i%2)*9),y=330+(i%3)*7;ctx.fillStyle=i%2?'#4f754b':'#5e8350';ctx.beginPath();ctx.arc(x,y-16,17+(i%4)*2,0,Math.PI*2);ctx.fill();ctx.fillStyle='#715d3e';ctx.fillRect(x-2,y-8,4,22);}
+  ctx.strokeStyle='#e5efbc25';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,359);ctx.lineTo(W,359);ctx.stroke();
+  const grass=ctx.createLinearGradient(0,365,0,H);grass.addColorStop(0,'#7da45e');grass.addColorStop(.48,'#689452');grass.addColorStop(1,'#315e42');ctx.fillStyle=grass;ctx.fillRect(0,365,W,H-365);
+  for(let i=0;i<190;i++){const x=(i*83+((t*4)%83))%W,y=370+(i*31)%160;ctx.strokeStyle=i%2?'#e0efad2c':'#1c58362e';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x,y+6);ctx.quadraticCurveTo(x-3,y-2,x+Math.sin(i*8.3)*5,y-8);ctx.stroke();}
+ }
+ const vignette=ctx.createRadialGradient(600,260,180,600,260,760);vignette.addColorStop(.55,'#071d1600');vignette.addColorStop(1,snow?'#0c263c44':'#10251a38');ctx.fillStyle=vignette;ctx.fillRect(0,0,W,H);
+ // The Heartroot sentinel changes from living wood to a frost-lit crystal root.
+ rounded(174,BY-2,27,CH*ROWS+18,12,snow?'#36576b':'#405c43',snow?'#d9f5ff88':'#d9e2a455');
+ ctx.fillStyle=snow?'#244b62':'#344f3b';ctx.beginPath();ctx.moveTo(185,BY+34);ctx.bezierCurveTo(160,BY+75,160,BY+120,186,BY+151);ctx.bezierCurveTo(210,BY+112,209,BY+72,185,BY+34);ctx.fill();
+ ctx.strokeStyle=snow?'#c1f2ff':'#a4c78d';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(185,BY+62);ctx.quadraticCurveTo(185,BY+97,185,BY+125);ctx.stroke();ctx.fillStyle=snow?'#d9faff':'#c0e79d';ctx.beginPath();ctx.arc(185,BY+56,7,0,Math.PI*2);ctx.fill();
+ for(let i=0;i<13;i++){const x=24+(i*47)%142,y=420+(i*37)%95;ctx.fillStyle=snow?(i%2?'#477990':'#80aab8'):(i%2?'#365f40':'#507c4c');ctx.beginPath();ctx.ellipse(x,y,8+(i%3)*4,4+(i%2)*2,(i%5)*.3,0,Math.PI*2);ctx.fill();}
 }
 function drawBoard(t){
- const boardW=CW*COLS,boardH=CH*ROWS;
- // Layered enamel-and-wood frame with a warm brass pinstripe.
- ctx.save();ctx.shadowColor='#173c27bd';ctx.shadowBlur=28;ctx.shadowOffsetY=10;rounded(BX-10,BY-10,boardW+20,boardH+20,20,'#e0e6b1','#f0efc4');ctx.restore();
- rounded(BX-7,BY-7,boardW+14,boardH+14,17,'#577c4a','#e2edb96e');
- rounded(BX-3,BY-3,boardW+6,boardH+6,14,'#6f925b','#345c407a');
+ const boardW=CW*COLS,boardH=CH*ROWS,snow=worldId==='snow';
+ // Layered enamel-and-metal frame; winter uses blue steel and frosted glass.
+ ctx.save();ctx.shadowColor=snow?'#102e4bbd':'#173c27bd';ctx.shadowBlur=30;ctx.shadowOffsetY=10;rounded(BX-10,BY-10,boardW+20,boardH+20,20,snow?'#d8edf0':'#e0e6b1',snow?'#f3ffff':'#f0efc4');ctx.restore();
+ rounded(BX-7,BY-7,boardW+14,boardH+14,17,snow?'#47788c':'#577c4a',snow?'#d3f2f76e':'#e2edb96e');
+ rounded(BX-3,BY-3,boardW+6,boardH+6,14,snow?'#7197a5':'#6f925b',snow?'#315f797a':'#345c407a');
  for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++){
   const x=BX+c*CW,y=BY+r*CH,alt=(r+c)%2;
-  const grad=ctx.createLinearGradient(x,y,x+CW,y+CH);grad.addColorStop(0,alt?'#b0ce8b':'#bfd898');grad.addColorStop(1,alt?'#92b77b':'#a4c783');
-  ctx.save();ctx.shadowColor='#345b3c35';ctx.shadowBlur=3;ctx.shadowOffsetY=1;rounded(x+1.5,y+1.5,CW-3,CH-3,8,grad,'#52764c55');ctx.restore();
+  const grad=ctx.createLinearGradient(x,y,x+CW,y+CH);if(snow){grad.addColorStop(0,alt?'#c2e2e9':'#d9edf0');grad.addColorStop(.52,alt?'#a8cbd8':'#c4dfe7');grad.addColorStop(1,alt?'#86adbf':'#9bbdcb');}else{grad.addColorStop(0,alt?'#b0ce8b':'#bfd898');grad.addColorStop(1,alt?'#92b77b':'#a4c783');}
+  ctx.save();ctx.shadowColor=snow?'#1d4b6335':'#345b3c35';ctx.shadowBlur=4;ctx.shadowOffsetY=1;rounded(x+1.5,y+1.5,CW-3,CH-3,8,grad,snow?'#477d9355':'#52764c55');ctx.restore();
   // Soft inner bevel, fine grain and a restrained botanical inlay.
-  ctx.strokeStyle='#f5f6d84a';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x+9,y+7);ctx.lineTo(x+CW-10,y+7);ctx.stroke();
-  ctx.strokeStyle='#486f4530';ctx.beginPath();ctx.moveTo(x+9,y+CH-6);ctx.lineTo(x+CW-10,y+CH-6);ctx.stroke();
+  ctx.strokeStyle=snow?'#f4ffff70':'#f5f6d84a';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x+9,y+7);ctx.lineTo(x+CW-10,y+7);ctx.stroke();
+  ctx.strokeStyle=snow?'#386b8530':'#486f4530';ctx.beginPath();ctx.moveTo(x+9,y+CH-6);ctx.lineTo(x+CW-10,y+CH-6);ctx.stroke();
   for(let k=0;k<4;k++){const dx=x+14+((c*17+k*23)%72),dy=y+18+((r*11+k*19)%52);ctx.fillStyle=alt?'#f5f6da20':'#426d4520';ctx.beginPath();ctx.arc(dx,dy,1+(k%2)*.5,0,Math.PI*2);ctx.fill();}
-  if((r*11+c*7)%9===0){ctx.globalAlpha=.22;drawClover(x+14+(c%3)*12,y+18+(r%2)*8,5,'#f7f7d0');ctx.globalAlpha=1;}
+  if((r*11+c*7)%9===0){ctx.globalAlpha=snow?.32:.22;if(snow){ctx.strokeStyle='#f5ffff';ctx.lineWidth=1.2;ctx.beginPath();const sx=x+14+(c%3)*12,sy=y+18+(r%2)*8;ctx.moveTo(sx-4,sy);ctx.lineTo(sx+4,sy);ctx.moveTo(sx,sy-4);ctx.lineTo(sx,sy+4);ctx.moveTo(sx-3,sy-3);ctx.lineTo(sx+3,sy+3);ctx.moveTo(sx-3,sy+3);ctx.lineTo(sx+3,sy-3);ctx.stroke();}else drawClover(x+14+(c%3)*12,y+18+(r%2)*8,5,'#f7f7d0');ctx.globalAlpha=1;}
   if(c===0){ctx.fillStyle='#eaf2c655';ctx.fillRect(x+3,y+12,2,CH-24);}
  }
  // Fine lane guides and the Heartroot-side luminous rail.
  ctx.strokeStyle='#f1f4cb30';ctx.lineWidth=1;for(let r=1;r<ROWS;r++){const y=BY+r*CH;ctx.beginPath();ctx.moveTo(BX,y);ctx.lineTo(BR,y);ctx.stroke();}
- const rail=ctx.createLinearGradient(BX-5,BY,BX,BB);rail.addColorStop(0,'#d4e9a8');rail.addColorStop(1,'#648e5a');ctx.fillStyle=rail;ctx.fillRect(BX-5,BY,5,boardH);ctx.fillStyle='#eff6c7';ctx.globalAlpha=.72;ctx.fillRect(BX-5,BY,1.5,boardH);ctx.globalAlpha=1;
+ const rail=ctx.createLinearGradient(BX-5,BY,BX,BB);rail.addColorStop(0,snow?'#e4fbff':'#d4e9a8');rail.addColorStop(1,snow?'#5791a8':'#648e5a');ctx.fillStyle=rail;ctx.fillRect(BX-5,BY,5,boardH);ctx.fillStyle=snow?'#eafcff':'#eff6c7';ctx.globalAlpha=.72;ctx.fillRect(BX-5,BY,1.5,boardH);ctx.globalAlpha=1;
  // Lane index jewels on the side rail.
  for(let r=0;r<ROWS;r++){const cy=BY+r*CH+CH/2;ctx.fillStyle='#e2efb9';ctx.shadowColor='#dff4b5';ctx.shadowBlur=6;ctx.beginPath();ctx.arc(BX-18,cy,4.3,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#618557';ctx.beginPath();ctx.arc(BX-18,cy,1.3,0,Math.PI*2);ctx.fill();}
  // Spawn edge and tiny corner rivets.
@@ -558,14 +723,146 @@ function drawPlant(p,t){
   const g=ctx.createRadialGradient(-4,-50,2,0,-43,18);g.addColorStop(0,'#ffe69b');g.addColorStop(1,'#c65e42');ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,-43,13,0,Math.PI*2);ctx.fill();drawFace(0,-45,9,'#66352b');
   ctx.fillStyle='#83ae60';ctx.beginPath();ctx.ellipse(-15,-10,13,5,-.4,0,Math.PI*2);ctx.fill();
  }
- // health strip when damaged
+ // Hand-painted veins, enamel highlights, dew beads and species-specific finish.
+ ctx.save();ctx.lineCap='round';ctx.lineJoin='round';
+ if(p.type==='sunbud'||p.type==='sprout'||p.type==='twin'||p.type==='ember'){
+  ctx.strokeStyle='#e8f6c36b';ctx.lineWidth=1.35;ctx.beginPath();ctx.moveTo(-13,-20);ctx.quadraticCurveTo(-6,-18,-1,-7);ctx.moveTo(13,-14);ctx.quadraticCurveTo(7,-12,3,-5);ctx.stroke();
+  ctx.fillStyle='#ffffff91';ctx.beginPath();ctx.ellipse(-10,-24,2.1,1.1,-.4,0,Math.PI*2);ctx.ellipse(15,-17,1.7,.9,.3,0,Math.PI*2);ctx.fill();
+ }
+ if(p.type==='sunbud'){ctx.strokeStyle='#fff4c1a8';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(0,-54,10,-2.7,-1.2);ctx.stroke();ctx.fillStyle='#7f4c32';for(let k=0;k<5;k++){const a=k*2.4;ctx.beginPath();ctx.arc(Math.cos(a)*7,-54+Math.sin(a)*7,1,0,Math.PI*2);ctx.fill();}}
+ if(p.type==='bark'){ctx.strokeStyle='#f4d3a28c';ctx.lineWidth=1;for(let k=0;k<4;k++){ctx.beginPath();ctx.moveTo(-18+k*9,-46+k*5);ctx.bezierCurveTo(-12+k*7,-39+k*4,-18+k*8,-31+k*4,-12+k*8,-24+k*5);ctx.stroke();}ctx.fillStyle='#cbe29b';ctx.beginPath();ctx.arc(-13,-52,2,0,Math.PI*2);ctx.arc(15,-55,2.5,0,Math.PI*2);ctx.fill();}
+ if(p.type==='frost'){ctx.strokeStyle='#f0ffffb0';ctx.lineWidth=1.15;ctx.beginPath();ctx.moveTo(-8,-44);ctx.lineTo(-3,-55);ctx.lineTo(3,-45);ctx.moveTo(7,-49);ctx.lineTo(12,-58);ctx.stroke();}
+ if(p.type==='ember'){ctx.globalAlpha=.65;ctx.strokeStyle='#ffe3a0';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(-7,-53);ctx.quadraticCurveTo(-1,-62,1,-54);ctx.moveTo(6,-38);ctx.quadraticCurveTo(13,-47,8,-50);ctx.stroke();ctx.globalAlpha=1;}
+ if(worldId==='snow'){ctx.fillStyle='#e9fcffb8';ctx.beginPath();ctx.ellipse(-10,-63,7,2.4,-.2,0,Math.PI*2);ctx.ellipse(12,-57,5,2,.2,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#e7fbff9c';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(-17,-57);ctx.lineTo(-13,-53);ctx.moveTo(14,-59);ctx.lineTo(18,-55);ctx.stroke();}
+ ctx.restore();
+ if(p.frozen){ctx.strokeStyle='#b9f2ff';ctx.globalAlpha=.9;ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,-30,31+Math.sin(t*8)*1.5,Math.PI*1.1,Math.PI*1.9);ctx.stroke();ctx.fillStyle='#e2fbff';ctx.globalAlpha=.85;for(let k=0;k<3;k++){const a=t*1.3+k*2.1;ctx.beginPath();ctx.arc(Math.cos(a)*30,-30+Math.sin(a)*27,2,0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;}
+ // Premium botanical finish: sculpted contours, layered veins, dew and species detail.
+ drawBotanicalFinish(p,t);
+ // Health strip when damaged.
  if(p.hp<p.maxHp*.96){rounded(-24,-82,48,4,2,'#2b4936');rounded(-24,-82,48*clamp(p.hp/p.maxHp,0,1),4,2,p.hp/p.maxHp>.45?'#a9df7b':'#ed9b77');}
  if(p.flash>0){ctx.globalAlpha=p.flash*2;ctx.fillStyle='#fff7cb';ctx.beginPath();ctx.ellipse(0,-35,28,35,0,0,Math.PI*2);ctx.fill();}
  ctx.restore();
 }
-function drawFace(x,y,s,color){ctx.fillStyle=color;ctx.beginPath();ctx.arc(x-s*.35,y,s*.13,0,Math.PI*2);ctx.arc(x+s*.35,y,s*.13,0,Math.PI*2);ctx.fill();ctx.strokeStyle=color;ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(x,y+s*.25,s*.25,.15,Math.PI-.15);ctx.stroke();}
+
+function drawBotanicalFinish(p,t){
+ ctx.save();ctx.lineJoin='round';ctx.lineCap='round';
+ const leaf=p.type==='frost'?'#b8f1e6':p.type==='ember'?'#a5c879':'#9ed27c';
+ // Richly layered leaf blades with central ribs and branching veins.
+ if(['sunbud','sprout','twin','ember'].includes(p.type)){
+  for(const side of [-1,1]){ctx.save();ctx.translate(side*14,side<0?-21:-14);ctx.rotate(side<0?-.52:.48);const lg=ctx.createLinearGradient(-15,-7,15,8);lg.addColorStop(0,'#d4ef9b');lg.addColorStop(.32,leaf);lg.addColorStop(1,'#39784d');ctx.fillStyle=lg;ctx.beginPath();ctx.moveTo(-16,0);ctx.quadraticCurveTo(-5,-13,14,-3);ctx.quadraticCurveTo(7,9,-16,0);ctx.fill();ctx.strokeStyle='#e7f8b88c';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(-14,0);ctx.quadraticCurveTo(0,-1,12,-3);ctx.moveTo(-3,-1);ctx.lineTo(-1,-6);ctx.moveTo(4,-2);ctx.lineTo(7,-6);ctx.stroke();ctx.restore();}
+ }
+ // Delicate stem ridges and tiny thorns make silhouettes less toy-flat.
+ ctx.strokeStyle='#e0f2b45c';ctx.lineWidth=1.1;ctx.beginPath();ctx.moveTo(-2,-7);ctx.quadraticCurveTo(2,-25,1,-43);ctx.stroke();
+ if(p.type==='sunbud'){
+  for(let i=0;i<16;i++){const a=i*Math.PI/8+t*.18;ctx.save();ctx.translate(Math.cos(a)*15,-54+Math.sin(a)*15);ctx.rotate(a);ctx.fillStyle=i%2?'#fff0a0':'#fff8c8';ctx.globalAlpha=.48;ctx.beginPath();ctx.ellipse(-1,-5,2.2,5,0,0,Math.PI*2);ctx.fill();ctx.restore();}
+  ctx.fillStyle='#fff7c8';ctx.globalAlpha=.72;ctx.beginPath();ctx.arc(-7,-62,3,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
+ }else if(p.type==='sprout'||p.type==='twin'){
+  for(let h=0;h<(p.type==='twin'?2:1);h++){const hx=p.type==='twin'?(h?17:-9):2,hy=p.type==='twin'?(h?-40:-49):-49;ctx.fillStyle='#f4ffd2';ctx.globalAlpha=.65;ctx.beginPath();ctx.ellipse(hx-5,hy-5,5,2.2,-.5,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;ctx.fillStyle='#284b32';ctx.beginPath();ctx.arc(hx-4,hy-1,1.6,0,Math.PI*2);ctx.arc(hx+4,hy-1,1.6,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#355d3d';ctx.lineWidth=1.2;ctx.beginPath();ctx.arc(hx,hy+4,4,.15,Math.PI-.15);ctx.stroke();}
+ }else if(p.type==='frost'){
+  ctx.strokeStyle='#ffffffb8';ctx.lineWidth=1.2;for(let k=0;k<4;k++){ctx.beginPath();ctx.moveTo(-13+k*8,-48);ctx.lineTo(-9+k*8,-62);ctx.lineTo(-4+k*8,-70);ctx.stroke();}ctx.fillStyle='#ffffff';ctx.globalAlpha=.72;ctx.beginPath();ctx.arc(-9,-68,2,0,Math.PI*2);ctx.arc(9,-60,1.8,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
+ }else if(p.type==='bark'){
+  const barkLines=[[-17,-42,-11,-15],[-7,-49,-3,-12],[7,-48,11,-17],[17,-42,15,-12]];ctx.strokeStyle='#4d352b';ctx.globalAlpha=.5;ctx.lineWidth=2;for(const a of barkLines){ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.bezierCurveTo(a[0]-3,a[1]+9,a[2]+5,a[3]-7,a[2],a[3]);ctx.stroke();}ctx.globalAlpha=1;ctx.strokeStyle='#e3c79a';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(-20,-47);ctx.lineTo(-14,-39);ctx.moveTo(14,-49);ctx.lineTo(20,-40);ctx.stroke();
+ }else if(p.type==='ember'){
+  ctx.shadowColor='#ffb75e';ctx.shadowBlur=10;ctx.strokeStyle='#fff0b4';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(-8,-49);ctx.quadraticCurveTo(-16,-63,-5,-67);ctx.moveTo(7,-43);ctx.quadraticCurveTo(17,-57,9,-62);ctx.stroke();ctx.shadowBlur=0;
+ }
+ // Dew beads and small specular streaks add a polished, tactile finish.
+ ctx.fillStyle='#efffd9';ctx.globalAlpha=.8;for(let i=0;i<3;i++){const xx=-18+i*17,yy=-27-(i%2)*13;ctx.beginPath();ctx.ellipse(xx,yy,1.7,2.7,-.25,0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;
+ ctx.restore();
+}
+function drawWitherlingFinish(e,t){
+ ctx.save();ctx.lineJoin='round';ctx.lineCap='round';
+ const giant=e.type==='rootmaw',spiny=e.type==='thornback',brute=e.type==='brute',fast=e.type==='ravager'||e.type==='skitter';
+ // Mottled hide: irregular freckles, pores and directional scars.
+ const base=giant?'#d5bd8c':spiny?'#d1d0a0':brute?'#c2bd91':'#b6d49a';
+ for(let i=0;i<18;i++){const a=i*2.399,rx=10+(i%4)*3,ry=17+(i%3)*4;ctx.globalAlpha=.12+(i%3)*.035;ctx.fillStyle=i%2?base:'#253e31';ctx.beginPath();ctx.ellipse(Math.cos(a)*rx,-24+Math.sin(a)*ry,1.2+(i%3)*.55,2+(i%2),a*.3,0,Math.PI*2);ctx.fill();}
+ ctx.globalAlpha=1;
+ // Deep facial sockets, luminous pupils and a more expressive jaw.
+ ctx.fillStyle=giant?'#17251e':'#1d3027';ctx.beginPath();ctx.ellipse(-6,-29,5.3,6.8,-.12,0,Math.PI*2);ctx.ellipse(7,-29,5.3,6.8,.12,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle=giant?'#f6d77d':spiny?'#e6e5a4':'#d8e69a';ctx.shadowColor=ctx.fillStyle;ctx.shadowBlur=6;ctx.beginPath();ctx.ellipse(-6,-29,2.5,3.5,0,0,Math.PI*2);ctx.ellipse(7,-29,2.5,3.5,0,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+ ctx.fillStyle='#fff9d9';ctx.beginPath();ctx.arc(-6.7,-30.4,1,0,Math.PI*2);ctx.arc(6.2,-30.4,1,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle='#382e27';ctx.beginPath();ctx.moveTo(-7,-10);ctx.quadraticCurveTo(0,-5,8,-11);ctx.quadraticCurveTo(3,-1,-4,-3);ctx.closePath();ctx.fill();
+ ctx.fillStyle='#eee2bd';for(let k=0;k<4;k++){const xx=-5+k*3.2;ctx.beginPath();ctx.moveTo(xx,-9);ctx.lineTo(xx+1.5,-3);ctx.lineTo(xx+3,-9);ctx.fill();}
+ // Brow ridges and asymmetrical horn/twig silhouettes.
+ ctx.strokeStyle='#344536';ctx.lineWidth=3.2;ctx.beginPath();ctx.moveTo(-13,-37);ctx.quadraticCurveTo(-7,-42,-1,-37);ctx.moveTo(2,-37);ctx.quadraticCurveTo(9,-43,14,-36);ctx.stroke();
+ if(fast){ctx.strokeStyle='#b9c88a';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(-13,-48);ctx.lineTo(-23,-59);ctx.moveTo(10,-48);ctx.lineTo(21,-60);ctx.stroke();ctx.fillStyle='#d4dca4';ctx.beginPath();ctx.moveTo(-23,-59);ctx.lineTo(-17,-57);ctx.lineTo(-20,-51);ctx.fill();ctx.beginPath();ctx.moveTo(21,-60);ctx.lineTo(15,-57);ctx.lineTo(18,-51);ctx.fill();}
+ if(brute||giant){ctx.strokeStyle='#544531';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(-17,-40);ctx.quadraticCurveTo(-28,-57,-25,-66);ctx.moveTo(16,-40);ctx.quadraticCurveTo(28,-57,29,-67);ctx.stroke();ctx.strokeStyle='#e0c18c';ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(-24,-63);ctx.lineTo(-22,-55);ctx.moveTo(28,-64);ctx.lineTo(25,-56);ctx.stroke();}
+ if(spiny||giant){for(let k=0;k<7;k++){const xx=-20+k*6.5,yy=-41-Math.sin(k/6*Math.PI)*10;ctx.fillStyle=k%2?'#a9a77a':'#d4c99a';ctx.beginPath();ctx.moveTo(xx-3,yy+8);ctx.lineTo(xx,yy-5-(k%3)*2);ctx.lineTo(xx+4,yy+8);ctx.closePath();ctx.fill();ctx.strokeStyle='#e7dfb4';ctx.lineWidth=.8;ctx.stroke();}}
+ // Clawed fingers and knuckle plates.
+ ctx.strokeStyle='#394b36';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(-24,-12);ctx.lineTo(-30,-4);ctx.lineTo(-34,-8);ctx.moveTo(24,-11);ctx.lineTo(30,-3);ctx.lineTo(34,-7);ctx.stroke();
+ ctx.fillStyle='#d4d1a1';ctx.beginPath();ctx.arc(-27,-12,2.5,0,Math.PI*2);ctx.arc(27,-11,2.5,0,Math.PI*2);ctx.fill();
+ // Thin wet highlights along the shoulder and flank.
+ ctx.strokeStyle='#f1edc27a';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(-17,-35);ctx.quadraticCurveTo(-12,-51,-3,-53);ctx.moveTo(11,-45);ctx.quadraticCurveTo(17,-35,15,-24);ctx.stroke();
+ ctx.restore();
+}
+function drawSnowCreatureFinish(e,t){
+ ctx.save();ctx.lineJoin='round';ctx.lineCap='round';
+ const warden=e.type==='glacierwarden',archer=e.type==='frostarcher';
+ // Translucent internal facets and ice-vein geometry.
+ ctx.globalAlpha=.42;ctx.strokeStyle='#f3ffff';ctx.lineWidth=1.25;for(let i=0;i<7;i++){const x=-19+i*6;ctx.beginPath();ctx.moveTo(x,-48+(i%2)*5);ctx.lineTo(x+5,-31+(i%3)*4);ctx.lineTo(x+1,-16);ctx.stroke();}ctx.globalAlpha=1;
+ ctx.fillStyle=warden?'#baf5ff':archer?'#d9ffff':'#eaffff';ctx.globalAlpha=.7;ctx.beginPath();ctx.ellipse(-12,-45,5,2,-.5,0,Math.PI*2);ctx.ellipse(12,-40,4,1.8,.4,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
+ // Darker eye sockets, luminous iris and a distinct mouth line.
+ ctx.fillStyle='#173f58';ctx.beginPath();ctx.ellipse(-7,-29,4.2,5.4,0,0,Math.PI*2);ctx.ellipse(7,-29,4.2,5.4,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#eaffff';ctx.shadowColor='#c6f7ff';ctx.shadowBlur=7;ctx.beginPath();ctx.arc(-7,-29,2.1,0,Math.PI*2);ctx.arc(7,-29,2.1,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+ ctx.fillStyle='#397e9a';ctx.beginPath();ctx.arc(-7,-29,1,0,Math.PI*2);ctx.arc(7,-29,1,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#36718a';ctx.lineWidth=1.7;ctx.beginPath();ctx.moveTo(-4,-17);ctx.quadraticCurveTo(0,-14,5,-18);ctx.stroke();
+ if(warden){ctx.strokeStyle='#eaffff';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-18,-58);ctx.lineTo(-12,-68);ctx.lineTo(-6,-59);ctx.moveTo(7,-59);ctx.lineTo(14,-70);ctx.lineTo(20,-57);ctx.stroke();}
+ if(archer){ctx.strokeStyle='#f2ffff';ctx.lineWidth=1.3;for(let r=0;r<3;r++){ctx.beginPath();ctx.moveTo(-12+r*3,-12+r*7);ctx.lineTo(12-r*2,-10+r*7);ctx.stroke();}}
+ // Fine snow crystals cling to shoulders and crown.
+ for(let i=0;i<5;i++){const x=-22+i*11,y=-52+(i%2)*7;ctx.fillStyle='#f6ffff';ctx.globalAlpha=.8;ctx.beginPath();ctx.arc(x,y,1.2+(i%2)*.5,0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;
+ ctx.restore();
+}
+
+function drawFace(x,y,s,color){
+ ctx.save();ctx.fillStyle='#ffffff3b';ctx.beginPath();ctx.ellipse(x,y-s*.38,s*.65,s*.22,0,Math.PI,Math.PI*2);ctx.fill();
+ ctx.fillStyle=color;ctx.beginPath();ctx.ellipse(x-s*.35,y,s*.17,s*.21,0,0,Math.PI*2);ctx.ellipse(x+s*.35,y,s*.17,s*.21,0,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle='#ffffff';ctx.beginPath();ctx.arc(x-s*.39,y-s*.06,s*.055,0,Math.PI*2);ctx.arc(x+s*.31,y-s*.06,s*.055,0,Math.PI*2);ctx.fill();
+ ctx.strokeStyle=color;ctx.lineWidth=Math.max(1.2,s*.13);ctx.lineCap='round';ctx.beginPath();ctx.moveTo(x-s*.22,y+s*.34);ctx.quadraticCurveTo(x,y+s*.54,x+s*.22,y+s*.34);ctx.stroke();
+ ctx.restore();
+}
 function drawSproutHead(x,y,angle,t){ctx.save();ctx.translate(x,y);ctx.rotate(angle+Math.sin(t*2)*.025);const g=ctx.createLinearGradient(-15,-15,15,15);g.addColorStop(0,'#c7ed94');g.addColorStop(1,'#72b66a');ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(0,0,17,14,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#e0f5b0';ctx.beginPath();ctx.ellipse(5,-3,8,7,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#29462f';ctx.beginPath();ctx.arc(-4,-2,1.7,0,Math.PI*2);ctx.arc(4,-2,1.7,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#31543a';ctx.lineWidth=1.4;ctx.beginPath();ctx.arc(0,3,4,.15,Math.PI-.15);ctx.stroke();ctx.fillStyle='#e6f5b7';ctx.beginPath();ctx.arc(13,1,4,0,Math.PI*2);ctx.fill();ctx.restore();}
+function drawSnowEnemy(e,t){
+ const x=e.x,y=e.y+Math.sin(t*2.5+e.anim)*2;ctx.save();ctx.translate(x,y);
+ const sc=e.type==='glacierwarden'?1.34:e.type==='frostarcher'?1.08:.92;ctx.scale(sc,sc);
+ // Cold vapor, drifting ice motes and a distinct species silhouette.
+ ctx.shadowColor='#8eeaff';ctx.shadowBlur=e.type==='icewisp'?24:12;ctx.fillStyle=e.type==='icewisp'?'#8edcf433':'#9edff01c';ctx.beginPath();ctx.ellipse(0,-17,e.type==='glacierwarden'?36:27,e.type==='glacierwarden'?39:31,0,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+ if(e.type==='icewisp'){
+  const tail=ctx.createLinearGradient(0,-10,0,34);tail.addColorStop(0,'#c6f7ffb8');tail.addColorStop(1,'#87c9e000');ctx.fillStyle=tail;ctx.beginPath();ctx.moveTo(-12,-3);ctx.quadraticCurveTo(-19,17,-8,34);ctx.quadraticCurveTo(0,28,9,35);ctx.quadraticCurveTo(20,17,12,-3);ctx.closePath();ctx.fill();
+  const g=ctx.createRadialGradient(-7,-43,3,0,-20,28);g.addColorStop(0,'#ffffff');g.addColorStop(.25,'#d8fbff');g.addColorStop(.72,'#82cfe4');g.addColorStop(1,'#397c9d');ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(0,-24,22,26,.08,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#efffff';ctx.lineWidth=1.8;ctx.stroke();
+  ctx.strokeStyle='#d8fbff';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(-15,-38);ctx.quadraticCurveTo(-28,-52,-31,-43);ctx.moveTo(15,-38);ctx.quadraticCurveTo(28,-53,31,-42);ctx.stroke();
+  ctx.fillStyle='#1c536d';ctx.beginPath();ctx.ellipse(-7,-27,2.6,4,0,0,Math.PI*2);ctx.ellipse(7,-27,2.6,4,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(-8,-29,1,0,Math.PI*2);ctx.arc(6,-29,1,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle='#428aa5';ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(0,-17,5,.2,Math.PI-.2);ctx.stroke();
+  for(let i=0;i<5;i++){const a=t*1.1+i*1.25;ctx.fillStyle='#e7fcff';ctx.globalAlpha=.8;ctx.beginPath();ctx.arc(Math.cos(a)*29,-23+Math.sin(a)*24,1.4+(i%2),0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;
+ }else if(e.type==='frostarcher'){
+  // Hooded ranger with layered ice-mail, bow and a loaded crystal arrow.
+  ctx.strokeStyle='#436d86';ctx.lineWidth=6;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(-10,-4);ctx.lineTo(-15,13);ctx.moveTo(10,-4);ctx.lineTo(14,13);ctx.stroke();
+  const body=ctx.createLinearGradient(-22,-52,21,7);body.addColorStop(0,'#e5f5f3');body.addColorStop(.46,'#8db9c8');body.addColorStop(1,'#416d88');ctx.fillStyle=body;ctx.beginPath();ctx.moveTo(-18,1);ctx.lineTo(-20,-34);ctx.quadraticCurveTo(-18,-52,0,-54);ctx.quadraticCurveTo(19,-49,20,-29);ctx.lineTo(17,2);ctx.quadraticCurveTo(0,12,-18,1);ctx.fill();ctx.strokeStyle='#d9f8fb';ctx.lineWidth=1.5;ctx.stroke();
+  ctx.fillStyle='#3f6d87';ctx.beginPath();ctx.moveTo(-23,-36);ctx.quadraticCurveTo(-24,-62,0,-66);ctx.quadraticCurveTo(26,-61,23,-35);ctx.lineTo(13,-42);ctx.lineTo(0,-49);ctx.lineTo(-14,-41);ctx.closePath();ctx.fill();ctx.strokeStyle='#c8edf2';ctx.stroke();
+  ctx.fillStyle='#bfeaf0';ctx.beginPath();ctx.ellipse(0,-29,14,12,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#244b64';ctx.beginPath();ctx.ellipse(-5,-30,2.6,3.7,0,0,Math.PI*2);ctx.ellipse(6,-30,2.6,3.7,0,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#447b91';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-3,-20);ctx.quadraticCurveTo(2,-17,6,-21);ctx.stroke();
+  // Ice lamellar scales and silver trim.
+  for(let r=0;r<3;r++)for(let c=0;c<3;c++){const xx=-11+c*10+(r%2)*3,yy=-10+r*8;ctx.fillStyle=(r+c)%2?'#dff8f6':'#83bfd0';ctx.beginPath();ctx.moveTo(xx-4,yy-4);ctx.lineTo(xx+3,yy-5);ctx.lineTo(xx+5,yy+2);ctx.lineTo(xx-2,yy+4);ctx.closePath();ctx.fill();ctx.strokeStyle='#eaffff88';ctx.lineWidth=.8;ctx.stroke();}
+  ctx.strokeStyle='#d9f8ff';ctx.lineWidth=2.4;ctx.beginPath();ctx.moveTo(17,-19);ctx.quadraticCurveTo(44,-29,35,3);ctx.quadraticCurveTo(26,15,17,-19);ctx.stroke();ctx.strokeStyle='#8ce7ff';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(18,-17);ctx.lineTo(42,-42);ctx.stroke();ctx.fillStyle='#e6fdff';ctx.beginPath();ctx.moveTo(42,-48);ctx.lineTo(47,-39);ctx.lineTo(41,-35);ctx.lineTo(37,-42);ctx.closePath();ctx.fill();
+ }else{
+  // Glacier Warden: a massive, faceted ice golem with a crown and crystalline shoulders.
+  ctx.strokeStyle='#527d94';ctx.lineWidth=10;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(-18,-12);ctx.lineTo(-27,7);ctx.moveTo(18,-12);ctx.lineTo(28,7);ctx.stroke();
+  const body=ctx.createLinearGradient(-32,-58,34,15);body.addColorStop(0,'#f0ffff');body.addColorStop(.3,'#a5d4df');body.addColorStop(.68,'#6195ad');body.addColorStop(1,'#315a78');ctx.fillStyle=body;ctx.beginPath();ctx.moveTo(-29,5);ctx.lineTo(-26,-42);ctx.lineTo(-13,-58);ctx.lineTo(13,-58);ctx.lineTo(28,-38);ctx.lineTo(30,4);ctx.quadraticCurveTo(0,19,-29,5);ctx.fill();ctx.strokeStyle='#e6ffff';ctx.lineWidth=2;ctx.stroke();
+  // Layered shoulder crystals.
+  for(const side of [-1,1]){ctx.fillStyle='#6ba9c1';ctx.strokeStyle='#dcfbff';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(side*18,-38);ctx.lineTo(side*34,-55);ctx.lineTo(side*39,-29);ctx.lineTo(side*27,-17);ctx.closePath();ctx.fill();ctx.stroke();ctx.fillStyle='#d6faff';ctx.beginPath();ctx.moveTo(side*31,-49);ctx.lineTo(side*34,-55);ctx.lineTo(side*36,-39);ctx.closePath();ctx.fill();}
+  ctx.fillStyle='#4f829d';ctx.beginPath();ctx.moveTo(-21,-53);ctx.lineTo(-26,-73);ctx.lineTo(-10,-64);ctx.lineTo(0,-82);ctx.lineTo(10,-64);ctx.lineTo(26,-73);ctx.lineTo(21,-49);ctx.closePath();ctx.fill();ctx.strokeStyle='#ddfcff';ctx.lineWidth=1.8;ctx.stroke();
+  ctx.fillStyle='#183f5a';ctx.beginPath();ctx.ellipse(0,-35,19,12,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#eaffff';ctx.beginPath();ctx.ellipse(-8,-36,4,5,0,0,Math.PI*2);ctx.ellipse(8,-36,4,5,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#3a829f';ctx.beginPath();ctx.arc(-8,-36,2,0,Math.PI*2);ctx.arc(8,-36,2,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle='#d8faff';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(-16,-14);ctx.lineTo(13,-8);ctx.stroke();ctx.strokeStyle='#6098b0';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(-13,-5);ctx.lineTo(16,1);ctx.stroke();
+  // A huge frozen staff telegraphs the ranged siege role.
+  ctx.strokeStyle='#4b758b';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(35,-45);ctx.lineTo(43,24);ctx.stroke();ctx.fillStyle='#d8fbff';ctx.beginPath();ctx.moveTo(43,-62);ctx.lineTo(56,-48);ctx.lineTo(44,-32);ctx.lineTo(31,-48);ctx.closePath();ctx.fill();ctx.strokeStyle='#8bdff4';ctx.lineWidth=2;ctx.stroke();
+ }
+ // Fine crystalline engraving and sculpted ice highlights.
+ drawSnowCreatureFinish(e,t);
+ // Ice etching, light-catching facets, impact rings and bars.
+ ctx.strokeStyle='#efffff6b';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(-8,-49);ctx.lineTo(-2,-39);ctx.lineTo(-8,-30);ctx.moveTo(11,-44);ctx.lineTo(6,-36);ctx.stroke();
+ if(e.range){ctx.globalAlpha=.34;ctx.strokeStyle='#a6ecff';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(0,-24,e.type==='glacierwarden'?49:36,.15,Math.PI-.15);ctx.stroke();ctx.globalAlpha=1;}
+ if(e.maxArmor&&e.armor>0){rounded(-25,-88,50,5,2,'#244358');rounded(-25,-88,50*clamp(e.armor/e.maxArmor,0,1),5,2,'#a9eaf4');}
+ if(e.hp<e.maxHp*.98){rounded(-23,-80,46,4,2,'#244358');rounded(-23,-80,46*clamp(e.hp/e.maxHp,0,1),4,2,'#ffbc91');}
+ if(e.flash>0){ctx.globalAlpha=e.flash*2;ctx.fillStyle='#f5ffff';ctx.beginPath();ctx.ellipse(0,-23,30,36,0,0,Math.PI*2);ctx.fill();}
+ ctx.restore();
+}
 function drawEnemy(e,t){
+ if(e.type==='icewisp'||e.type==='frostarcher'||e.type==='glacierwarden'){drawSnowEnemy(e,t);return;}
  const x=e.x,y=e.y+Math.sin(t*3+e.anim)*1.5;ctx.save();ctx.translate(x,y);
  const sc=e.type==='rootmaw'?1.52:e.type==='thornback'?1.3:e.type==='brute'?1.22:e.type==='ravager'?.88:e.type==='skitter'?.83:1;
  ctx.scale(sc,sc);
@@ -589,24 +886,33 @@ function drawEnemy(e,t){
   ctx.beginPath();ctx.moveTo(-20,-28);ctx.lineTo(-25,-44);ctx.lineTo(-12,-39);ctx.lineTo(-3,-52);ctx.lineTo(5,-39);ctx.lineTo(18,-48);ctx.lineTo(21,-28);ctx.quadraticCurveTo(0,-15,-20,-28);ctx.fill();ctx.stroke();
   if(e.type==='rootmaw'){ctx.strokeStyle='#594a35';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(-14,-39);ctx.quadraticCurveTo(-34,-62,-29,-67);ctx.moveTo(12,-40);ctx.quadraticCurveTo(32,-65,37,-58);ctx.stroke();ctx.fillStyle='#f2d28e';ctx.beginPath();ctx.arc(-5,-28,3.5,0,Math.PI*2);ctx.arc(6,-28,3.5,0,Math.PI*2);ctx.fill();}
  }
+ // Extra surface language: layered bark scoring, moss freckles and claw highlights.
+ ctx.strokeStyle='#d4dbac66';ctx.lineWidth=1.15;ctx.beginPath();ctx.moveTo(-12,-42);ctx.quadraticCurveTo(-6,-31,-12,-18);ctx.moveTo(8,-40);ctx.quadraticCurveTo(2,-27,10,-12);ctx.stroke();
+ ctx.fillStyle='#b4d28b';for(let k=0;k<6;k++){ctx.globalAlpha=.34;ctx.beginPath();ctx.arc(-14+(k*11)%28,-47+(k*7)%18,1.5+(k%2),0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;
+ ctx.strokeStyle='#d1c18b';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(-24,-10);ctx.lineTo(-29,-2);ctx.moveTo(23,-9);ctx.lineTo(28,-1);ctx.stroke();
+ // Layered organic creature finish: plated hide, scars, teeth, claws and wet highlights.
+ drawWitherlingFinish(e,t);
  // hp bar
  if(e.maxArmor&&e.armor>0){rounded(-22,-69,44,4,2,'#283b31');rounded(-22,-69,44*clamp(e.armor/e.maxArmor,0,1),4,2,'#d9c18a');}if(e.hp<e.maxHp*.98){rounded(-20,-62,40,4,2,'#2b4936');rounded(-20,-62,40*clamp(e.hp/e.maxHp,0,1),4,2,'#e69c73');}
  if(e.slow>0){ctx.strokeStyle='#c8f5f3';ctx.globalAlpha=.8;ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,-23,29,0,Math.PI*2);ctx.stroke();}
  if(e.flash>0){ctx.globalAlpha=e.flash*2;ctx.fillStyle='#fffbdc';ctx.beginPath();ctx.ellipse(0,-20,22,29,0,0,Math.PI*2);ctx.fill();}
  ctx.restore();
 }
-function drawShots(){for(const s of shots){ctx.save();const color=s.kind==='ice'?'#c4f8f3':s.kind==='twin'?'#f5c4dc':'#c9f39a';ctx.shadowBlur=17;ctx.shadowColor=color;ctx.fillStyle=color;ctx.beginPath();ctx.ellipse(s.x,s.y,s.r*1.25,s.r,0,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.strokeStyle='#ffffffa8';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(s.x-14,s.y);ctx.lineTo(s.x-4,s.y);ctx.stroke();ctx.restore();}}
-function drawDrops(t){for(const d of drops){const pulse=1+Math.sin(t*3+d.pulse)*.08;ctx.save();ctx.translate(d.x,d.y);ctx.scale(pulse,pulse);ctx.globalAlpha=clamp(d.life/1.4,0,1);ctx.shadowColor='#fff0a2';ctx.shadowBlur=18;const g=ctx.createLinearGradient(-8,-15,9,14);g.addColorStop(0,'#fff5ba');g.addColorStop(.45,'#f7ce60');g.addColorStop(1,'#d58a42');ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(0,-16);ctx.bezierCurveTo(13,-1,13,6,0,13);ctx.bezierCurveTo(-13,6,-13,-1,0,-16);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#fff8d6';ctx.globalAlpha*=.8;ctx.beginPath();ctx.ellipse(-4,-3,2.4,5,-.4,0,Math.PI*2);ctx.fill();ctx.restore();ctx.globalAlpha=1;}}
+function drawShots(){
+ for(const s of shots){ctx.save();const color=s.kind==='ice'?'#c4f8f3':s.kind==='twin'?'#f5c4dc':'#c9f39a';ctx.shadowBlur=17;ctx.shadowColor=color;ctx.fillStyle=color;ctx.beginPath();ctx.ellipse(s.x,s.y,s.r*1.25,s.r,0,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.strokeStyle='#ffffffa8';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(s.x-14,s.y);ctx.lineTo(s.x-4,s.y);ctx.stroke();ctx.restore();}
+ for(const q of enemyShots){ctx.save();const c=q.kind==='shard'?'#edffff':'#8be8ff';ctx.shadowColor=c;ctx.shadowBlur=18;ctx.fillStyle=c;ctx.beginPath();ctx.moveTo(q.x+10,q.y);ctx.lineTo(q.x,q.y-6);ctx.lineTo(q.x-12,q.y);ctx.lineTo(q.x,q.y+6);ctx.closePath();ctx.fill();ctx.shadowBlur=0;ctx.strokeStyle='#ffffff';ctx.lineWidth=1;ctx.stroke();ctx.strokeStyle='#8fe5fb88';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(q.x+12,q.y);ctx.lineTo(q.x+30,q.y);ctx.stroke();ctx.restore();}
+}
+function drawDrops(t){for(const d of drops){const pulse=1+Math.sin(t*3+d.pulse)*.08;ctx.save();ctx.translate(d.x,d.y);ctx.scale(pulse,pulse);ctx.globalAlpha=clamp(d.life/1.4,0,1);const snow=worldId==='snow';ctx.shadowColor=snow?'#a8eeff':'#fff0a2';ctx.shadowBlur=18;const g=ctx.createLinearGradient(-8,-15,9,14);g.addColorStop(0,snow?'#ffffff':'#fff5ba');g.addColorStop(.45,snow?'#8fe8f7':'#f7ce60');g.addColorStop(1,snow?'#3f9dbb':'#d58a42');ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(0,-16);ctx.bezierCurveTo(13,-1,13,6,0,13);ctx.bezierCurveTo(-13,6,-13,-1,0,-16);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#fff8d6';ctx.globalAlpha*=.8;ctx.beginPath();ctx.ellipse(-4,-3,2.4,5,-.4,0,Math.PI*2);ctx.fill();ctx.restore();ctx.globalAlpha=1;}}
 function drawParticles(){for(const p of particles){ctx.globalAlpha=clamp(p.life/.7,0,1);ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.r*clamp(p.life/.2,0.25,1),0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;for(const f of floating){ctx.globalAlpha=clamp(f.life/.3,0,1);ctx.font='900 11px system-ui';ctx.textAlign='center';ctx.fillStyle='#294332';ctx.fillText(f.text,f.x+1,f.y+1);ctx.fillStyle=f.color;ctx.fillText(f.text,f.x,f.y);}ctx.globalAlpha=1;}
 function drawDecor(t){
- // garden path beyond board
- ctx.fillStyle='#56784d';ctx.fillRect(BX,BY-19,CW*COLS,12);ctx.fillStyle='#d8e9ae';ctx.globalAlpha=.6;ctx.fillRect(BX,BY-19,CW*COLS,2);ctx.globalAlpha=1;
- ctx.font='800 9px system-ui';ctx.textAlign='left';ctx.fillStyle='#f3f3cf';ctx.globalAlpha=.8;ctx.fillText('THE MEADOW OF FIRST LIGHT',BX+10,BY-25);ctx.globalAlpha=1;
- // little flowers along lower border
- for(let i=0;i<18;i++){const x=BX+i*54+Math.sin(i*3)*8,y=H-26+(i%3)*6;ctx.fillStyle=i%2?'#e7d78f':'#f3e5bb';ctx.beginPath();ctx.arc(x,y,3.3,0,Math.PI*2);ctx.arc(x+4,y+2,2.8,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#6d9a5c';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x+1,y+3);ctx.lineTo(x,y+14);ctx.stroke();}
- // weather veil
- if(weather==='Dewfall'){ctx.fillStyle='#c9e9ed0c';ctx.fillRect(0,0,W,H);for(let i=0;i<28;i++){const x=(i*83+t*31)%W,y=(i*47+t*55)%H;ctx.strokeStyle='#e9fff04d';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-3,y+9);ctx.stroke();}}
- if(weather==='Crosswind'){for(let i=0;i<9;i++){const x=(i*149+t*45)%(W+100)-50,y=BY+((i*73)%460);ctx.strokeStyle='#effbd72c';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y);ctx.quadraticCurveTo(x+20,y-3,x+43,y+1);ctx.stroke();}}
+ const snow=worldId==='snow';
+ ctx.fillStyle=snow?'#416b80':'#56784d';ctx.fillRect(BX,BY-19,CW*COLS,12);ctx.fillStyle=snow?'#ddf8ff':'#d8e9ae';ctx.globalAlpha=.72;ctx.fillRect(BX,BY-19,CW*COLS,2);ctx.globalAlpha=1;
+ ctx.font='800 9px system-ui';ctx.textAlign='left';ctx.fillStyle=snow?'#effcff':'#f3f3cf';ctx.globalAlpha=.9;ctx.fillText(snow?'SNOWVEIL REACH · THE FROSTBOUND GARDEN':'THE MEADOW OF FIRST LIGHT',BX+10,BY-25);ctx.globalAlpha=1;
+ if(!snow){for(let i=0;i<18;i++){const x=BX+i*54+Math.sin(i*3)*8,y=H-26+(i%3)*6;ctx.fillStyle=i%2?'#e7d78f':'#f3e5bb';ctx.beginPath();ctx.arc(x,y,3.3,0,Math.PI*2);ctx.arc(x+4,y+2,2.8,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#6d9a5c';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x+1,y+3);ctx.lineTo(x,y+14);ctx.stroke();}}
+ if(worldId==='meadow'&&weather==='Dewfall'){ctx.fillStyle='#c9e9ed0c';ctx.fillRect(0,0,W,H);for(let i=0;i<28;i++){const x=(i*83+t*31)%W,y=(i*47+t*55)%H;ctx.strokeStyle='#e9fff04d';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-3,y+9);ctx.stroke();}}
+ if(worldId==='meadow'&&weather==='Crosswind'){for(let i=0;i<9;i++){const x=(i*149+t*45)%(W+100)-50,y=BY+((i*73)%460);ctx.strokeStyle='#effbd72c';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y);ctx.quadraticCurveTo(x+20,y-3,x+43,y+1);ctx.stroke();}}
+ if(snow&&weather==='Snow squall'){ctx.save();ctx.strokeStyle='#effcff65';ctx.lineWidth=1.2;for(let i=0;i<54;i++){const x=(i*91+t*120)%(W+30),y=(i*59+t*165)%H;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-11,y+9);ctx.stroke();}ctx.restore();}
+ if(snow&&weather==='Aurora'){ctx.save();ctx.globalAlpha=.24;ctx.strokeStyle='#a4fbef';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(BX,BY-10);ctx.bezierCurveTo(430,0,730,14,BR,5);ctx.stroke();ctx.restore();}
 }
 function drawHover(){if(state!=='playing'||paused||mouse.x<BX||mouse.x>BR||mouse.y<BY||mouse.y>BB)return;const c=Math.floor((mouse.x-BX)/CW),r=Math.floor((mouse.y-BY)/CH);const x=BX+c*CW,y=BY+r*CH;ctx.save();if(shears){ctx.fillStyle='#efaa8030';ctx.strokeStyle='#f1bc8b';}else{ctx.fillStyle=selected?'#d8f7a432':'#f2f4d21d';ctx.strokeStyle=selected?'#d8f7a4':'#f4f4cc';}ctx.lineWidth=2;rounded(x+3,y+3,CW-6,CH-6,8,ctx.fillStyle);ctx.stroke();if(selected){const d=seedDefs.find(s=>s.id===selected);ctx.globalAlpha=.6;ctx.fillStyle=d.color;ctx.beginPath();ctx.arc(x+CW/2,y+CH/2,13+Math.sin(worldTime*5)*2,0,Math.PI*2);ctx.fill();}ctx.restore();}
 function render(t){
@@ -615,14 +921,16 @@ function render(t){
  for(const p of plants)drawPlant(p,t);
  drawShots();for(const e of enemies)drawEnemy(e,t);drawDrops(t);drawParticles();drawHover();
  // low-key top-right level marker on canvas
- ctx.textAlign='right';ctx.font='900 9px system-ui';ctx.fillStyle='#f3f4d0';ctx.globalAlpha=.8;ctx.fillText('DEFEND THE HEARTROOT',BR-7,H-18);ctx.globalAlpha=1;
+ ctx.textAlign='right';ctx.font='900 9px system-ui';ctx.fillStyle=worldId==='snow'?'#effdff':'#f3f4d0';ctx.globalAlpha=.9;ctx.fillText(worldId==='snow'?'HOLD THE FROSTBOUND LINE':'DEFEND THE HEARTROOT',BR-7,H-18);ctx.globalAlpha=1;
  ctx.restore();
 }
 function frame(now){const dt=clamp((now-lastFrame)/1000||0,0,.05);lastFrame=now;update(dt);render(worldTime);animationId=requestAnimationFrame(frame);}
 
-// Initial title backdrop: draw the garden before the first animation frame.
-updateUI(true);render(0);$('startBtn').onclick=enterFullscreen;$('guideBtn').onclick=()=>{$('guideBox').classList.toggle('open')};
+// Initial title backdrop: draw the selected world before the first animation frame.
+updateWorldPicker();showOverlay('menu');updateUI(true);render(0);if($('startBtn'))$('startBtn').onclick=enterFullscreen;if($('guideBtn'))$('guideBtn').onclick=()=>{$('guideBox').classList.toggle('open')};
 $('overlay').classList.remove('hidden');
+window.addEventListener('beforeunload',()=>{if(state==='playing')persistRun();persistCampaign()});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'&&state==='playing')persistRun()});
 lastFrame=performance.now();animationId=requestAnimationFrame(frame);
 })();
 </script>
