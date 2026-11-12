@@ -209,6 +209,38 @@ body{padding:clamp(8px,1.25vh,14px) clamp(10px,1.4vw,20px);overscroll-behavior:n
 /* Single-line labels must truncate inside their own cells, never create page-level scroll. */
 @media (pointer:coarse){.meta-value,.meta-label,.brand-name,.brand-sub,.seed-name,.seed-cost,.tool-btn span{min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis}.stage-overlay,.dialog{overscroll-behavior:contain}}
 
+
+
+/* Verdant Vigil 11.0 — global menu/pause layer.
+   The overlay is portalled directly under <body>, outside the clipped game frame,
+   so canvas, HUD, mobile panels and transformed descendants can never paint over it. */
+body > #overlay.stage-overlay{
+  position:fixed !important;
+  inset:0 !important;
+  z-index:2147483647 !important;
+  width:100vw;
+  height:100vh;
+  height:100dvh;
+  min-height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:clamp(8px,2.2vmin,24px);
+  overflow:auto;
+  isolation:isolate;
+  pointer-events:auto;
+  background:linear-gradient(125deg,rgba(5,16,13,.84),rgba(7,24,18,.80));
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+body > #overlay.stage-overlay.hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+body > #overlay.stage-overlay:not(.hidden){visibility:visible}
+body > #overlay.stage-overlay > .dialog{position:relative;z-index:1;flex:0 1 auto}
+
 </style>
 </head>
 <body>
@@ -236,7 +268,19 @@ body{padding:clamp(8px,1.25vh,14px) clamp(10px,1.4vw,20px);overscroll-behavior:n
       <canvas id="game" width="1200" height="530" aria-label="Verdant Vigil game board. Place garden defenders to stop the Witherlings from reaching the Heartroot."></canvas>
       <div id="pauseBadge">GARDEN PAUSED</div>
       <div id="toast" role="status" aria-live="polite"></div>
-      <section class="stage-overlay" id="overlay">
+</div>
+    <div class="bottom-area">
+      <div class="seed-bank" id="seedBank" aria-label="Seed selection"></div>
+      <div class="tools-panel">
+        <button class="tool-btn" id="shovelBtn" aria-label="Select shears tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 4 7 7M4 20l7-7M11 11l8-8M11 13l8 8"/><circle cx="4" cy="4" r="2"/><circle cx="4" cy="20" r="2"/></svg><span>Shears <b class="keycap">X</b></span></button>
+        <button class="tool-btn" id="cancelBtn" aria-label="Cancel current selection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg><span>Cancel <b class="keycap">Esc</b></span></button>
+      </div>
+    </div>
+  </main>
+  <div class="footer-row"><div class="footer-hint"><span class="keycap">CLICK</span> Collect dew · Place seeds · Defend all lanes</div><div class="footer-hint"><span id="statusText">Ready when you are.</span></div><div class="footer-hint">BEST GARDEN <strong id="bestText" style="color:#c6e99e;margin-left:4px">0</strong></div></div>
+</div>
+
+<section class="stage-overlay" id="overlay">
         <div class="dialog" id="dialog">
           <div class="eyebrow" id="dialogEyebrow">THE LAST GREEN PLACE</div>
           <h1 id="dialogTitle">Verdant <span>Vigil</span></h1>
@@ -251,23 +295,13 @@ body{padding:clamp(8px,1.25vh,14px) clamp(10px,1.4vw,20px);overscroll-behavior:n
             <div class="guide-row"><span class="guide-key">D</span><span>Collect golden dew drops before they fade. Sunbuds also create dew over time.</span></div>
             <div class="guide-row"><span class="guide-key">X</span><span>Toggle the shears, then click a plant to remove it. Escape pauses or cancels selection.</span></div>
             <div class="guide-row"><span class="guide-key">✦</span><span>Dewfall boosts energy income. Crosswind slows Witherlings and quickens your shots.</span></div>
-            <div class="guide-row"><span class="guide-key">♥</span><span>Three Heartroot lives. Enemies now move, endure and strike twice as hard. Clear all 10 waves to win.</span></div>
+            <div class="guide-row"><span class="guide-key">♥</span><span>Three Heartroot lives. Enemies grow stronger as the waves progress. Clear all 10 waves to win.</span></div>
             <div class="guide-row"><span class="guide-key">❄</span><span>Snowveil Reach adds Ice Wisps, Frost Archers and Glacier Wardens. Their ranged ice attacks can freeze your plants.</span></div>
           </div>
           <div class="dialog-note" id="dialogNote">Fullscreen required · Strategy, timing & resource management</div>
         </div>
       </section>
-    </div>
-    <div class="bottom-area">
-      <div class="seed-bank" id="seedBank" aria-label="Seed selection"></div>
-      <div class="tools-panel">
-        <button class="tool-btn" id="shovelBtn" aria-label="Select shears tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 4 7 7M4 20l7-7M11 11l8-8M11 13l8 8"/><circle cx="4" cy="4" r="2"/><circle cx="4" cy="20" r="2"/></svg><span>Shears <b class="keycap">X</b></span></button>
-        <button class="tool-btn" id="cancelBtn" aria-label="Cancel current selection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg><span>Cancel <b class="keycap">Esc</b></span></button>
-      </div>
-    </div>
-  </main>
-  <div class="footer-row"><div class="footer-hint"><span class="keycap">CLICK</span> Collect dew · Place seeds · Defend all lanes</div><div class="footer-hint"><span id="statusText">Ready when you are.</span></div><div class="footer-hint">BEST GARDEN <strong id="bestText" style="color:#c6e99e;margin-left:4px">0</strong></div></div>
-</div>
+
 <script>
 (() => {
 'use strict';
@@ -308,11 +342,13 @@ const cards = [];
 function readCampaign(){try{return JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{}}catch(e){return {}}}
 let campaign=readCampaign();
 let unlockedSnow=!!campaign.unlockedSnow;
-let savedRun=(()=>{try{const v=JSON.parse(localStorage.getItem(RUN_KEY)||'null');return v&&(v.version===3||v.version===4)?v:null}catch(e){return null}})();
+let savedRun=(()=>{try{const v=JSON.parse(localStorage.getItem(RUN_KEY)||'null');return v&&(v.version===3||v.version===4||v.version===5||v.version===6||v.version===7)?v:null}catch(e){return null}})();
 function persistCampaign(){try{localStorage.setItem(SAVE_KEY,JSON.stringify({...campaign,unlockedSnow,best,selectedWorld,updatedAt:Date.now()}));localStorage.setItem('vv_best',String(best));}catch(e){}}
 function clearSavedRun(){savedRun=null;try{localStorage.removeItem(RUN_KEY)}catch(e){}}
-function persistRun(){if(state!=='playing')return;try{const snap={version:4,worldId,energy,hearts,wave,phase,phaseTimer,spawnQueue,spawnTimer,spawnedThisWave,plants,enemies,shots,enemyShots,drops,selected,shears,elapsed,worldTime,dewTimer,weather,weatherTimer,kills,plantedCount,lostCount,speed,plantCooldown,nextId};localStorage.setItem(RUN_KEY,JSON.stringify(snap));savedRun=snap;}catch(e){/* Storage may be disabled or full; the game remains playable. */}}
-function restoreSavedRun(){if(!savedRun)return false;try{const v=savedRun;if(!['meadow','snow'].includes(v.worldId)||!Array.isArray(v.plants)||!Array.isArray(v.enemies))return false;if(v.version===3){for(const e of v.enemies){if(Number.isFinite(e.hp))e.hp=Math.max(1,e.hp*.5);if(Number.isFinite(e.maxHp))e.maxHp=Math.max(1,e.maxHp*.5);}v.version=4;}worldId=v.worldId;selectedWorld=worldId;energy=v.energy;hearts=v.hearts;wave=v.wave;phase=v.phase;phaseTimer=v.phaseTimer;spawnQueue=v.spawnQueue||[];spawnTimer=v.spawnTimer;spawnedThisWave=v.spawnedThisWave;plants=v.plants;enemies=v.enemies;shots=v.shots||[];enemyShots=v.enemyShots||[];drops=v.drops||[];selected=null;shears=false;elapsed=v.elapsed;worldTime=v.worldTime;dewTimer=v.dewTimer;weather=v.weather;weatherTimer=v.weatherTimer;kills=v.kills;plantedCount=v.plantedCount;lostCount=v.lostCount;speed=v.speed||1;for(const k in plantCooldown)plantCooldown[k]=(v.plantCooldown&&v.plantCooldown[k])||0;nextId=v.nextId||1;paused=false;state='playing';saveTimer=2;document.body.classList.toggle('snow-world',worldId==='snow');$('speedBtn').style.color=speed>1?'#d2ee9c':'';$('speedBtn').title=`Game speed ${speed}x`;$('pauseBadge').classList.remove('show');$('seedBank').parentElement.classList.remove('locked');hideOverlay();updateUI(true);showToast('SAVED GARDEN RESTORED');return true;}catch(e){return false;}}
+function persistRun(){if(state!=='playing')return;try{const snap={version:7,worldId,energy,hearts,wave,phase,phaseTimer,spawnQueue,spawnTimer,spawnedThisWave,plants,enemies,shots,enemyShots,drops,selected,shears,elapsed,worldTime,dewTimer,weather,weatherTimer,kills,plantedCount,lostCount,speed,plantCooldown,nextId};localStorage.setItem(RUN_KEY,JSON.stringify(snap));savedRun=snap;}catch(e){/* Storage may be disabled or full; the game remains playable. */}}
+function previousWaveTotal(w){const base=w===1?3:Math.round(5+(w-1)*3.05+(w>=7?(w-6)*.55:0));return base+(w===10?1:0);}
+function snowWaveTarget(w){return Math.ceil(previousWaveTotal(w)/4);}
+function restoreSavedRun(){if(!savedRun)return false;try{const v=savedRun;if(!['meadow','snow'].includes(v.worldId)||!Array.isArray(v.plants)||!Array.isArray(v.enemies))return false;if(v.version===3){for(const e of v.enemies){if(Number.isFinite(e.hp))e.hp=Math.max(1,e.hp*.5);if(Number.isFinite(e.maxHp))e.maxHp=Math.max(1,e.maxHp);}v.version=4;}if(v.version===4){for(const e of v.enemies){if(Number.isFinite(e.speed))e.speed*=.75;if(Number.isFinite(e.damage))e.damage*=.75;if(Number.isFinite(e.rangedDamage))e.rangedDamage*=.75;if(Number.isFinite(e.hp))e.hp=Math.max(1,e.hp*.9);if(Number.isFinite(e.maxHp))e.maxHp=Math.max(1,e.maxHp*.9);}for(const shot of (v.enemyShots||[])){if(Number.isFinite(shot.damage))shot.damage*=.75;}v.version=5;}if(v.version===5){if(v.worldId==='snow'&&v.phase==='wave'&&Number.isFinite(v.wave)){const target=snowWaveTarget(v.wave);const alreadySpawned=Math.max(0,Number(v.spawnedThisWave)||0);const remaining=Math.max(0,target-alreadySpawned);if(Array.isArray(v.spawnQueue))v.spawnQueue=v.spawnQueue.slice(0,remaining);}v.version=6;}if(v.version===6){if(v.worldId==='snow'&&v.phase==='wave'&&Number.isFinite(v.wave)){const target=snowWaveTarget(v.wave);const alreadySpawned=Math.max(0,Number(v.spawnedThisWave)||0);const remaining=Math.max(0,target-alreadySpawned);if(Array.isArray(v.spawnQueue))v.spawnQueue=v.spawnQueue.slice(0,remaining);}v.version=7;}worldId=v.worldId;selectedWorld=worldId;energy=v.energy;hearts=v.hearts;wave=v.wave;phase=v.phase;phaseTimer=v.phaseTimer;spawnQueue=v.spawnQueue||[];spawnTimer=v.spawnTimer;spawnedThisWave=v.spawnedThisWave;plants=v.plants;enemies=v.enemies;shots=v.shots||[];enemyShots=v.enemyShots||[];drops=v.drops||[];selected=null;shears=false;elapsed=v.elapsed;worldTime=v.worldTime;dewTimer=v.dewTimer;weather=v.weather;weatherTimer=v.weatherTimer;kills=v.kills;plantedCount=v.plantedCount;lostCount=v.lostCount;speed=v.speed||1;for(const k in plantCooldown)plantCooldown[k]=(v.plantCooldown&&v.plantCooldown[k])||0;nextId=v.nextId||1;paused=false;state='playing';saveTimer=2;document.body.classList.toggle('snow-world',worldId==='snow');$('speedBtn').style.color=speed>1?'#d2ee9c':'';$('speedBtn').title=`Game speed ${speed}x`;$('pauseBadge').classList.remove('show');$('seedBank').parentElement.classList.remove('locked');hideOverlay();updateUI(true);showToast('SAVED GARDEN RESTORED');persistRun();return true;}catch(e){return false;}}
 $('bestText').textContent=best;
 
 function makeCards(){
@@ -488,9 +524,11 @@ document.addEventListener('keydown',e=>{
 });
 
 function makeWave(w){
- // The opening count is intentionally unchanged. Later waves keep their
- // original spawn counts while introducing increasingly specialized threats.
- const count=w===1?3:Math.round(5+(w-1)*3.05+(w>=7?(w-6)*.55:0));
+ // Meadow retains its current roster size. Snowveil now spawns one quarter
+ // of Meadow's original roster (half of the previous Snowveil count), rounded
+ // up so odd-sized waves retain at least one enemy.
+ const meadowCount=w===1?3:Math.round(5+(w-1)*3.05+(w>=7?(w-6)*.55:0));
+ const count=worldId==='snow'?snowWaveTarget(w):meadowCount;
  const q=[];
  for(let i=0;i<count;i++){
   let type='drifter';
@@ -509,15 +547,15 @@ function makeWave(w){
   }
   q.push(type);
  }
- if(w===10)q.push(worldId==='snow'?'glacierwarden':'rootmaw');
+ if(w===10&&worldId!=='snow')q.push('rootmaw');
  return q;
 }
 function beginWave(){wave++;spawnQueue=makeWave(wave);spawnTimer=1.25;spawnedThisWave=0;phase='wave';phaseTimer=0;showToast(`${worldId==='snow'?'FROST FRONT':'WAVE'} ${wave} — THEY'RE COMING`);sfx(300,.2,'sawtooth',.018);updateUI(true);persistRun();}
 function spawnEnemy(type){
  const row=(Math.floor(Math.random()*ROWS)+Math.floor(spawnedThisWave/2))%ROWS;
- const hpScale=1*(1+(wave-1)*.09+Math.max(0,wave-5)*.08); // Half the previous enemy HP at every wave; progression remains unchanged.
- const speedScale=2*(1+Math.min(.34,(wave-1)*.038));
- const damageScale=2*(1+Math.max(0,wave-3)*.075);
+ const hpScale=.9*(1+(wave-1)*.09+Math.max(0,wave-5)*.08); // 10% less HP than the previous balance; wave progression is preserved.
+ const speedScale=1.5*(1+Math.min(.34,(wave-1)*.038)); // 25% slower than the previous 2x speed balance.
+ const damageScale=1.5*(1+Math.max(0,wave-3)*.075); // 25% less melee and ranged damage than the previous 2x balance.
  const stats={
   drifter:{hp:115,speed:19,damage:23,bite:1.05,rad:24},
   skitter:{hp:82,speed:36,damage:17,bite:.78,rad:20},
