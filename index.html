@@ -95,8 +95,14 @@ button:focus-visible{outline:3px solid #e6d18b;outline-offset:3px}
 body.snow-world{background:radial-gradient(ellipse at 48% -20%,#24465b 0,#101f2b 42%,#0a131d 78%)}
 body.snow-world .brand-mark{background:linear-gradient(145deg,#d4f5f7,#5089a5);box-shadow:0 6px 22px #76d1e340}
 body.snow-world .brand-mark svg{filter:drop-shadow(0 2px 2px #274b62)}
+body.maple-world{background:radial-gradient(ellipse at 48% -20%,#704c3a 0,#2b2528 44%,#15161a 80%)}
+body.maple-world .brand-mark{background:linear-gradient(145deg,#ffd59a,#a65335);box-shadow:0 6px 22px #d17b4740}
+body.maple-world .brand-mark svg{filter:drop-shadow(0 2px 2px #70402d)}
+.maple-art{background:linear-gradient(145deg,#f3c17f,#8b4931)}
+.maple-art svg{width:25px;height:25px;filter:drop-shadow(0 2px 2px #653b2d)}
+#mapleWorldBtn{grid-column:auto}
 @media(max-width:420px){.world-select{grid-template-columns:1fr}.dialog-actions .primary-btn{width:100%}}
-@media(max-width:1000px){body{padding:12px}.topbar{flex-wrap:wrap}.brand{min-width:unset}.top-meta{order:3;flex-basis:100%;justify-content:flex-start}.hud-right{margin-left:auto}.seed-bank{flex-wrap:wrap}.seed-card{min-width:30%;flex-basis:30%}.bottom-area{flex-direction:column}.tools-panel{justify-content:flex-end}.tool-btn{flex-direction:row;width:auto;flex:1;min-height:43px}}
+@media(max-width:1000px){.seed-bank{grid-template-columns:repeat(5,minmax(0,1fr))}body{padding:12px}.topbar{flex-wrap:wrap}.brand{min-width:unset}.top-meta{order:3;flex-basis:100%;justify-content:flex-start}.hud-right{margin-left:auto}.seed-bank{flex-wrap:wrap}.seed-card{min-width:30%;flex-basis:30%}.bottom-area{flex-direction:column}.tools-panel{justify-content:flex-end}.tool-btn{flex-direction:row;width:auto;flex:1;min-height:43px}}
 @media(max-width:560px){.stage-overlay{position:fixed;inset:0;z-index:50;overflow-y:auto;align-items:center;background:linear-gradient(120deg,#071713ed,#071713e8);padding:14px}.dialog{width:min(410px,100%);max-height:calc(100vh - 28px);overflow-y:auto;padding:24px 20px}.guide{margin-top:13px}body{padding:8px}.topbar{gap:9px;margin-bottom:9px}.brand-mark{width:36px;height:36px}.brand-name{font-size:14px}.brand-sub{font-size:8px}.hud-right{min-width:0;gap:5px}.icon-btn{width:35px;height:35px}.energy-box{min-width:78px;padding:7px 9px}.energy-value{font-size:16px}.top-meta{gap:5px}.meta-chip{padding:7px 9px;min-height:37px;flex:1}.meta-label{font-size:8px}.meta-value{font-size:11px}.weather-readout{min-width:0}.wave-readout{min-width:0}.game-frame{padding:5px;border-radius:17px}.stage-wrap{border-radius:12px}.seed-bank{gap:6px;padding:6px}.seed-card{flex-basis:31%;min-width:31%;padding:7px 5px;gap:5px}.seed-card .art{width:30px;height:30px;flex-basis:30px}.seed-card svg{width:25px;height:25px}.seed-name{font-size:9px}.seed-cost{font-size:9px}.seed-hotkey{display:none}.tools-panel{padding:6px}.tool-btn{font-size:8px}.footer-row{font-size:9px;align-items:flex-start}.footer-hint:last-child{display:none}.dialog{padding:25px 20px}.dialog p{font-size:12px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
@@ -112,7 +118,7 @@ body{padding:clamp(8px,1.25vh,14px) clamp(10px,1.4vw,20px);overscroll-behavior:n
 .stage-wrap{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;border-radius:14px;background:radial-gradient(ellipse at 50% 42%,#a4c78f 0,#759969 100%);box-shadow:inset 0 0 0 1px #e2f0c733,inset 0 10px 28px #233e2d1b}
 #game{height:100%;width:auto;max-width:100%;aspect-ratio:1200/530;object-fit:fill;border-radius:12px;touch-action:manipulation}
 .bottom-area{flex:0 0 76px;min-height:76px;max-height:76px;margin:0;gap:9px;align-items:stretch}
-.seed-bank{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;padding:6px;border-radius:15px;background:linear-gradient(145deg,#203b30,#162a24);border:1px solid #d3e9cc21;box-shadow:0 10px 24px #0003,inset 0 1px #ffffff0a}
+.seed-bank{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:7px;padding:6px;border-radius:15px;background:linear-gradient(145deg,#203b30,#162a24);border:1px solid #d3e9cc21;box-shadow:0 10px 24px #0003,inset 0 1px #ffffff0a}
 .seed-card{min-width:0;width:100%;padding:7px 8px;gap:7px;border-radius:11px;background:linear-gradient(145deg,#304c3b,#1d3329);border-color:#c7e1b51c;box-shadow:inset 0 1px #ffffff08;}
 .seed-card:hover{transform:translateY(-2px);border-color:#c9ec9d88;background:linear-gradient(145deg,#426449,#244331);box-shadow:0 8px 16px #0003}
 .seed-card.selected{border:1.5px solid #d3efa8;background:linear-gradient(145deg,#50794e,#2d5037);box-shadow:0 0 0 2px #c0e99d28,0 8px 19px #0003,inset 0 1px #ffffff22}
@@ -168,7 +174,7 @@ body{padding:clamp(8px,1.25vh,14px) clamp(10px,1.4vw,20px);overscroll-behavior:n
  .stage-wrap{flex:1 1 auto;width:auto;height:100%;min-width:0;min-height:0;aspect-ratio:auto;display:flex;align-items:center;justify-content:center;border-radius:9px;overflow:hidden}
  #game{display:block;width:100%;height:auto;max-width:100%;max-height:100%;aspect-ratio:1200/530;object-fit:contain;transform:none;border-radius:7px}
  .bottom-area{position:relative;inset:auto;flex:0 0 158px;width:158px;min-width:158px;max-width:158px;height:100%;min-height:0;max-height:none;margin:0;display:flex;flex-direction:column;gap:5px;overflow:hidden}
- .seed-bank{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:4px;padding:4px;border-radius:10px;overflow:hidden}
+ .seed-bank{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:4px;padding:4px;border-radius:10px;overflow:hidden}
  .seed-card{min-height:0;height:100%;padding:3px 4px;gap:3px;border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
  .seed-card .art{width:25px;height:25px;flex:0 0 25px;border-radius:7px}.seed-card svg{width:22px;height:22px}.seed-copy{align-items:center;gap:1px;max-width:100%}.seed-name{font-size:7px;max-width:100%}.seed-role{display:none}.seed-cost{font-size:8px;margin:0}.seed-hotkey{display:none}
  .tools-panel{flex:0 0 39px;min-height:39px;height:39px;padding:3px;gap:3px;border-radius:9px;display:flex;overflow:hidden}.tool-btn{flex:1;min-width:0;width:auto;min-height:0;padding:2px;border-radius:7px;font-size:6px;letter-spacing:.02em;gap:1px}.tool-btn svg{width:13px;height:13px}
@@ -192,7 +198,7 @@ body{padding:clamp(8px,1.25vh,14px) clamp(10px,1.4vw,20px);overscroll-behavior:n
  .stage-wrap{position:relative;flex:1 1 0;width:0;height:100%;min-width:0;min-height:0;aspect-ratio:auto;display:grid;place-items:center;border-radius:8px;overflow:hidden;line-height:0}
  #game{display:block;width:100%;height:100%;max-width:100%;max-height:100%;aspect-ratio:1200/530;object-fit:contain;transform:none;border-radius:6px;touch-action:manipulation}
  .bottom-area{position:relative;inset:auto;flex:0 0 clamp(116px,20vw,154px);width:clamp(116px,20vw,154px);min-width:clamp(116px,20vw,154px);max-width:clamp(116px,20vw,154px);height:100%;min-height:0;max-height:none;margin:0;display:flex;flex-direction:column;gap:4px;overflow:hidden}
- .seed-bank{flex:1 1 0;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:4px;padding:4px;border-radius:9px;overflow:hidden}
+ .seed-bank{flex:1 1 0;min-height:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:4px;padding:4px;border-radius:9px;overflow:hidden}
  .seed-card{min-width:0;min-height:0;height:100%;padding:2px;gap:2px;border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}.seed-card .art{width:clamp(19px,5vh,25px);height:clamp(19px,5vh,25px);flex:0 0 clamp(19px,5vh,25px);border-radius:6px}.seed-card svg{width:100%;height:100%}.seed-copy{min-width:0;max-width:100%;align-items:center;gap:1px;overflow:hidden}.seed-name{max-width:100%;font-size:clamp(6px,1.65vh,8px);line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.seed-role,.seed-hotkey{display:none}.seed-cost{font-size:clamp(7px,1.7vh,9px);line-height:1}
  .tools-panel{flex:0 0 34px;min-height:34px;height:34px;padding:3px;gap:3px;border-radius:8px;display:flex;overflow:hidden}.tool-btn{flex:1 1 0;min-width:0;width:auto;min-height:0;padding:2px;border-radius:6px;font-size:6px;letter-spacing:0;gap:2px;white-space:nowrap;overflow:hidden}.tool-btn svg{width:12px;height:12px;flex:0 0 12px}.tool-btn span{overflow:hidden;text-overflow:ellipsis}
  .footer-row{display:none}
@@ -241,6 +247,44 @@ body > #overlay.stage-overlay.hidden{
 body > #overlay.stage-overlay:not(.hidden){visibility:visible}
 body > #overlay.stage-overlay > .dialog{position:relative;z-index:1;flex:0 1 auto}
 
+
+/* Six-plant deck builder and compact in-game hand. */
+.dialog.menu-dialog{width:min(930px,98%);max-height:92vh;overflow-y:auto;padding:25px 28px 22px;text-align:left;scrollbar-color:#658b6c #1a3328}
+.dialog.menu-dialog h1,.dialog.menu-dialog>.eyebrow,.dialog.menu-dialog>p{text-align:center}
+.dialog.menu-dialog>p{max-width:650px;margin:12px auto 16px}
+.dialog.menu-dialog .world-select{max-width:none;grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:14px}.dialog.menu-dialog .world-option:last-child{grid-column:auto}
+.deck-builder{padding:13px 14px 14px;border:1px solid #d4e8c82a;border-radius:16px;background:linear-gradient(145deg,#10231caa,#0c1d17aa);margin:8px 0 14px}
+.deck-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.deck-heading b{display:block;font-size:13px;letter-spacing:.04em;color:#eff7df}.deck-heading small{display:block;margin-top:3px;font-size:10px;color:#9fb7a3}
+#deckCount{font-size:10px;font-weight:950;letter-spacing:.1em;color:#d8ebaa;border:1px solid #c9e5a94a;background:#a7d27e18;border-radius:99px;padding:7px 10px;white-space:nowrap}
+.deck-slots{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;margin-bottom:11px}
+.deck-slot{min-height:65px;position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;padding:8px 8px 7px 31px;border-radius:11px;border:1px solid #b7d6a72a;background:#223b2c;color:#eef5dd;min-width:0}
+.deck-slot.empty{border-style:dashed;background:#172b22;color:#879f8d}
+.deck-position{position:absolute;left:8px;top:8px;font-size:9px;font-weight:950;color:#d6eaa8;background:#6d925044;border-radius:6px;padding:3px 5px}
+.deck-slot-name{font-size:10px;font-weight:900;line-height:1.1;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.deck-slot-cost,.deck-empty-label{font-size:9px;color:#e6cd83;font-weight:750}
+.deck-empty-label{color:#82998a}
+.deck-slot-controls{display:flex;gap:3px;margin-top:2px}
+.deck-slot-controls button{width:21px;height:18px;padding:0;border:1px solid #c9e1bd2a;border-radius:5px;background:#ffffff0d;color:#e0edcf;font-size:11px;line-height:1}
+.deck-slot-controls button:disabled{opacity:.2;cursor:default}
+.deck-slot-controls button:hover:not(:disabled){background:#789d6144}
+.deck-catalog{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.deck-plant{display:flex;align-items:center;gap:8px;min-width:0;padding:7px 8px;border:1px solid #c5dfbb21;border-radius:10px;background:#ffffff08;text-align:left;transition:.14s}
+.deck-plant:hover:not(:disabled){background:#ffffff13;border-color:#c8e9a878;transform:translateY(-1px)}
+.deck-plant.in-deck{background:#9dc87b20;border-color:#c7e79b66}
+.deck-plant:disabled{opacity:.38;cursor:not-allowed}
+.deck-plant-art{flex:0 0 30px;width:30px;height:30px;display:grid;place-items:center;border-radius:8px;background:#0c1e18}
+.deck-plant-art svg{width:26px;height:26px}
+.deck-plant-copy{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.deck-plant-copy b{font-size:9px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.deck-plant-copy small{font-size:8px;color:#9fb69e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.deck-plant-action{font-size:8px;font-weight:950;color:#d9eaa9;white-space:nowrap}
+.dialog.menu-dialog .dialog-actions{justify-content:center}
+.dialog .primary-btn:disabled{opacity:.4;filter:saturate(.5);cursor:not-allowed;transform:none;box-shadow:none}
+.seed-bank{grid-template-columns:repeat(6,minmax(0,1fr))!important;display:grid!important}
+@media(max-width:800px){.dialog.menu-dialog{width:min(760px,98%);padding:22px 18px}.deck-slots{grid-template-columns:repeat(3,minmax(0,1fr))}.deck-catalog{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.dialog.menu-dialog{width:100%;max-height:calc(100vh - 20px);padding:20px 13px}.dialog.menu-dialog .world-select{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.dialog.menu-dialog .world-option{grid-template-columns:1fr;grid-template-rows:auto auto auto;justify-items:center;text-align:center;gap:3px;padding:7px 4px;min-height:88px}.dialog.menu-dialog .world-art{grid-row:auto;width:28px;height:28px}.dialog.menu-dialog .world-option b{white-space:normal;font-size:8px;line-height:1.1}.dialog.menu-dialog .world-option small{white-space:normal;font-size:5.5px;line-height:1.2;letter-spacing:.06em}.dialog.menu-dialog .world-option i{grid-column:auto;margin-top:1px;font-size:6px}.deck-builder{padding:10px}.deck-catalog{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.deck-plant{gap:5px;padding:6px 5px}.deck-plant-art{flex-basis:25px;width:25px;height:25px}.deck-plant-art svg{width:22px;height:22px}.deck-plant-action{font-size:7px}.deck-slot{min-height:58px;padding-left:29px}.deck-heading small{font-size:9px}.seed-bank{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+
 </style>
 </head>
 <body>
@@ -288,15 +332,25 @@ body > #overlay.stage-overlay > .dialog{position:relative;z-index:1;flex:0 1 aut
           <div class="world-select" id="worldSelect" aria-label="Choose a world">
             <button class="world-option selected" id="meadowWorldBtn" type="button" aria-pressed="true"><span class="world-art meadow-art">✦</span><span><b>First Light Meadow</b><small>THE WITHERLING FRONT</small></span><i>AVAILABLE</i></button>
             <button class="world-option locked" id="snowWorldBtn" type="button" aria-pressed="false"><span class="world-art snow-art">❄</span><span><b>Snowveil Reach</b><small>THE FROSTBOUND FRONT</small></span><i id="snowWorldState">LOCKED</i></button>
+            <button class="world-option locked" id="mapleWorldBtn" type="button" aria-pressed="false"><span class="world-art maple-art"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3 24 11 34 7 31 17 38 22 27 25 29 36 20 30 11 36 13 25 2 22 9 17 6 7 16 11Z" fill="#f6b86e" stroke="#ffe0a6" stroke-width="1.5" stroke-linejoin="round"/><path d="M20 17 20 35" stroke="#75452d" stroke-width="2" stroke-linecap="round"/></svg></span><span><b>Maple Gathering</b><small>THE AMBERWOOD FRONT</small></span><i id="mapleWorldState">LOCKED</i></button>
           </div>
+          <section class="deck-builder" id="deckBuilder" aria-label="Choose and order your six-plant deck">
+            <div class="deck-heading"><div><b>Build your six-plant deck</b><small>Choose exactly six plants. Their order sets hotkeys 1–6.</small></div><span id="deckCount">0 / 6</span></div>
+            <div class="deck-slots" id="deckSlots"></div>
+            <div class="deck-catalog" id="deckCatalog"></div>
+          </section>
           <div class="dialog-actions" id="dialogActions"><button class="primary-btn" id="startBtn">Enter fullscreen garden</button><button class="secondary-btn" id="guideBtn">Field guide</button></div>
           <div class="guide" id="guideBox">
-            <div class="guide-row"><span class="guide-key">1–6</span><span>Choose a seed card, then click an empty garden tile to plant it. Each plant has a different role.</span></div>
+            <div class="guide-row"><span class="guide-key">1–6</span><span>Choose one of your six deck plants, then click a garden tile. Your deck order determines these hotkeys.</span></div>
             <div class="guide-row"><span class="guide-key">D</span><span>Collect golden dew drops before they fade. Sunbuds also create dew over time.</span></div>
             <div class="guide-row"><span class="guide-key">X</span><span>Toggle the shears, then click a plant to remove it. Escape pauses or cancels selection.</span></div>
             <div class="guide-row"><span class="guide-key">✦</span><span>Dewfall boosts energy income. Crosswind slows Witherlings and quickens your shots.</span></div>
             <div class="guide-row"><span class="guide-key">♥</span><span>Three Heartroot lives. Enemies grow stronger as the waves progress. Clear all 10 waves to win.</span></div>
             <div class="guide-row"><span class="guide-key">❄</span><span>Snowveil Reach adds Ice Wisps, Frost Archers and Glacier Wardens. Their ranged ice attacks can freeze your plants.</span></div>
+            <div class="guide-row"><span class="guide-key">Poison</span><span>Poisonbud deals 7.5 poison damage every 0.4 seconds for up to 8 seconds after a hit.</span></div>
+            <div class="guide-row"><span class="guide-key">Trap</span><span>Trapadvisor costs 40 dew and deals 90 damage to the first enemy that steps on it. It disappears after triggering.</span></div>
+            <div class="guide-row"><span class="guide-key">Support</span><span>Bee costs 10 dew. Select it, then click an injured friendly plant to restore 30% of its current HP (up to its maximum). It has a long cooldown.</span></div>
+            <div class="guide-row"><span class="guide-key">Destroyer</span><span>Destroyer costs 150 dew and fires quick, low-damage darts at a very high rate.</span></div>
           </div>
           <div class="dialog-note" id="dialogNote">Fullscreen required · Strategy, timing & resource management</div>
         </div>
@@ -320,7 +374,13 @@ const seedDefs = [
   {id:'frost',name:'Frostcap',cost:125,cool:6,desc:'Slows foes',role:'Control',color:'#a5dded'},
   {id:'bark',name:'Barkshield',cost:75,cool:7,desc:'Soaks damage',role:'Defense',color:'#c69b69'},
   {id:'twin',name:'Twinbloom',cost:200,cool:10,desc:'Double shots',role:'Heavy',color:'#e7a2c5'},
-  {id:'ember',name:'Emberbud',cost:175,cool:12,desc:'Lane burst',role:'Burst',color:'#f59a69'}
+  {id:'ember',name:'Emberbud',cost:175,cool:12,desc:'Lane burst',role:'Burst',color:'#f59a69'},
+  {id:'poisonbud',name:'Poisonbud',cost:225,cool:11,desc:'Lingering poison',role:'Damage over time',color:'#a8d66d'},
+  {id:'archorot',name:'Archorot',cost:25,cool:3.5,desc:'Short-range shooter · disabled below 50% health',role:'Shooter',color:'#b7c978'},
+  {id:'bananabud',name:'Banana Bud',cost:300,cool:18,desc:'Spawns one allied banana every 3 seconds',role:'Summoner',color:'#e7c85c'},
+  {id:'destroyer',name:'Destroyer',cost:150,cool:9,desc:'Rapid, low-damage darts',role:'Rapid shooter',color:'#d8e88b'},
+  {id:'trapadvisor',name:'Trapadvisor',cost:40,cool:4.5,desc:'One-use 90-damage floor trap',role:'Ambush trap',color:'#c7a27a'},
+  {id:'bee',name:'Bee',cost:10,cool:28,desc:'Heals a friendly plant by 30% of its current HP',role:'Support · click a plant',color:'#f1d45f'}
 ];
 const seedSVG = {
  sunbud:`<svg viewBox="0 0 40 40"><g fill="#F7D66F"><ellipse cx="20" cy="5.8" rx="4.1" ry="6.2"/><ellipse cx="20" cy="34.2" rx="4.1" ry="6.2"/><ellipse cx="5.8" cy="20" rx="6.2" ry="4.1"/><ellipse cx="34.2" cy="20" rx="6.2" ry="4.1"/><ellipse cx="9.9" cy="9.9" rx="4.1" ry="6.2" transform="rotate(-45 9.9 9.9)"/><ellipse cx="30.1" cy="9.9" rx="4.1" ry="6.2" transform="rotate(45 30.1 9.9)"/><ellipse cx="9.9" cy="30.1" rx="4.1" ry="6.2" transform="rotate(45 9.9 30.1)"/><ellipse cx="30.1" cy="30.1" rx="4.1" ry="6.2" transform="rotate(-45 30.1 30.1)"/></g><circle cx="20" cy="20" r="9" fill="#9A5A32"/><circle cx="16.8" cy="17.5" r="1.5" fill="#FFF0B3"/><circle cx="23.2" cy="17.5" r="1.5" fill="#FFF0B3"/><path d="M16.5 22q3.5 4 7 0" stroke="#FFF0B3" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>`,
@@ -328,12 +388,18 @@ const seedSVG = {
  frost:`<svg viewBox="0 0 40 40"><path d="M19 35V21" stroke="#77BDAE" stroke-width="3" stroke-linecap="round"/><path d="M19 27q-9 0-11-7 10-3 14 5M20 27q1-9 11-10 2 9-10 13" fill="#83C9C6"/><path d="M8 22q-3-12 12-17 14 2 13 15-8 5-25 2Z" fill="#A8DFF0" stroke="#E3F8F7" stroke-width="1.2"/><path d="M14 12q6-4 12 0" stroke="#F1FEFC" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="17" cy="18" r="1" fill="#365A65"/><circle cx="25" cy="18" r="1" fill="#365A65"/><path d="M18 21q3 2 6 0" stroke="#365A65" fill="none" stroke-linecap="round"/></svg>`,
  bark:`<svg viewBox="0 0 40 40"><path d="M10 35 12 13 18 7 25 9 30 17 29 35Z" fill="#9B7651" stroke="#D5B17A" stroke-width="1.4"/><path d="m13 18 6-5m-5 13 9-8m-8 13 9-7" stroke="#E4C18C" stroke-width="2" stroke-linecap="round"/><path d="M12 12Q6 4 4 11q1 7 9 6M28 15q6-10 9-3-1 8-9 9" fill="#79A85D" stroke="#A9D17C"/><circle cx="18" cy="21" r="1.3" fill="#2A3528"/><circle cx="25" cy="21" r="1.3" fill="#2A3528"/><path d="M19 26q3 2 6 0" fill="none" stroke="#E7C89A" stroke-width="1.4" stroke-linecap="round"/></svg>`,
  twin:`<svg viewBox="0 0 40 40"><path d="M19 36q-2-12 1-19m2 18q2-10 8-17" stroke="#78B866" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M19 27q-13-2-12-12 11-1 15 10M23 30q-2-11 8-15 7 8-5 18" fill="#81C876" stroke="#B5E79B"/><ellipse cx="14" cy="10" rx="7" ry="6" fill="#DAA0CC"/><ellipse cx="28" cy="13" rx="7" ry="6" fill="#E8ACD1"/><circle cx="14" cy="10" r="2" fill="#874F79"/><circle cx="28" cy="13" r="2" fill="#874F79"/></svg>`,
- ember:`<svg viewBox="0 0 40 40"><path d="M20 35V22" stroke="#8FAE5E" stroke-width="3" stroke-linecap="round"/><path d="M20 31Q5 28 9 15q3-6 9-10-2 10 5 10 1-7 8-9 4 13-2 20-4 5-9 5Z" fill="#F28A5D" stroke="#FFD18B" stroke-width="1.3"/><path d="M20 27q-7-7 1-15 0 8 6 8 1 6-7 7Z" fill="#FFD36C"/><circle cx="17" cy="23" r="1.2" fill="#683A2B"/><circle cx="24" cy="23" r="1.2" fill="#683A2B"/></svg>`
+ ember:`<svg viewBox="0 0 40 40"><path d="M20 35V22" stroke="#8FAE5E" stroke-width="3" stroke-linecap="round"/><path d="M20 31Q5 28 9 15q3-6 9-10-2 10 5 10 1-7 8-9 4 13-2 20-4 5-9 5Z" fill="#F28A5D" stroke="#FFD18B" stroke-width="1.3"/><path d="M20 27q-7-7 1-15 0 8 6 8 1 6-7 7Z" fill="#FFD36C"/><circle cx="17" cy="23" r="1.2" fill="#683A2B"/><circle cx="24" cy="23" r="1.2" fill="#683A2B"/></svg>`,
+ poisonbud:`<svg viewBox="0 0 40 40"><path d="M19 36q-2-14 2-25" stroke="#638f43" stroke-width="3.2" stroke-linecap="round"/><path d="M20 29Q6 29 5 17q12-3 17 8M21 25q2-12 14-12 1 12-13 17" fill="#6f9e49" stroke="#b9df78" stroke-width="1.2"/><path d="M7 13Q5 3 17 3q4 0 6 5 7-8 13 0 3 9-7 15-9 6-18-1Q4 19 7 13Z" fill="#9fca58" stroke="#d8ef91" stroke-width="1.5"/><path d="M13 11q6-5 13 0" stroke="#eaffb1" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="16" cy="15" r="1.4" fill="#29442d"/><circle cx="25" cy="15" r="1.4" fill="#29442d"/><path d="M17 19q4 2 7-1" stroke="#35552e" stroke-width="1.2" fill="none" stroke-linecap="round"/><circle cx="33" cy="28" r="3" fill="#b6e65f"/><circle cx="7" cy="29" r="2" fill="#d3ee7b"/></svg>`,
+ archorot:`<svg viewBox="0 0 40 40"><path d="M19 36q-2-14 2-25" stroke="#718e4d" stroke-width="3" stroke-linecap="round"/><path d="M20 29Q6 28 6 18q11-2 17 8M21 26q3-11 13-13 2 10-12 16" fill="#819c56" stroke="#d0df8b" stroke-width="1.2"/><path d="M8 17 10 6 19 12 23 3 27 14 36 9 31 23 18 27Z" fill="#b9ca72" stroke="#edf2b0" stroke-width="1.4"/><path d="M13 17 31 12" stroke="#e8f0b1" stroke-width="1.6"/><circle cx="18" cy="19" r="1.2" fill="#34462e"/><circle cx="25" cy="18" r="1.2" fill="#34462e"/><path d="M19 22q3 2 6 0" stroke="#405438" fill="none" stroke-linecap="round"/></svg>`,
+ bananabud:`<svg viewBox="0 0 40 40"><path d="M6 29Q15 36 30 26 36 22 34 15 29 25 17 27 10 28 6 24Z" fill="#f3d65e" stroke="#fff0a0" stroke-width="1.5"/><path d="M7 25 4 22m29-7 3-3" stroke="#6b8d45" stroke-width="3" stroke-linecap="round"/><path d="M20 28q-2-11 4-19" stroke="#6c9c52" stroke-width="3" stroke-linecap="round"/><path d="M22 17Q11 15 12 7q10-3 13 8M24 17Q26 6 36 7q1 9-11 13" fill="#77aa5b" stroke="#c7e79b" stroke-width="1.2"/><circle cx="18" cy="9" r="1" fill="#315037"/><circle cx="23" cy="9" r="1" fill="#315037"/></svg>`,
+ destroyer:`<svg viewBox="0 0 40 40"><path d="M19 36Q17 22 20 12" stroke="#6b9851" stroke-width="3" stroke-linecap="round"/><path d="M20 27Q6 25 7 14q11-2 16 10M21 24Q25 11 36 12q1 11-14 17" fill="#6e9d59" stroke="#c5e49a" stroke-width="1.2"/><path d="M7 17Q7 4 20 4q13 0 14 12-7 10-15 9Q8 24 7 17Z" fill="#c4d979" stroke="#edf5b2" stroke-width="1.5"/><path d="M12 15q8-7 17 0" stroke="#f6ffcc" stroke-width="2" fill="none"/><circle cx="16" cy="17" r="1.3" fill="#304b31"/><circle cx="24" cy="17" r="1.3" fill="#304b31"/><path d="M17 21q3 2 6 0" stroke="#405c36" fill="none" stroke-linecap="round"/><path d="M32 7 38 3m-5 10 5-1" stroke="#f5e69a" stroke-width="2" stroke-linecap="round"/></svg>`,
+ trapadvisor:`<svg viewBox="0 0 40 40"><path d="M4 29 14 11 19 19 26 7 36 29Z" fill="#9a7650" stroke="#e2c18b" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 29 16 19 21 27 28 15 33 29Z" fill="#c09b68" stroke="#f0d3a0" stroke-width="1.2"/><path d="M7 33h26" stroke="#78945b" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="25" r="2" fill="#4a3928"/></svg>`,
+ bee:`<svg viewBox="0 0 40 40"><path d="M15 14q-12-13-13 1 5 7 14 3M25 14Q31 1 38 11q-1 8-13 7" fill="#dff4f0" stroke="#a4d5cc" stroke-width="1.2"/><ellipse cx="20" cy="22" rx="12" ry="9" fill="#edc64e" stroke="#fff0a0" stroke-width="1.4"/><path d="M15 14v16m8-16v16" stroke="#59452b" stroke-width="4"/><path d="m30 21 7 2-7 4" fill="#59452b"/><circle cx="15" cy="20" r="1.1" fill="#382e25"/><circle cx="24" cy="20" r="1.1" fill="#382e25"/></svg>`
 };
 let state='menu', paused=false, speed=1, soundOn=false, audioCtx=null, overlayKind='menu';
 let worldId='meadow', selectedWorld='meadow', resumeRequested=false;
 let energy=175, hearts=3, wave=0, phase='idle', phaseTimer=0, spawnQueue=[], spawnTimer=0, spawnedThisWave=0;
-let plants=[], enemies=[], shots=[], enemyShots=[], drops=[], particles=[], floating=[];
+let plants=[], enemies=[], allies=[], shots=[], enemyShots=[], drops=[], particles=[], floating=[], beeFlights=[];
 let selected=null, shears=false, mouse={x:-999,y:-999}, elapsed=0, worldTime=0, dewTimer=4, weather='Clear morning', weatherTimer=20;
 let kills=0, plantedCount=0, best=(()=>{try{return Number(localStorage.getItem('vv_best')||0)}catch(e){return 0}})(), lostCount=0;
 let uiTimer=0, toastTimer=0, lastFrame=0, animationId=0, nextId=1, shake=0, saveTimer=0;
@@ -341,25 +407,50 @@ const SAVE_KEY='verdant_vigil_campaign_v3', RUN_KEY='verdant_vigil_active_run_v3
 const cards = [];
 function readCampaign(){try{return JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{}}catch(e){return {}}}
 let campaign=readCampaign();
+let selectedDeck=Array.isArray(campaign.deck)?campaign.deck.filter((id,i,a)=>seedDefs.some(d=>d.id===id)&&a.indexOf(id)===i).slice(0,6):[];
 let unlockedSnow=!!campaign.unlockedSnow;
-let savedRun=(()=>{try{const v=JSON.parse(localStorage.getItem(RUN_KEY)||'null');return v&&(v.version===3||v.version===4||v.version===5||v.version===6||v.version===7||v.version===8)?v:null}catch(e){return null}})();
-function persistCampaign(){try{localStorage.setItem(SAVE_KEY,JSON.stringify({...campaign,unlockedSnow,best,selectedWorld,updatedAt:Date.now()}));localStorage.setItem('vv_best',String(best));}catch(e){}}
+let unlockedMaple=!!campaign.unlockedMaple||Number(campaign.best_snow||0)>0||(campaign.lastWorld==='snow'&&campaign.lastOutcome==='victory');
+let savedRun=(()=>{try{const v=JSON.parse(localStorage.getItem(RUN_KEY)||'null');return v&&(v.version===3||v.version===4||v.version===5||v.version===6||v.version===7||v.version===8||v.version===9||v.version===10||v.version===11)?v:null}catch(e){return null}})();
+function persistCampaign(){try{campaign.deck=selectedDeck.slice();localStorage.setItem(SAVE_KEY,JSON.stringify({...campaign,deck:selectedDeck,unlockedSnow,unlockedMaple,best,selectedWorld,updatedAt:Date.now()}));localStorage.setItem('vv_best',String(best));}catch(e){}}
 function clearSavedRun(){savedRun=null;try{localStorage.removeItem(RUN_KEY)}catch(e){}}
-function persistRun(){if(state!=='playing')return;try{const snap={version:8,worldId,energy,hearts,wave,phase,phaseTimer,spawnQueue,spawnTimer,spawnedThisWave,plants,enemies,shots,enemyShots,drops,selected,shears,elapsed,worldTime,dewTimer,weather,weatherTimer,kills,plantedCount,lostCount,speed,plantCooldown,nextId};localStorage.setItem(RUN_KEY,JSON.stringify(snap));savedRun=snap;}catch(e){/* Storage may be disabled or full; the game remains playable. */}}
+function persistRun(){if(state!=='playing')return;try{const snap={version:11,deck:selectedDeck.slice(),worldId,energy,hearts,wave,phase,phaseTimer,spawnQueue,spawnTimer,spawnedThisWave,plants,enemies,allies,shots,enemyShots,drops,beeFlights,selected,shears,elapsed,worldTime,dewTimer,weather,weatherTimer,kills,plantedCount,lostCount,speed,plantCooldown,nextId};localStorage.setItem(RUN_KEY,JSON.stringify(snap));savedRun=snap;}catch(e){/* Storage may be disabled or full; the game remains playable. */}}
 function previousWaveTotal(w){const base=w===1?3:Math.round(5+(w-1)*3.05+(w>=7?(w-6)*.55:0));return base+(w===10?1:0);}
 function snowWaveTarget(w){return Math.ceil(previousWaveTotal(w)/4);}
-function restoreSavedRun(){if(!savedRun)return false;try{const v=savedRun;if(!['meadow','snow'].includes(v.worldId)||!Array.isArray(v.plants)||!Array.isArray(v.enemies))return false;if(v.version===3){for(const e of v.enemies){if(Number.isFinite(e.hp))e.hp=Math.max(1,e.hp*.5);if(Number.isFinite(e.maxHp))e.maxHp=Math.max(1,e.maxHp);}v.version=4;}if(v.version===4){for(const e of v.enemies){if(Number.isFinite(e.speed))e.speed*=.75;if(Number.isFinite(e.damage))e.damage*=.75;if(Number.isFinite(e.rangedDamage))e.rangedDamage*=.75;if(Number.isFinite(e.hp))e.hp=Math.max(1,e.hp*.9);if(Number.isFinite(e.maxHp))e.maxHp=Math.max(1,e.maxHp*.9);}for(const shot of (v.enemyShots||[])){if(Number.isFinite(shot.damage))shot.damage*=.75;}v.version=5;}if(v.version===5){if(v.worldId==='snow'&&v.phase==='wave'&&Number.isFinite(v.wave)){const target=snowWaveTarget(v.wave);const alreadySpawned=Math.max(0,Number(v.spawnedThisWave)||0);const remaining=Math.max(0,target-alreadySpawned);if(Array.isArray(v.spawnQueue))v.spawnQueue=v.spawnQueue.slice(0,remaining);}v.version=6;}if(v.version===6){if(v.worldId==='snow'&&v.phase==='wave'&&Number.isFinite(v.wave)){const target=snowWaveTarget(v.wave);const alreadySpawned=Math.max(0,Number(v.spawnedThisWave)||0);const remaining=Math.max(0,target-alreadySpawned);if(Array.isArray(v.spawnQueue))v.spawnQueue=v.spawnQueue.slice(0,remaining);}v.version=7;}if(v.version===7){if(v.worldId==='snow'&&v.phase==='wave'&&v.wave===10){const finalRoster=['icewisp','icewisp','frostarcher','frostarcher','frostarcher','glacierwarden'];const alreadySpawned=Math.max(0,Number(v.spawnedThisWave)||0);v.spawnQueue=finalRoster.slice(Math.min(alreadySpawned,finalRoster.length));}v.version=8;}worldId=v.worldId;selectedWorld=worldId;energy=v.energy;hearts=v.hearts;wave=v.wave;phase=v.phase;phaseTimer=v.phaseTimer;spawnQueue=v.spawnQueue||[];spawnTimer=v.spawnTimer;spawnedThisWave=v.spawnedThisWave;plants=v.plants;enemies=v.enemies;shots=v.shots||[];enemyShots=v.enemyShots||[];drops=v.drops||[];selected=null;shears=false;elapsed=v.elapsed;worldTime=v.worldTime;dewTimer=v.dewTimer;weather=v.weather;weatherTimer=v.weatherTimer;kills=v.kills;plantedCount=v.plantedCount;lostCount=v.lostCount;speed=v.speed||1;for(const k in plantCooldown)plantCooldown[k]=(v.plantCooldown&&v.plantCooldown[k])||0;nextId=v.nextId||1;paused=false;state='playing';saveTimer=2;document.body.classList.toggle('snow-world',worldId==='snow');$('speedBtn').style.color=speed>1?'#d2ee9c':'';$('speedBtn').title=`Game speed ${speed}x`;$('pauseBadge').classList.remove('show');$('seedBank').parentElement.classList.remove('locked');hideOverlay();updateUI(true);showToast('SAVED GARDEN RESTORED');persistRun();return true;}catch(e){return false;}}
+function restoreSavedRun(){if(!savedRun)return false;try{const v=savedRun;if(!['meadow','snow','maple'].includes(v.worldId)||!Array.isArray(v.plants)||!Array.isArray(v.enemies))return false;if(v.version===3){for(const e of v.enemies){if(Number.isFinite(e.hp))e.hp=Math.max(1,e.hp*.5);if(Number.isFinite(e.maxHp))e.maxHp=Math.max(1,e.maxHp);}v.version=4;}if(v.version===4){for(const e of v.enemies){if(Number.isFinite(e.speed))e.speed*=.75;if(Number.isFinite(e.damage))e.damage*=.75;if(Number.isFinite(e.rangedDamage))e.rangedDamage*=.75;if(Number.isFinite(e.hp))e.hp=Math.max(1,e.hp*.9);if(Number.isFinite(e.maxHp))e.maxHp=Math.max(1,e.maxHp*.9);}for(const shot of (v.enemyShots||[])){if(Number.isFinite(shot.damage))shot.damage*=.75;}v.version=5;}if(v.version===5){if(v.worldId==='snow'&&v.phase==='wave'&&Number.isFinite(v.wave)){const target=snowWaveTarget(v.wave);const alreadySpawned=Math.max(0,Number(v.spawnedThisWave)||0);const remaining=Math.max(0,target-alreadySpawned);if(Array.isArray(v.spawnQueue))v.spawnQueue=v.spawnQueue.slice(0,remaining);}v.version=6;}if(v.version===6){if(v.worldId==='snow'&&v.phase==='wave'&&Number.isFinite(v.wave)){const target=snowWaveTarget(v.wave);const alreadySpawned=Math.max(0,Number(v.spawnedThisWave)||0);const remaining=Math.max(0,target-alreadySpawned);if(Array.isArray(v.spawnQueue))v.spawnQueue=v.spawnQueue.slice(0,remaining);}v.version=7;}if(v.version===7){if(v.worldId==='snow'&&v.phase==='wave'&&v.wave===10){const finalRoster=['icewisp','icewisp','frostarcher','frostarcher','frostarcher','glacierwarden'];const alreadySpawned=Math.max(0,Number(v.spawnedThisWave)||0);v.spawnQueue=finalRoster.slice(Math.min(alreadySpawned,finalRoster.length));}v.version=8;}if(v.version===8){v.allies=v.allies||[];v.version=9;}if(v.version===9){v.version=10;}if(v.version===10){v.beeFlights=v.beeFlights||[];v.deck=Array.isArray(v.deck)?v.deck:(selectedDeck.length===6?selectedDeck:['sunbud','sprout','frost','bark','twin','ember']);v.version=11;}selectedDeck=Array.isArray(v.deck)?v.deck.slice(0,6):selectedDeck;campaign.deck=selectedDeck.slice();persistCampaign();makeCards();worldId=v.worldId;selectedWorld=worldId;energy=v.energy;hearts=v.hearts;wave=v.wave;phase=v.phase;phaseTimer=v.phaseTimer;spawnQueue=v.spawnQueue||[];spawnTimer=v.spawnTimer;spawnedThisWave=v.spawnedThisWave;plants=v.plants;enemies=v.enemies;allies=v.allies||[];shots=v.shots||[];enemyShots=v.enemyShots||[];drops=v.drops||[];beeFlights=v.beeFlights||[];selected=null;shears=false;elapsed=v.elapsed;worldTime=v.worldTime;dewTimer=v.dewTimer;weather=v.weather;weatherTimer=v.weatherTimer;kills=v.kills;plantedCount=v.plantedCount;lostCount=v.lostCount;speed=v.speed||1;for(const k in plantCooldown)plantCooldown[k]=(v.plantCooldown&&v.plantCooldown[k])||0;nextId=v.nextId||1;paused=false;state='playing';saveTimer=2;document.body.classList.toggle('snow-world',worldId==='snow');document.body.classList.toggle('maple-world',worldId==='maple');$('speedBtn').style.color=speed>1?'#d2ee9c':'';$('speedBtn').title=`Game speed ${speed}x`;$('pauseBadge').classList.remove('show');$('seedBank').parentElement.classList.remove('locked');hideOverlay();updateUI(true);showToast('SAVED GARDEN RESTORED');persistRun();return true;}catch(e){return false;}}
 $('bestText').textContent=best;
 
 function makeCards(){
- const bank=$('seedBank'); bank.innerHTML='';
- seedDefs.forEach((d,i)=>{
-   const b=document.createElement('button'); b.className='seed-card'; b.type='button'; b.setAttribute('aria-label',`${i+1}. ${d.name}, costs ${d.cost} dew. ${d.role}: ${d.desc}.`); b.title=`${d.name} · ${d.role}
-${d.desc} · ${d.cost} dew`; b.dataset.id=d.id;
-   b.innerHTML=`<span class="art">${seedSVG[d.id]}</span><span class="seed-copy"><span class="seed-name">${d.name}</span><span class="seed-role">${d.role}</span><span class="seed-cost">${d.cost}</span></span><span class="seed-hotkey">${i+1}</span><span class="seed-cool"></span>`;
-   b.addEventListener('click',()=>chooseSeed(d.id)); bank.appendChild(b); cards.push({el:b,def:d});
+ const bank=$('seedBank');bank.innerHTML='';cards.length=0;
+ selectedDeck.forEach((id,i)=>{
+  const d=seedDefs.find(x=>x.id===id);if(!d)return;
+  const b=document.createElement('button');b.className='seed-card';b.type='button';b.setAttribute('aria-label',`${i+1}. ${d.name}, costs ${d.cost} dew. ${d.role}: ${d.desc}.`);b.title=`${d.name} · ${d.role}\n${d.desc} · ${d.cost} dew`;b.dataset.id=d.id;
+  b.innerHTML=`<span class="art">${seedSVG[d.id]}</span><span class="seed-copy"><span class="seed-name">${d.name}</span><span class="seed-role">${d.role}</span><span class="seed-cost">${d.cost}</span></span><span class="seed-hotkey">${i+1}</span><span class="seed-cool"></span>`;
+  b.addEventListener('click',()=>chooseSeed(d.id));bank.appendChild(b);cards.push({el:b,def:d});
  });
 }
+function updateDeckBuilder(){
+ const slots=$('deckSlots'),catalog=$('deckCatalog'),counter=$('deckCount');if(!slots||!catalog)return;
+ slots.innerHTML='';
+ for(let i=0;i<6;i++){
+  const id=selectedDeck[i],d=seedDefs.find(x=>x.id===id),slot=document.createElement('div');slot.className='deck-slot'+(d?' filled':' empty');
+  if(d){
+   slot.innerHTML=`<span class="deck-position">${i+1}</span><span class="deck-slot-name">${d.name}</span><span class="deck-slot-cost">${d.cost} dew</span><span class="deck-slot-controls"><button type="button" aria-label="Move ${d.name} up" title="Move up" ${i===0?'disabled':''}>↑</button><button type="button" aria-label="Move ${d.name} down" title="Move down" ${i===selectedDeck.length-1?'disabled':''}>↓</button><button type="button" aria-label="Remove ${d.name}" title="Remove">×</button></span>`;
+   const controls=slot.querySelectorAll('button');controls[0].onclick=()=>{[selectedDeck[i-1],selectedDeck[i]]=[selectedDeck[i],selectedDeck[i-1]];saveDeckChoice();};controls[1].onclick=()=>{[selectedDeck[i+1],selectedDeck[i]]=[selectedDeck[i],selectedDeck[i+1]];saveDeckChoice();};controls[2].onclick=()=>{selectedDeck.splice(i,1);saveDeckChoice();};
+  }else{slot.innerHTML=`<span class="deck-position">${i+1}</span><span class="deck-empty-label">Choose a plant</span>`;}
+  slots.appendChild(slot);
+ }
+ catalog.innerHTML='';
+ seedDefs.forEach(d=>{
+  const at=selectedDeck.indexOf(d.id),b=document.createElement('button');b.type='button';b.className='deck-plant'+(at>=0?' in-deck':'');b.disabled=at<0&&selectedDeck.length>=6;
+  b.innerHTML=`<span class="deck-plant-art">${seedSVG[d.id]}</span><span class="deck-plant-copy"><b>${d.name}</b><small>${d.role} · ${d.cost} dew</small></span><span class="deck-plant-action">${at>=0?`SLOT ${at+1}`:'ADD +'}</span>`;
+  b.title=at>=0?`Remove ${d.name} from your deck`:`Add ${d.name} to your deck`;
+  b.onclick=()=>{if(at>=0)selectedDeck.splice(at,1);else if(selectedDeck.length<6)selectedDeck.push(d.id);saveDeckChoice();};catalog.appendChild(b);
+ });
+ if(counter)counter.textContent=`${selectedDeck.length} / 6 SELECTED`;
+ const start=$('startBtn');if(start){start.disabled=selectedDeck.length!==6;start.textContent=selectedDeck.length===6?(selectedWorld==='snow'?'Enter Snowveil Reach':selectedWorld==='maple'?'Enter Maple Gathering':'Enter First Light'):`Choose ${6-selectedDeck.length} more plant${6-selectedDeck.length===1?'':'s'}`;}
+}
+function saveDeckChoice(){campaign.deck=selectedDeck.slice();persistCampaign();updateDeckBuilder();}
+
 makeCards();
 function sfx(freq=440,dur=.08,type='sine',vol=.035){
  if(!soundOn) return;
@@ -374,22 +465,26 @@ function chooseSeed(id){
  if(energy<d.cost){showToast(`NEED ${d.cost-energy} MORE DEW`);sfx(180,.07,'triangle',.02);return;}
  selected=id; shears=false;updateCards();$('shovelBtn').classList.remove('active');sfx(560,.045,'sine',.018);
 }
-const plantCooldown={sunbud:0,sprout:0,frost:0,bark:0,twin:0,ember:0};
+const plantCooldown={sunbud:0,sprout:0,frost:0,bark:0,twin:0,ember:0,poisonbud:0,archorot:0,bananabud:0,destroyer:0,trapadvisor:0,bee:0};
 function updateCards(){cards.forEach(c=>{c.el.classList.toggle('selected',selected===c.def.id);c.el.classList.toggle('disabled',energy<c.def.cost||(plantCooldown[c.def.id]||0)>0);const rem=plantCooldown[c.def.id]||0;c.el.querySelector('.seed-cool').style.transform=`scaleX(${clamp(1-rem/c.def.cool,0,1)})`;});}
 function startGame(){
- worldId=selectedWorld;document.body.classList.toggle('snow-world',worldId==='snow');
+ if(selectedDeck.length!==6){showToast('CHOOSE AND ORDER SIX PLANTS BEFORE ENTERING');return;}
+ makeCards();worldId=selectedWorld;document.body.classList.toggle('snow-world',worldId==='snow');document.body.classList.toggle('maple-world',worldId==='maple');
  resetGame();state='playing';paused=false;phase='prep';phaseTimer=5;selected=null;shears=false;hideOverlay();$('pauseBtn').innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 5v14M15 5v14"/></svg>';$('pauseBtn').setAttribute('aria-label','Pause game');
  $('statusText').textContent='A quiet moment before the first wave.';updateUI(true);persistRun();persistCampaign();sfx(520,.12,'sine',.04);
 }
 
 function updateWorldPicker(){
- const meadow=$('meadowWorldBtn'),snow=$('snowWorldBtn');if(!meadow||!snow)return;
+ const meadow=$('meadowWorldBtn'),snow=$('snowWorldBtn'),maple=$('mapleWorldBtn');if(!meadow||!snow||!maple)return;
  meadow.classList.toggle('selected',selectedWorld==='meadow');meadow.setAttribute('aria-pressed',String(selectedWorld==='meadow'));
  snow.disabled=!unlockedSnow;snow.classList.toggle('locked',!unlockedSnow);snow.classList.toggle('selected',selectedWorld==='snow');snow.setAttribute('aria-pressed',String(selectedWorld==='snow'));
- $('snowWorldState').textContent=unlockedSnow?'AVAILABLE':'CLEAR MEADOW TO UNLOCK';$('startBtn').textContent=selectedWorld==='snow'?'Enter Snowveil Reach':'Enter First Light';
+ maple.disabled=!unlockedMaple;maple.classList.toggle('locked',!unlockedMaple);maple.classList.toggle('selected',selectedWorld==='maple');maple.setAttribute('aria-pressed',String(selectedWorld==='maple'));
+ $('snowWorldState').textContent=unlockedSnow?'AVAILABLE':'CLEAR MEADOW TO UNLOCK';$('mapleWorldState').textContent=unlockedMaple?'AVAILABLE':'CLEAR SNOWVEIL TO UNLOCK';
+ if($('startBtn')&&selectedDeck.length===6)$('startBtn').textContent=selectedWorld==='snow'?'Enter Snowveil Reach':selectedWorld==='maple'?'Enter Maple Gathering':'Enter First Light';
 }
 $('meadowWorldBtn').addEventListener('click',()=>{selectedWorld='meadow';updateWorldPicker();persistCampaign()});
 $('snowWorldBtn').addEventListener('click',()=>{if(!unlockedSnow)return;selectedWorld='snow';updateWorldPicker();persistCampaign()});
+$('mapleWorldBtn').addEventListener('click',()=>{if(!unlockedMaple)return;selectedWorld='maple';updateWorldPicker();persistCampaign()});
 async function enterFullscreen(){
  const root=document.documentElement;
  try{
@@ -429,22 +524,22 @@ document.addEventListener('fullscreenchange',onFullscreenChange);
 document.addEventListener('webkitfullscreenchange',onFullscreenChange);
 
 function resetGame(){
- energy=175;hearts=3;wave=0;phase='idle';phaseTimer=0;spawnQueue=[];spawnTimer=0;spawnedThisWave=0;plants=[];enemies=[];shots=[];enemyShots=[];drops=[];particles=[];floating=[];selected=null;shears=false;elapsed=0;worldTime=0;dewTimer=4;weather=worldId==='snow'?'Blue hour':'Clear morning';weatherTimer=20;kills=0;plantedCount=0;lostCount=0;speed=1;paused=false;shake=0;saveTimer=2;
+ energy=175;hearts=3;wave=0;phase='idle';phaseTimer=0;spawnQueue=[];spawnTimer=0;spawnedThisWave=0;plants=[];enemies=[];allies=[];shots=[];enemyShots=[];drops=[];particles=[];floating=[];beeFlights=[];selected=null;shears=false;elapsed=0;worldTime=0;dewTimer=4;weather=worldId==='snow'?'Blue hour':worldId==='maple'?'Amber calm':'Clear morning';weatherTimer=20;kills=0;plantedCount=0;lostCount=0;speed=1;paused=false;shake=0;saveTimer=2;
  for(const k in plantCooldown)plantCooldown[k]=0;
  drops.push({id:nextId++,x:rand(BX+100,BR-80),y:rand(85,180),value:25,life:11,kind:'dew',vy:9,pulse:rand(0,6)});
  $('speedBtn').style.color='';$('speedBtn').title='Toggle speed';$('pauseBadge').classList.remove('show');updateCards();
 }
 function showOverlay(kind){
- overlayKind=kind;
+ overlayKind=kind;$('dialog').classList.toggle('menu-dialog',kind==='menu');$('deckBuilder').style.display=kind==='menu'?'block':'none';
  $('seedBank').parentElement.classList.toggle('locked',state!=='playing'||paused);
  $('overlay').classList.remove('hidden');$('guideBox').classList.remove('open');
  $('worldSelect').style.display=kind==='menu'?'grid':'none';
  if(kind==='menu'){
-  $('worldSelect').style.display='grid';$('dialogEyebrow').textContent='TWO WORLDS · ONE HEARTROOT';$('dialogTitle').innerHTML='Verdant <span>Vigil</span>';
-  $('dialogText').textContent='Choose your frontier. Build a living defense, harvest every drop of dew, and survive ten increasingly dangerous waves. The Frostbound Reach unlocks when the meadow is saved.';
+  $('worldSelect').style.display='grid';$('dialogEyebrow').textContent='THREE WORLDS · ONE HEARTROOT';$('dialogTitle').innerHTML='Verdant <span>Vigil</span>';
+  $('dialogText').textContent='Choose your frontier. Build a living defense, harvest every drop of dew, and survive ten increasingly dangerous waves. Snowveil Reach unlocks when the meadow is saved; Maple Gathering awaits after Snowveil.';
   $('dialogActions').innerHTML='<button class="primary-btn" id="startBtn">Enter First Light</button><button class="secondary-btn" id="guideBtn">Field guide</button>'+(savedRun?'<button class="secondary-btn" id="continueBtn">Resume saved run</button>':'');
   $('dialogNote').textContent='Fullscreen required · Progress and active runs save automatically';
-  $('startBtn').onclick=enterFullscreen;$('guideBtn').onclick=()=>{$('guideBox').classList.toggle('open')};if($('continueBtn'))$('continueBtn').onclick=()=>{resumeRequested=true;enterFullscreen()};updateWorldPicker();
+  $('startBtn').onclick=enterFullscreen;$('guideBtn').onclick=()=>{$('guideBox').classList.toggle('open')};if($('continueBtn'))$('continueBtn').onclick=()=>{resumeRequested=true;enterFullscreen()};updateWorldPicker();updateDeckBuilder();
  } else if(kind==='pause'){ $('worldSelect').style.display='none';
   $('dialogEyebrow').textContent='TAKE A BREATH';$('dialogTitle').innerHTML='Garden <span>paused</span>';
   $('dialogText').textContent='The Witherlings can wait. Your plants are safe while the garden is paused.';
@@ -463,7 +558,7 @@ function showOverlay(kind){
   $('dialogNote').textContent=`Plants placed: ${plantedCount} · Witherlings cleared: ${kills}`;$('againBtn').onclick=startGame;$('menuBtn').onclick=()=>{state='menu';showOverlay('menu')};
  } else if(kind==='win'){
   $('dialogEyebrow').textContent='THE HEARTROOT STILL GLOWS';$('dialogTitle').innerHTML='Garden <span>saved</span>';
-  $('dialogText').textContent=worldId==='meadow'?'All 10 waves have been cleared. The Witherlings have retreated, and the meadow is blooming again. Snowveil Reach has been unlocked.':'All 10 waves of the Frostbound Reach have been cleared. The blizzard has broken, and the Heartroot shines across both worlds.';
+  $('dialogText').textContent=worldId==='meadow'?'All 10 waves have been cleared. The Witherlings have retreated, and the meadow is blooming again. Snowveil Reach has been unlocked.':worldId==='snow'?'All 10 waves of the Frostbound Reach have been cleared. The blizzard has broken, and Maple Gathering has been unlocked.':'All 10 waves of Maple Gathering have been cleared. The Amberwood is safe, and the Heartroot shines across all three worlds.';
   $('dialogActions').innerHTML='<button class="primary-btn" id="againBtn">Play again</button><button class="secondary-btn" id="menuBtn">Main menu</button>';
   $('dialogNote').textContent=`${kills} enemies cleared · ${plantedCount} plants placed · ${Math.floor(elapsed)}s survived`;$('againBtn').onclick=startGame;$('menuBtn').onclick=()=>{state='menu';showOverlay('menu')};
  }
@@ -483,11 +578,22 @@ function togglePause(){
 function toggleShears(){if(state!=='playing'||paused)return;shears=!shears;selected=null;$('shovelBtn').classList.toggle('active',shears);updateCards();showToast(shears?'SHEARS READY — CHOOSE A PLANT':'SHEARS STORED');sfx(350,.06,'triangle',.02);}
 function placePlant(row,col,id){
  const def=seedDefs.find(s=>s.id===id);if(!def)return;
+ if(id==='bee'){
+  const target=plants.find(p=>p.row===row&&p.col===col&&p.type!=='trapadvisor');
+  if(!target){showToast('PLACE THE BEE ON A FRIENDLY PLANT');return;}
+  if(target.hp>=target.maxHp-.05){showToast('THAT PLANT IS ALREADY AT FULL HEALTH');return;}
+  if(energy<def.cost){showToast('NOT ENOUGH DEW');return;}
+  if(plantCooldown.bee>0){showToast('THE BEE IS STILL RESTING');return;}
+  energy-=def.cost;plantCooldown.bee=def.cool;
+  beeFlights.push({id:nextId++,targetId:target.id,sx:target.x+104,sy:target.y-96,tx:target.x,ty:target.y-45,life:0,duration:.72});
+  selected=null;updateCards();updateUI(true);persistRun();showToast('BEE DISPATCHED — HEALING INCOMING');sfx(720,.08,'sine',.025);return;
+ }
  if(plants.some(p=>p.row===row&&p.col===col)){showToast('THIS TILE IS ALREADY OCCUPIED');sfx(170,.07,'triangle',.02);return;}
  if(energy<def.cost){showToast('NOT ENOUGH DEW');return;}
  if(plantCooldown[id]>0){showToast('THAT SEED IS STILL RESTING');return;}
  energy-=def.cost;plantCooldown[id]=def.cool;
- const p={id:nextId++,type:id,row,col,x:BX+col*CW+CW/2,y:BY+row*CH+CH*.86,hp:id==='bark'?570:id==='twin'?205:id==='sunbud'?150:180,maxHp:id==='bark'?570:id==='twin'?205:id==='sunbud'?150:180,shoot:rand(.2,.7),produce:rand(4.2,6),anim:rand(0,8),flash:0,burst:.58};
+ const plantHP=id==='bark'?570:id==='twin'?205:id==='bananabud'?240:id==='sunbud'?150:id==='trapadvisor'?1: id==='destroyer'?170:180;
+ const p={id:nextId++,type:id,row,col,x:BX+col*CW+CW/2,y:BY+row*CH+CH*.86,hp:plantHP,maxHp:plantHP,shoot:rand(.2,.7),produce:rand(4.2,6),spawnTimer:3,anim:rand(0,8),flash:0,burst:.58};
  p.freezeTimer=0;plants.push(p);plantedCount++;selected=null;updateCards();persistRun();sfx(380+Math.random()*170,.09,'sine',.03);
  addParticles(p.x,p.y-26,def.color,12,80);floatText(p.x,p.y-60,'PLANTED',def.color);
  if(id==='ember'){showToast('EMBERBUD PRIMED — LANE BURST');}
@@ -520,18 +626,16 @@ document.addEventListener('keydown',e=>{
  if(state!=='playing'||paused)return;
  if(e.key.toLowerCase()==='x'){toggleShears();return;}
  if(e.key.toLowerCase()==='d'){const i=drops.findIndex(d=>Math.hypot(mouse.x-d.x,mouse.y-d.y)<27);if(i>=0)collectDrop(i);return;}
- const n=Number(e.key);if(n>=1&&n<=6)chooseSeed(seedDefs[n-1].id);
+ const n=Number(e.key);if(n>=1&&n<=6&&selectedDeck[n-1])chooseSeed(selectedDeck[n-1]);
 });
 
 function makeWave(w){
- // Snowveil's finale is a moderate six-enemy encounter, not a boss spike.
- // Its fixed roster preserves a mix of ranged pressure and one heavy defender.
+ // Maple Gathering is the third frontier: denser than Snowveil, with tougher
+ // amberwood creatures, but still a measured roster rather than a huge boss rush.
  if(worldId==='snow'&&w===10)return ['icewisp','icewisp','frostarcher','frostarcher','frostarcher','glacierwarden'];
- // Meadow retains its current roster size. Snowveil now spawns one quarter
- // of Meadow's original roster (half of the previous Snowveil count), rounded
- // up so odd-sized waves retain at least one enemy.
+ if(worldId==='maple'&&w===10)return ['maplescout','maplescout','sapbrute','maplescout','amberstalker','maplescout','sapbrute','maplescout','amberstalker','maplescout','sapbrute','maplescout','rootmaw'];
  const meadowCount=w===1?3:Math.round(5+(w-1)*3.05+(w>=7?(w-6)*.55:0));
- const count=worldId==='snow'?snowWaveTarget(w):meadowCount;
+ const count=worldId==='snow'?snowWaveTarget(w):worldId==='maple'?Math.ceil(meadowCount*.42):meadowCount;
  const q=[];
  for(let i=0;i<count;i++){
   let type='drifter';
@@ -541,6 +645,13 @@ function makeWave(w){
    if(w>=4&&i%5===3)type='glacierwarden';
    if(w>=7&&i%7===5)type='frostarcher';
    if(w>=9&&i===Math.floor(count*.68))type='glacierwarden';
+  }else if(worldId==='maple'){
+   type='maplescout';
+   if(w>=2&&i%4===1)type='maplescout';
+   if(w>=3&&i%5===2)type='sapbrute';
+   if(w>=5&&i%6===4)type='amberstalker';
+   if(w>=7&&i%7===5)type='sapbrute';
+   if(w>=9&&i===Math.floor(count*.68))type='amberstalker';
   }else{
    if(w>=2&&i%3===2)type='skitter';
    if(w>=4&&i%4===3)type='brute';
@@ -553,7 +664,7 @@ function makeWave(w){
  if(w===10&&worldId!=='snow')q.push('rootmaw');
  return q;
 }
-function beginWave(){wave++;spawnQueue=makeWave(wave);spawnTimer=1.25;spawnedThisWave=0;phase='wave';phaseTimer=0;showToast(`${worldId==='snow'?'FROST FRONT':'WAVE'} ${wave} — THEY'RE COMING`);sfx(300,.2,'sawtooth',.018);updateUI(true);persistRun();}
+function beginWave(){wave++;spawnQueue=makeWave(wave);spawnTimer=1.25;spawnedThisWave=0;phase='wave';phaseTimer=0;showToast(`${worldId==='snow'?'FROST FRONT':worldId==='maple'?'AMBERWOOD FRONT':'WAVE'} ${wave} — THEY'RE COMING`);sfx(300,.2,'sawtooth',.018);updateUI(true);persistRun();}
 function spawnEnemy(type){
  const row=(Math.floor(Math.random()*ROWS)+Math.floor(spawnedThisWave/2))%ROWS;
  const hpScale=.9*(1+(wave-1)*.09+Math.max(0,wave-5)*.08); // 10% less HP than the previous balance; wave progression is preserved.
@@ -568,11 +679,15 @@ function spawnEnemy(type){
   rootmaw:{hp:690,speed:9.2,damage:72,bite:1.0,rad:38,armor:130},
   icewisp:{hp:145,speed:25,damage:30,bite:.9,rad:23,range:440,fire:1.75,rangedDamage:34,freeze:1.15},
   frostarcher:{hp:210,speed:16,damage:38,bite:1.0,rad:25,range:565,fire:2.15,rangedDamage:48},
-  glacierwarden:{hp:470,speed:10,damage:68,bite:1.25,rad:35,armor:230,range:635,fire:2.8,rangedDamage:72,freeze:2.0}
+  glacierwarden:{hp:470,speed:10,damage:68,bite:1.25,rad:35,armor:230,range:635,fire:2.8,rangedDamage:72,freeze:2.0},
+  maplescout:{hp:128,speed:32,damage:27,bite:.82,rad:21},
+  sapbrute:{hp:405,speed:12,damage:49,bite:1.12,rad:33,armor:78},
+  amberstalker:{hp:205,speed:17,damage:31,bite:.94,rad:25,range:510,fire:2.35,rangedDamage:43}
  }[type];
- const hp=stats.hp*hpScale;
- enemies.push({id:nextId++,type,row,x:BR+48,y:BY+row*CH+CH*.86,hp,maxHp:hp,armor:(stats.armor||0)*2,maxArmor:(stats.armor||0)*2,speed:stats.speed*speedScale,damage:stats.damage*damageScale,biteRate:stats.bite,rad:stats.rad,attack:0,anim:rand(0,8),flash:0,slow:0,dead:false,dash:rand(1.8,3.8),range:stats.range||0,fireRate:stats.fire||0,rangedDamage:(stats.rangedDamage||0)*damageScale,freeze:stats.freeze||0,rangedCooldown:rand(.45,1.2)});
- addParticles(BR+12,BY+row*CH+CH*.86-8,type==='rootmaw'||type==='glacierwarden'?'#b7a17b':type==='icewisp'||type==='frostarcher'?'#aee8f8':'#728a68',type==='rootmaw'||type==='glacierwarden'?15:7,type==='rootmaw'||type==='glacierwarden'?65:36);
+ const mapleFactor=worldId==='maple'?1.08:1;
+ const hp=stats.hp*hpScale*mapleFactor;
+ enemies.push({id:nextId++,type,row,x:BR+48,y:BY+row*CH+CH*.86,hp,maxHp:hp,armor:(stats.armor||0)*2,maxArmor:(stats.armor||0)*2,speed:stats.speed*speedScale*(worldId==='maple'?1.04:1),damage:stats.damage*damageScale*(worldId==='maple'?1.05:1),biteRate:stats.bite,rad:stats.rad,attack:0,anim:rand(0,8),flash:0,slow:0,dead:false,dash:rand(1.8,3.8),range:stats.range||0,fireRate:stats.fire||0,rangedDamage:(stats.rangedDamage||0)*damageScale,freeze:stats.freeze||0,rangedCooldown:rand(.45,1.2)});
+ addParticles(BR+12,BY+row*CH+CH*.86-8,type==='rootmaw'||type==='glacierwarden'?'#b7a17b':type==='icewisp'||type==='frostarcher'?'#aee8f8':type==='maplescout'||type==='sapbrute'||type==='amberstalker'?'#d28a52':'#728a68',type==='rootmaw'||type==='glacierwarden'?15:7,type==='rootmaw'||type==='glacierwarden'?65:36);
 }
 function tickWeather(dt){
  weatherTimer-=dt;
@@ -581,6 +696,10 @@ function tickWeather(dt){
    if(weather==='Blue hour'){weather='Snow squall';weatherTimer=22;showToast('SNOW SQUALL — VISIBILITY FALLS');}
    else if(weather==='Snow squall'){weather='Aurora';weatherTimer=24;showToast('AURORA — THE FROST GLEAMS');}
    else{weather='Blue hour';weatherTimer=21;showToast('THE BLUE HOUR RETURNS');}
+  }else if(worldId==='maple'){
+   if(weather==='Amber calm'){weather='Leaffall';weatherTimer=22;showToast('LEAFFALL — AMBER DEW IS RICHER');}
+   else if(weather==='Leaffall'){weather='Golden haze';weatherTimer=24;showToast('GOLDEN HAZE — THE GROVE GLOWS');}
+   else{weather='Amber calm';weatherTimer=20;showToast('THE AMBERWOOD SETTLES');}
   }else{
    if(weather==='Clear morning'){weather='Dewfall';weatherTimer=23;showToast('DEWFALL — ENERGY DROPS ARE RICHER');}
    else if(weather==='Dewfall'){weather='Crosswind';weatherTimer=25;showToast('CROSSWIND — SHOTS FLY FASTER');}
@@ -595,9 +714,10 @@ function update(dt){
  for(const k in plantCooldown)plantCooldown[k]=Math.max(0,plantCooldown[k]-step);
  dewTimer-=step;
  if(dewTimer<=0){
-  const isDew=worldId==='meadow'&&weather==='Dewfall';
-  drops.push({id:nextId++,x:rand(BX+45,BR-30),y:rand(BY+10,BY+160),value:isDew?35:25,life:12,kind:'dew',vy:rand(6,13),pulse:rand(0,6)});
-  dewTimer=worldId==='meadow'&&weather==='Dewfall'?5.6:8.8;
+  const isDew=(worldId==='meadow'&&weather==='Dewfall')||(worldId==='maple'&&weather==='Leaffall');
+  const dewValue=worldId==='maple'&&isDew?32:isDew?35:25;
+  drops.push({id:nextId++,x:rand(BX+45,BR-30),y:rand(BY+10,BY+160),value:dewValue,life:12,kind:'dew',vy:rand(6,13),pulse:rand(0,6)});
+  dewTimer=worldId==='meadow'&&weather==='Dewfall'?5.6:worldId==='maple'&&weather==='Leaffall'?6.9:8.8;
  }
  if(phase==='prep'){
   phaseTimer-=step;
@@ -609,10 +729,10 @@ function update(dt){
   phaseTimer-=step;if(phaseTimer<=0)beginWave();
  }
  // Plants: economy, firing, timed burst.
- for(let i=plants.length-1;i>=0;i--){const p=plants[i];p.anim+=step*2.2;p.flash=Math.max(0,p.flash-step*3);p.freezeTimer=Math.max(0,(p.freezeTimer||0)-step);p.frozen=p.freezeTimer>0;
+ for(let i=plants.length-1;i>=0;i--){const p=plants[i];p.anim+=step*2.2;p.flash=Math.max(0,p.flash-step*3);p.healGlow=Math.max(0,(p.healGlow||0)-step);p.freezeTimer=Math.max(0,(p.freezeTimer||0)-step);p.frozen=p.freezeTimer>0;
   if(p.frozen)continue;
   if(p.type==='sunbud'){
-   p.produce-=step;if(p.produce<=0){const rich=worldId==='meadow'&&weather==='Dewfall';const val=rich?40:25;drops.push({id:nextId++,x:p.x+rand(-16,16),y:p.y-47,value:val,life:13,kind:'dew',vy:-5,pulse:0});p.produce=rich?5.9:7.3;addParticles(p.x,p.y-46,worldId==='snow'?'#b5efff':'#f7d46e',5,32);}
+   p.produce-=step;if(p.produce<=0){const rich=(worldId==='meadow'&&weather==='Dewfall')||(worldId==='maple'&&weather==='Leaffall');const val=worldId==='maple'&&rich?35:rich?40:25;drops.push({id:nextId++,x:p.x+rand(-16,16),y:p.y-47,value:val,life:13,kind:'dew',vy:-5,pulse:0});p.produce=rich?(worldId==='maple'?6.5:5.9):7.3;addParticles(p.x,p.y-46,worldId==='snow'?'#b5efff':'#f7d46e',5,32);}
   } else if(p.type==='sprout'||p.type==='frost'||p.type==='twin'){
    p.shoot-=step;
    const target=enemies.some(e=>e.row===p.row&&e.x>p.x+12);
@@ -622,6 +742,32 @@ function update(dt){
     for(let b=0;b<bullets;b++)shots.push({x:p.x+25,y:p.y-22+(b?8:-2),row:p.row,vx:(weather==='Crosswind'?470:390),damage:p.type==='frost'?17:p.type==='twin'?23:27,slow:p.type==='frost'?.38:0,kind:p.type==='frost'?'ice':p.type==='twin'?'twin':'leaf',r:p.type==='frost'?8:7});
     p.shoot=rate; p.flash=.18; sfx(p.type==='frost'?600:520,.035,'sine',.012);
    }
+  } else if(p.type==='destroyer'){
+   p.shoot-=step;
+   const target=enemies.some(e=>e.row===p.row&&e.x>p.x+12);
+   if(target&&p.shoot<=0){shots.push({x:p.x+25,y:p.y-25,row:p.row,vx:(weather==='Crosswind'?650:570),damage:7.5,kind:'destroyer',r:5});p.shoot=.36;p.flash=.12;sfx(660,.025,'triangle',.009);}
+  } else if(p.type==='poisonbud'){
+   p.shoot-=step;
+   const target=enemies.some(e=>e.row===p.row&&e.x>p.x+12);
+   if(target&&p.shoot<=0){
+    shots.push({x:p.x+25,y:p.y-25,row:p.row,vx:(weather==='Crosswind'?470:390),damage:3,kind:'poison',r:7});
+    p.shoot=2.4;p.flash=.18;sfx(390,.045,'sine',.014);
+   }
+  } else if(p.type==='archorot'){
+   p.shoot-=step;
+   const target=enemies.some(e=>e.row===p.row&&e.x>p.x+12&&e.x-p.x<=260);
+   if(p.hp>=p.maxHp*.5&&target&&p.shoot<=0){
+    shots.push({x:p.x+25,y:p.y-25,row:p.row,vx:(weather==='Crosswind'?470:390),damage:24,kind:'archorot',r:6});
+    p.shoot=2.15;p.flash=.18;sfx(500,.04,'triangle',.012);
+   }
+   if(p.hp<p.maxHp*.5&&!p.lowHealthWarned){p.lowHealthWarned=true;floatText(p.x,p.y-68,'ARCHOROT WOUNDED','#e9a18a');}
+  } else if(p.type==='bananabud'){
+   p.spawnTimer=(p.spawnTimer??3)-step;
+   if(p.spawnTimer<=0){
+    allies.push({id:nextId++,type:'banana',row:p.row,x:p.x+28,y:p.y,hp:42,maxHp:42,damage:9,attackRate:1.3,attack:rand(.15,.55),speed:40,range:39,anim:rand(0,6),flash:0});
+    p.spawnTimer+=3;
+    addParticles(p.x+24,p.y-16,'#f3d45f',9,38);floatText(p.x,p.y-70,'BANANA!','#f5dc75');sfx(610,.06,'triangle',.014);
+   }
   } else if(p.type==='ember'){
    p.burst-=step;if(p.burst<=0){
     for(const e of enemies){if(e.row===p.row&&Math.abs(e.x-p.x)<235){e.hp-=220;e.flash=.24;addParticles(e.x,e.y-14,'#ff9b61',12,85);}}
@@ -629,16 +775,37 @@ function update(dt){
    }
   }
  }
- // Projectiles travel toward the Witherlings.
- for(let i=shots.length-1;i>=0;i--){const s=shots[i];s.x+=s.vx*step;if(s.x>BR+100){shots.splice(i,1);continue;}let hit=null;for(const e of enemies){if(e.row===s.row&&Math.abs(e.x-s.x)<e.rad*.72){hit=e;break;}}if(hit){let damage=s.damage;if(hit.armor>0){const absorbed=Math.min(hit.armor,damage);hit.armor-=absorbed;damage-=absorbed;addParticles(hit.x-8,hit.y-28,'#d6bd8d',6,44);}if(damage>0)hit.hp-=damage;hit.flash=.16;if(s.slow)hit.slow=Math.max(hit.slow,2.2);addParticles(s.x,s.y,s.kind==='ice'?'#aeeeff':'#b4e68a',5,38);shots.splice(i,1);if(hit.hp<=0)defeatEnemy(hit);}}
+ // Bee flights arc toward their selected plant, then restore 30% of its current HP.
+ for(let i=beeFlights.length-1;i>=0;i--){
+  const f=beeFlights[i];f.life+=step;
+  if(f.life>=f.duration){const target=plants.find(p=>p.id===f.targetId);if(target){const healed=Math.min(target.maxHp-target.hp,target.hp*.30);if(healed>0){target.hp+=healed;target.healGlow=.95;addParticles(target.x,target.y-44,'#f7dc72',15,65);floatText(target.x,target.y-70,`+${Math.ceil(healed)} HP`,'#e5e993');sfx(820,.14,'sine',.025);}}beeFlights.splice(i,1);}
+  else{const progress=f.life/f.duration;const x=f.sx+(f.tx-f.sx)*progress,y=f.sy+(f.ty-f.sy)*progress-Math.sin(progress*Math.PI)*27;addParticles(x,y,'#f3d15d',1,8);}
+ }
+ // Banana allies advance down their lane and pester the first enemy they reach.
+ for(let i=allies.length-1;i>=0;i--){
+  const a=allies[i];a.anim+=step*3;a.flash=Math.max(0,(a.flash||0)-step*3);a.attack=Math.max(0,(a.attack||0)-step);
+  if(a.hp<=0){allies.splice(i,1);addParticles(a.x,a.y-12,'#efd56e',8,38);continue;}
+  let target=null;for(const e of enemies){if(e.row===a.row&&e.x>a.x-8&&(!target||e.x<target.x))target=e;}
+  if(target&&target.x-a.x<=a.range+target.rad*.22){
+   if(a.attack<=0){let dmg=a.damage;if(target.armor>0){const absorbed=Math.min(target.armor,dmg);target.armor-=absorbed;dmg-=absorbed;}if(dmg>0)target.hp-=dmg;target.flash=.12;addParticles(target.x-12,target.y-22,'#f2d66a',3,24);a.attack=a.attackRate;if(target.hp<=0)defeatEnemy(target);}
+  }else{
+   a.x+=a.speed*step;
+   if(a.x>BR+35){allies.splice(i,1);continue;}
+  }
+ }
+ // Projectiles travel toward the Witherlings. Poison pierces armor and refreshes its duration.
+ for(let i=shots.length-1;i>=0;i--){const s=shots[i];s.x+=s.vx*step;if(s.x>BR+100){shots.splice(i,1);continue;}let hit=null;for(const e of enemies){if(e.row===s.row&&Math.abs(e.x-s.x)<e.rad*.72){hit=e;break;}}if(hit){let damage=s.damage;if(hit.armor>0&&s.kind!=='poison'){const absorbed=Math.min(hit.armor,damage);hit.armor-=absorbed;damage-=absorbed;addParticles(hit.x-8,hit.y-28,'#d6bd8d',6,44);}if(damage>0)hit.hp-=damage;hit.flash=.16;if(s.slow)hit.slow=Math.max(hit.slow,2.2);if(s.kind==='poison'){hit.poisonTimer=8;hit.poisonTick=.4;addParticles(hit.x,hit.y-25,'#b8e65f',9,45);floatText(hit.x,hit.y-49,'POISONED','#c5ed75');}else addParticles(s.x,s.y,s.kind==='ice'?'#aeeeff':'#b4e68a',5,38);shots.splice(i,1);if(hit.hp<=0)defeatEnemy(hit);}}
  // Ranged enemies fire physical ice projectiles at the front-most plant in their lane.
- for(let i=enemyShots.length-1;i>=0;i--){const q=enemyShots[i];q.x-=q.speed*step;q.life-=step;const target=plants.find(p=>p.id===q.targetId);if(!target||q.life<=0){enemyShots.splice(i,1);continue;}if(q.x<=target.x+17){target.hp-=q.damage;target.flash=.32;if(q.freeze)target.freezeTimer=Math.max(target.freezeTimer||0,q.freeze);addParticles(target.x,target.y-24,q.kind==='shard'?'#e7fbff':'#9ce6fa',13,64);floatText(target.x,target.y-48,q.freeze?'FROSTBOUND':`-${Math.ceil(q.damage)}`,'#b9edff');if(target.hp<=0){plants=plants.filter(p=>p!==target);addParticles(target.x,target.y-24,'#a4dbe9',19,75);}enemyShots.splice(i,1);sfx(165,.07,'sine',.012);}}
+ for(let i=enemyShots.length-1;i>=0;i--){const q=enemyShots[i];q.x-=q.speed*step;q.life-=step;const target=plants.find(p=>p.id===q.targetId&&p.type!=='trapadvisor');if(!target||q.life<=0){enemyShots.splice(i,1);continue;}if(q.x<=target.x+17){target.hp-=q.damage;target.flash=.32;if(q.freeze)target.freezeTimer=Math.max(target.freezeTimer||0,q.freeze);addParticles(target.x,target.y-24,q.kind==='shard'?'#e7fbff':q.kind==='sap'?'#eeb260':'#9ce6fa',13,64);floatText(target.x,target.y-48,q.freeze?'FROSTBOUND':`-${Math.ceil(q.damage)}`,q.kind==='sap'?'#f1ba72':'#b9edff');if(target.hp<=0){plants=plants.filter(p=>p!==target);addParticles(target.x,target.y-24,'#a4dbe9',19,75);}enemyShots.splice(i,1);sfx(165,.07,'sine',.012);}}
  // Enemies advance, chew blockers, or hold their ground to bombard from range.
  for(let i=enemies.length-1;i>=0;i--){const e=enemies[i];e.anim+=step*2.5;e.flash=Math.max(0,e.flash-step*3);e.slow=Math.max(0,e.slow-step);
-  let rangedTarget=null;if(e.range){for(const p of plants){if(p.row===e.row&&p.x<e.x&&e.x-p.x<=e.range&&(!rangedTarget||p.x>rangedTarget.x))rangedTarget=p;}}
-  if(rangedTarget){e.rangedCooldown-=step;if(e.rangedCooldown<=0){enemyShots.push({id:nextId++,targetId:rangedTarget.id,row:e.row,x:e.x-19,y:e.y-35,targetX:rangedTarget.x,targetY:rangedTarget.y-22,speed:e.type==='icewisp'?390:e.type==='frostarcher'?470:410,damage:e.rangedDamage,freeze:e.freeze||0,kind:e.type==='frostarcher'?'shard':'bolt',life:3.2});e.rangedCooldown=e.fireRate;addParticles(e.x-20,e.y-34,'#b9efff',7,42);sfx(e.type==='glacierwarden'?245:430,.055,'sine',.012);}}
-  else{let blocker=null;for(const p of plants){if(p.row===e.row&&p.x<e.x&&e.x-p.x<e.rad+19){if(!blocker||p.x>blocker.x)blocker=p;}}
-   if(blocker){e.attack-=step;if(e.attack<=0){blocker.hp-=e.damage;e.attack=e.biteRate;blocker.flash=.25;addParticles(blocker.x+rand(-10,10),blocker.y-15,'#d5aa7a',3,26);sfx(100,.04,'triangle',.009);if(blocker.hp<=0){plants=plants.filter(p=>p!==blocker);addParticles(blocker.x,blocker.y-22,worldId==='snow'?'#9bc9d9':'#9b7959',15,70);}}}
+  if(e.poisonTimer>0){e.poisonTick=(e.poisonTick||.4)-step;while(e.poisonTick<=0&&e.poisonTimer>0){e.hp-=7.5;e.poisonTick+=.4;addParticles(e.x+rand(-8,8),e.y-24,'#b8e65f',2,18);if(e.hp<=0){defeatEnemy(e);break;}}e.poisonTimer=Math.max(0,e.poisonTimer-step);if(!enemies.includes(e))continue;}
+  const trapIndex=plants.findIndex(p=>p.type==='trapadvisor'&&p.row===e.row&&e.x<=p.x+e.rad*.28&&e.x>=p.x-e.rad*.9);
+  if(trapIndex>=0){const trap=plants.splice(trapIndex,1)[0];e.hp-=90;e.flash=.28;addParticles(trap.x,trap.y-15,'#d6b17c',24,115);addParticles(e.x,e.y-22,'#e2c18d',12,72);floatText(e.x,e.y-52,'TRAP! −90','#f1c58c');shake=Math.max(shake,2.5);sfx(185,.11,'square',.025);if(e.hp<=0){defeatEnemy(e);continue;}}
+  let rangedTarget=null;if(e.range){for(const p of plants){if(p.type!=='trapadvisor'&&p.row===e.row&&p.x<e.x&&e.x-p.x<=e.range&&(!rangedTarget||p.x>rangedTarget.x))rangedTarget=p;}}
+  if(rangedTarget){e.rangedCooldown-=step;if(e.rangedCooldown<=0){enemyShots.push({id:nextId++,targetId:rangedTarget.id,row:e.row,x:e.x-19,y:e.y-35,targetX:rangedTarget.x,targetY:rangedTarget.y-22,speed:e.type==='icewisp'?390:e.type==='frostarcher'?470:410,damage:e.rangedDamage,freeze:e.freeze||0,kind:e.type==='frostarcher'?'shard':e.type==='amberstalker'?'sap':'bolt',life:3.2});e.rangedCooldown=e.fireRate;addParticles(e.x-20,e.y-34,'#b9efff',7,42);sfx(e.type==='glacierwarden'?245:430,.055,'sine',.012);}}
+  else{let blocker=null;for(const p of plants){if(p.type!=='trapadvisor'&&p.row===e.row&&p.x<e.x&&e.x-p.x<e.rad+19){if(!blocker||p.x>blocker.x)blocker=p;}}for(const a of allies){if(a.row===e.row&&a.x<e.x&&e.x-a.x<e.rad+17&&(!blocker||a.x>blocker.x))blocker=a;}
+   if(blocker){e.attack-=step;if(e.attack<=0){blocker.hp-=e.damage;e.attack=e.biteRate;blocker.flash=.25;addParticles(blocker.x+rand(-10,10),blocker.y-15,blocker.type==='banana'?'#efd56e':'#d5aa7a',3,26);sfx(100,.04,'triangle',.009);if(blocker.type==='banana'){if(blocker.hp<=0){allies=allies.filter(a=>a!==blocker);addParticles(blocker.x,blocker.y-18,'#efd56e',10,48);}}else if(blocker.hp<=0){plants=plants.filter(p=>p!==blocker);addParticles(blocker.x,blocker.y-22,worldId==='snow'?'#9bc9d9':'#9b7959',15,70);}}}
    else{const weatherFactor=worldId==='meadow'&&weather==='Crosswind'?.82:1;let rush=1;if(e.type==='ravager'){e.dash-=step;if(e.dash<=0){rush=2.35;e.dash=rand(2.4,3.7);}}e.x-=e.speed*weatherFactor*(e.slow>0?.62:1)*rush*step;}}
   if(e.x<BX-2){enemies.splice(i,1);hearts--;lostCount++;shake=9;addParticles(BX-5,e.y,'#d2b77c',18,90);floatText(BX+14,e.y-40,'HEARTROOT HIT!','#ffb28a');sfx(95,.28,'sawtooth',.05);if(hearts<=0){loseGame();return;}}
  }
@@ -651,24 +818,24 @@ function update(dt){
  uiTimer-=step;if(uiTimer<=0){updateUI();uiTimer=.12;}
 }
 function defeatEnemy(e){
- const i=enemies.indexOf(e);if(i<0)return;enemies.splice(i,1);kills++;addParticles(e.x,e.y-15,e.type==='brute'?'#b1a58b':'#9ebc78',19,90);floatText(e.x,e.y-45,'CLEARED','#c7e9a7');
+ const i=enemies.indexOf(e);if(i<0)return;enemies.splice(i,1);kills++;addParticles(e.x,e.y-15,worldId==='maple'?'#d78b50':e.type==='brute'?'#b1a58b':'#9ebc78',19,90);floatText(e.x,e.y-45,'CLEARED','#c7e9a7');
  if(Math.random()<.13)drops.push({id:nextId++,x:e.x,y:e.y-22,value:25,life:8,kind:'dew',vy:-10,pulse:0});
  sfx(e.type==='brute'?170:240,.07,'triangle',.018);
 }
 function loseGame(){state='lost';paused=false;selected=null;updateCards();if(kills>best)best=kills;campaign.losses=(campaign.losses||0)+1;campaign.lastOutcome='loss';persistCampaign();clearSavedRun();$('bestText').textContent=best;showOverlay('lost');}
-function winGame(){state='win';paused=false;selected=null;updateCards();best=Math.max(best,kills);campaign.wins=(campaign.wins||0)+1;campaign.lastOutcome='victory';campaign.lastWorld=worldId;if(worldId==='meadow')unlockedSnow=true;campaign[`best_${worldId}`]=Math.max(campaign[`best_${worldId}`]||0,kills);persistCampaign();clearSavedRun();$('bestText').textContent=best;showOverlay('win');sfx(880,.5,'sine',.05);}
+function winGame(){state='win';paused=false;selected=null;updateCards();best=Math.max(best,kills);campaign.wins=(campaign.wins||0)+1;campaign.lastOutcome='victory';campaign.lastWorld=worldId;if(worldId==='meadow')unlockedSnow=true;if(worldId==='snow')unlockedMaple=true;campaign[`best_${worldId}`]=Math.max(campaign[`best_${worldId}`]||0,kills);persistCampaign();clearSavedRun();$('bestText').textContent=best;showOverlay('win');sfx(880,.5,'sine',.05);}
 function addParticles(x,y,color,n=8,power=60){for(let i=0;i<n;i++){const a=rand(0,Math.PI*2),v=rand(power*.25,power);particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:rand(.25,.7),max:.7,r:rand(2,5),color});}}
 function floatText(x,y,text,color){floating.push({x,y,text,color,life:1.0,max:1.0});}
 function updateParticles(dt){for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.life-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=85*dt;p.vx*=Math.pow(.12,dt);if(p.life<=0)particles.splice(i,1);}for(let i=floating.length-1;i>=0;i--){const f=floating[i];f.life-=dt;f.y-=22*dt;if(f.life<=0)floating.splice(i,1);}}
 function updateUI(force=false){
  $('energyText').textContent=Math.floor(energy);$('waveText').textContent=wave?`${wave} / 10`:'— / 10';$('heartsText').textContent=`${hearts} / 3`;$('waveProgress').style.width=`${clamp(wave/10*100,0,100)}%`;
- $('weatherText').textContent=weather;$('weatherDot').style.background=weather==='Dewfall'?'#f2cc68':weather==='Crosswind'?'#a8dded':worldId==='snow'?'#a9e9ff':'#b9e9a0';$('weatherDot').style.boxShadow=`0 0 12px ${weather==='Dewfall'?'#f2cc68':weather==='Crosswind'?'#a8dded':worldId==='snow'?'#a9e9ff':'#b9e9a0'}`;
- $('weatherText').parentElement.querySelector('.meta-label').textContent=worldId==='snow'?'Frost conditions':'Garden weather';
- document.querySelector('.brand-sub').textContent=worldId==='snow'?'SNOWVEIL REACH':'A HEARTROOT DEFENSE';
+ $('weatherText').textContent=weather;$('weatherDot').style.background=weather==='Dewfall'?'#f2cc68':weather==='Crosswind'?'#a8dded':worldId==='snow'?'#a9e9ff':worldId==='maple'?'#f0b36e':'#b9e9a0';$('weatherDot').style.boxShadow=`0 0 12px ${weather==='Dewfall'?'#f2cc68':weather==='Crosswind'?'#a8dded':worldId==='snow'?'#a9e9ff':worldId==='maple'?'#f0b36e':'#b9e9a0'}`;
+ $('weatherText').parentElement.querySelector('.meta-label').textContent=worldId==='snow'?'Frost conditions':worldId==='maple'?'Amberwood weather':'Garden weather';
+ document.querySelector('.brand-sub').textContent=worldId==='snow'?'SNOWVEIL REACH':worldId==='maple'?'MAPLE GATHERING':'A HEARTROOT DEFENSE';
  let stat='Ready when you are.';
  if(state==='playing'){
   if(phase==='prep')stat=`First wave in ${Math.ceil(phaseTimer)}s · Place your defenses.`;
-  else if(phase==='wave')stat=`${spawnQueue.length+enemies.length+enemyShots.length*0} ${worldId==='snow'?'Frostborn':'Witherlings'} remain in wave ${wave}.`;
+  else if(phase==='wave')stat=`${spawnQueue.length+enemies.length+enemyShots.length*0} ${worldId==='snow'?'Frostborn':worldId==='maple'?'Amberwood creatures':'Witherlings'} remain in wave ${wave}.`;
   else if(phase==='intermission')stat=`Wave ${wave} cleared · Next wave in ${Math.ceil(phaseTimer)}s.`;
  }
  $('statusText').textContent=stat;$('seedBank').parentElement.classList.toggle('locked',state!=='playing'||paused);updateCards();
@@ -677,9 +844,9 @@ function updateUI(force=false){
 // ---------- Canvas rendering ----------
 function rounded(x,y,w,h,r,fill,stroke){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill();}if(stroke){ctx.strokeStyle=stroke;ctx.stroke();}}
 function drawBackground(t){
- const snow=worldId==='snow';
+ const snow=worldId==='snow',maple=worldId==='maple';
  const sky=ctx.createLinearGradient(0,0,0,H);
- if(snow){sky.addColorStop(0,'#294c69');sky.addColorStop(.38,'#789eae');sky.addColorStop(1,'#d5e7e8');}else{sky.addColorStop(0,'#829f82');sky.addColorStop(.42,'#b6cc99');sky.addColorStop(1,'#47734c');}
+ if(snow){sky.addColorStop(0,'#294c69');sky.addColorStop(.38,'#789eae');sky.addColorStop(1,'#d5e7e8');}else if(maple){sky.addColorStop(0,'#4e4652');sky.addColorStop(.4,'#a76d58');sky.addColorStop(1,'#d9a06b');}else{sky.addColorStop(0,'#829f82');sky.addColorStop(.42,'#b6cc99');sky.addColorStop(1,'#47734c');}
  ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);
  if(snow){
   // Polar dawn with a layered aurora ribbon and distant glacial peaks.
@@ -692,6 +859,16 @@ function drawBackground(t){
   for(let i=0;i<180;i++){const x=(i*83+((t*3)%83))%W,y=365+(i*31)%160;ctx.strokeStyle=i%2?'#f2ffff35':'#37657c29';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x,y+6);ctx.quadraticCurveTo(x-3,y-2,x+Math.sin(i*8.3)*5,y-8);ctx.stroke();}
   // Animated snowfall at multiple depths.
   for(let i=0;i<95;i++){const x=(i*137+t*(10+(i%4)*5))%(W+20),y=(i*71+t*(20+(i%5)*5))%(H+12);ctx.globalAlpha=.26+(i%4)*.13;ctx.fillStyle='#f5ffff';ctx.beginPath();ctx.arc(x,y,1+(i%3)*.55,0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;
+ }else if(maple){
+  // Amber dusk, layered copper hills and a dense canopy make this frontier distinct.
+  const glow=ctx.createRadialGradient(955,42,8,955,42,260);glow.addColorStop(0,'#ffe4a9b8');glow.addColorStop(.34,'#e9a15d55');glow.addColorStop(1,'#e9a15d00');ctx.fillStyle=glow;ctx.fillRect(690,0,520,300);
+  const hills=[['#9c6550',142,25,.008],['#815044',220,19,.012],['#69443b',302,15,.016]];hills.forEach(([color,base,amp,freq],idx)=>{ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(0,base+75);for(let x=0;x<=W;x+=34){const y=base+Math.sin(x*freq+t*(.025+idx*.01)+idx)*amp+Math.sin(x*.024+idx)*6;ctx.lineTo(x,y);}ctx.lineTo(W,base+145);ctx.lineTo(0,base+145);ctx.closePath();ctx.fill();});
+  // Distant maples: dark trunks beneath layered copper, rust and gold crowns.
+  for(let i=0;i<18;i++){const x=i*72-20,y=300+(i%4)*7,scale=.72+(i%3)*.12;ctx.fillStyle='#583d32';ctx.fillRect(x-3*scale,y-62*scale,6*scale,76*scale);for(let k=0;k<4;k++){const ox=(k%2?1:-1)*(10+(k%3)*5)*scale,oy=(-62+Math.floor(k/2)*13)*scale;ctx.fillStyle=['#a64f36','#c36c3d','#d28c48','#874334'][(i+k)%4];ctx.beginPath();ctx.arc(x+ox,y+oy,15*scale+(k%2)*3,0,Math.PI*2);ctx.fill();}}
+  const ground=ctx.createLinearGradient(0,355,0,H);ground.addColorStop(0,'#a16c46');ground.addColorStop(.48,'#80543d');ground.addColorStop(1,'#3d352f');ctx.fillStyle=ground;ctx.fillRect(0,355,W,H-355);
+  for(let i=0;i<170;i++){const x=(i*83+((t*3)%83))%W,y=360+(i*31)%165;ctx.strokeStyle=i%2?'#f3c17d35':'#4a342b45';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x,y+6);ctx.quadraticCurveTo(x-3,y-2,x+Math.sin(i*8.3)*5,y-8);ctx.stroke();}
+  // A slow drift of maple leaves across the clearing.
+  for(let i=0;i<34;i++){const x=(i*97+t*(13+(i%4)*4))%(W+30)-15,y=(i*59+t*(18+(i%5)*4))%(H+15);ctx.save();ctx.translate(x,y);ctx.rotate(t*.7+i);ctx.fillStyle=['#eaa34e','#bb5738','#d77942','#f0c06e'][i%4];ctx.globalAlpha=.35+(i%3)*.12;ctx.beginPath();ctx.moveTo(0,-5);ctx.lineTo(3,-2);ctx.lineTo(6,-3);ctx.lineTo(5,1);ctx.lineTo(2,2);ctx.lineTo(0,5);ctx.lineTo(-2,2);ctx.lineTo(-5,3);ctx.lineTo(-4,-1);ctx.lineTo(-1,-2);ctx.closePath();ctx.fill();ctx.restore();}ctx.globalAlpha=1;
  }else{
   const hills=[['#8eae7b',140,24,.008],['#769966',216,18,.012],['#638653',300,14,.016]];hills.forEach(([color,base,amp,freq],idx)=>{ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(0,base+70);for(let x=0;x<=W;x+=38){const y=base+Math.sin(x*freq+t*(.035+idx*.012)+idx)*amp+Math.sin(x*.027+idx)*5;ctx.lineTo(x,y);}ctx.lineTo(W,base+130);ctx.lineTo(0,base+130);ctx.closePath();ctx.fill();});
   const sun=ctx.createRadialGradient(960,42,4,960,42,190);sun.addColorStop(0,'#fff9d4b5');sun.addColorStop(.34,'#fff2bd52');sun.addColorStop(1,'#fff2bd00');ctx.fillStyle=sun;ctx.fillRect(750,0,420,250);ctx.fillStyle='#fff5c0';ctx.globalAlpha=.42;ctx.beginPath();ctx.arc(960,36,21,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
@@ -701,39 +878,39 @@ function drawBackground(t){
   const grass=ctx.createLinearGradient(0,365,0,H);grass.addColorStop(0,'#7da45e');grass.addColorStop(.48,'#689452');grass.addColorStop(1,'#315e42');ctx.fillStyle=grass;ctx.fillRect(0,365,W,H-365);
   for(let i=0;i<190;i++){const x=(i*83+((t*4)%83))%W,y=370+(i*31)%160;ctx.strokeStyle=i%2?'#e0efad2c':'#1c58362e';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x,y+6);ctx.quadraticCurveTo(x-3,y-2,x+Math.sin(i*8.3)*5,y-8);ctx.stroke();}
  }
- const vignette=ctx.createRadialGradient(600,260,180,600,260,760);vignette.addColorStop(.55,'#071d1600');vignette.addColorStop(1,snow?'#0c263c44':'#10251a38');ctx.fillStyle=vignette;ctx.fillRect(0,0,W,H);
+ const vignette=ctx.createRadialGradient(600,260,180,600,260,760);vignette.addColorStop(.55,'#071d1600');vignette.addColorStop(1,snow?'#0c263c44':maple?'#44251e55':'#10251a38');ctx.fillStyle=vignette;ctx.fillRect(0,0,W,H);
  // The Heartroot sentinel changes from living wood to a frost-lit crystal root.
- rounded(174,BY-2,27,CH*ROWS+18,12,snow?'#36576b':'#405c43',snow?'#d9f5ff88':'#d9e2a455');
- ctx.fillStyle=snow?'#244b62':'#344f3b';ctx.beginPath();ctx.moveTo(185,BY+34);ctx.bezierCurveTo(160,BY+75,160,BY+120,186,BY+151);ctx.bezierCurveTo(210,BY+112,209,BY+72,185,BY+34);ctx.fill();
- ctx.strokeStyle=snow?'#c1f2ff':'#a4c78d';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(185,BY+62);ctx.quadraticCurveTo(185,BY+97,185,BY+125);ctx.stroke();ctx.fillStyle=snow?'#d9faff':'#c0e79d';ctx.beginPath();ctx.arc(185,BY+56,7,0,Math.PI*2);ctx.fill();
- for(let i=0;i<13;i++){const x=24+(i*47)%142,y=420+(i*37)%95;ctx.fillStyle=snow?(i%2?'#477990':'#80aab8'):(i%2?'#365f40':'#507c4c');ctx.beginPath();ctx.ellipse(x,y,8+(i%3)*4,4+(i%2)*2,(i%5)*.3,0,Math.PI*2);ctx.fill();}
+ rounded(174,BY-2,27,CH*ROWS+18,12,snow?'#36576b':maple?'#704936':'#405c43',snow?'#d9f5ff88':maple?'#f0b77588':'#d9e2a455');
+ ctx.fillStyle=snow?'#244b62':maple?'#55382e':'#344f3b';ctx.beginPath();ctx.moveTo(185,BY+34);ctx.bezierCurveTo(160,BY+75,160,BY+120,186,BY+151);ctx.bezierCurveTo(210,BY+112,209,BY+72,185,BY+34);ctx.fill();
+ ctx.strokeStyle=snow?'#c1f2ff':maple?'#dc9659':'#a4c78d';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(185,BY+62);ctx.quadraticCurveTo(185,BY+97,185,BY+125);ctx.stroke();ctx.fillStyle=snow?'#d9faff':maple?'#ffd08a':'#c0e79d';ctx.beginPath();ctx.arc(185,BY+56,7,0,Math.PI*2);ctx.fill();
+ for(let i=0;i<13;i++){const x=24+(i*47)%142,y=420+(i*37)%95;ctx.fillStyle=snow?(i%2?'#477990':'#80aab8'):maple?(i%2?'#754b35':'#a15d3d'):(i%2?'#365f40':'#507c4c');ctx.beginPath();ctx.ellipse(x,y,8+(i%3)*4,4+(i%2)*2,(i%5)*.3,0,Math.PI*2);ctx.fill();}
 }
 function drawBoard(t){
- const boardW=CW*COLS,boardH=CH*ROWS,snow=worldId==='snow';
+ const boardW=CW*COLS,boardH=CH*ROWS,snow=worldId==='snow',maple=worldId==='maple';
  // Layered enamel-and-metal frame; winter uses blue steel and frosted glass.
- ctx.save();ctx.shadowColor=snow?'#102e4bbd':'#173c27bd';ctx.shadowBlur=30;ctx.shadowOffsetY=10;rounded(BX-10,BY-10,boardW+20,boardH+20,20,snow?'#d8edf0':'#e0e6b1',snow?'#f3ffff':'#f0efc4');ctx.restore();
- rounded(BX-7,BY-7,boardW+14,boardH+14,17,snow?'#47788c':'#577c4a',snow?'#d3f2f76e':'#e2edb96e');
- rounded(BX-3,BY-3,boardW+6,boardH+6,14,snow?'#7197a5':'#6f925b',snow?'#315f797a':'#345c407a');
+ ctx.save();ctx.shadowColor=snow?'#102e4bbd':maple?'#4a2b23bd':'#173c27bd';ctx.shadowBlur=30;ctx.shadowOffsetY=10;rounded(BX-10,BY-10,boardW+20,boardH+20,20,snow?'#d8edf0':maple?'#e7bf8d':'#e0e6b1',snow?'#f3ffff':maple?'#ffe0b4':'#f0efc4');ctx.restore();
+ rounded(BX-7,BY-7,boardW+14,boardH+14,17,snow?'#47788c':maple?'#8b5639':'#577c4a',snow?'#d3f2f76e':maple?'#f7c58a6e':'#e2edb96e');
+ rounded(BX-3,BY-3,boardW+6,boardH+6,14,snow?'#7197a5':maple?'#a66a45':'#6f925b',snow?'#315f797a':maple?'#7547317a':'#345c407a');
  for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++){
   const x=BX+c*CW,y=BY+r*CH,alt=(r+c)%2;
-  const grad=ctx.createLinearGradient(x,y,x+CW,y+CH);if(snow){grad.addColorStop(0,alt?'#c2e2e9':'#d9edf0');grad.addColorStop(.52,alt?'#a8cbd8':'#c4dfe7');grad.addColorStop(1,alt?'#86adbf':'#9bbdcb');}else{grad.addColorStop(0,alt?'#b0ce8b':'#bfd898');grad.addColorStop(1,alt?'#92b77b':'#a4c783');}
-  ctx.save();ctx.shadowColor=snow?'#1d4b6335':'#345b3c35';ctx.shadowBlur=4;ctx.shadowOffsetY=1;rounded(x+1.5,y+1.5,CW-3,CH-3,8,grad,snow?'#477d9355':'#52764c55');ctx.restore();
+  const grad=ctx.createLinearGradient(x,y,x+CW,y+CH);if(snow){grad.addColorStop(0,alt?'#c2e2e9':'#d9edf0');grad.addColorStop(.52,alt?'#a8cbd8':'#c4dfe7');grad.addColorStop(1,alt?'#86adbf':'#9bbdcb');}else if(maple){grad.addColorStop(0,alt?'#d7a36f':'#e7bc83');grad.addColorStop(1,alt?'#ad7650':'#c18a5b');}else{grad.addColorStop(0,alt?'#b0ce8b':'#bfd898');grad.addColorStop(1,alt?'#92b77b':'#a4c783');}
+  ctx.save();ctx.shadowColor=snow?'#1d4b6335':maple?'#69402d35':'#345b3c35';ctx.shadowBlur=4;ctx.shadowOffsetY=1;rounded(x+1.5,y+1.5,CW-3,CH-3,8,grad,snow?'#477d9355':maple?'#86563966':'#52764c55');ctx.restore();
   // Soft inner bevel, fine grain and a restrained botanical inlay.
-  ctx.strokeStyle=snow?'#f4ffff70':'#f5f6d84a';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x+9,y+7);ctx.lineTo(x+CW-10,y+7);ctx.stroke();
-  ctx.strokeStyle=snow?'#386b8530':'#486f4530';ctx.beginPath();ctx.moveTo(x+9,y+CH-6);ctx.lineTo(x+CW-10,y+CH-6);ctx.stroke();
-  for(let k=0;k<4;k++){const dx=x+14+((c*17+k*23)%72),dy=y+18+((r*11+k*19)%52);ctx.fillStyle=alt?'#f5f6da20':'#426d4520';ctx.beginPath();ctx.arc(dx,dy,1+(k%2)*.5,0,Math.PI*2);ctx.fill();}
-  if((r*11+c*7)%9===0){ctx.globalAlpha=snow?.32:.22;if(snow){ctx.strokeStyle='#f5ffff';ctx.lineWidth=1.2;ctx.beginPath();const sx=x+14+(c%3)*12,sy=y+18+(r%2)*8;ctx.moveTo(sx-4,sy);ctx.lineTo(sx+4,sy);ctx.moveTo(sx,sy-4);ctx.lineTo(sx,sy+4);ctx.moveTo(sx-3,sy-3);ctx.lineTo(sx+3,sy+3);ctx.moveTo(sx-3,sy+3);ctx.lineTo(sx+3,sy-3);ctx.stroke();}else drawClover(x+14+(c%3)*12,y+18+(r%2)*8,5,'#f7f7d0');ctx.globalAlpha=1;}
+  ctx.strokeStyle=snow?'#f4ffff70':maple?'#fff0d070':'#f5f6d84a';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x+9,y+7);ctx.lineTo(x+CW-10,y+7);ctx.stroke();
+  ctx.strokeStyle=snow?'#386b8530':maple?'#6d3d2d30':'#486f4530';ctx.beginPath();ctx.moveTo(x+9,y+CH-6);ctx.lineTo(x+CW-10,y+CH-6);ctx.stroke();
+  for(let k=0;k<4;k++){const dx=x+14+((c*17+k*23)%72),dy=y+18+((r*11+k*19)%52);ctx.fillStyle=alt?'#f5f6da20':maple?'#7c493220':'#426d4520';ctx.beginPath();ctx.arc(dx,dy,1+(k%2)*.5,0,Math.PI*2);ctx.fill();}
+  if((r*11+c*7)%9===0){ctx.globalAlpha=snow?.32:.22;if(snow){ctx.strokeStyle='#f5ffff';ctx.lineWidth=1.2;ctx.beginPath();const sx=x+14+(c%3)*12,sy=y+18+(r%2)*8;ctx.moveTo(sx-4,sy);ctx.lineTo(sx+4,sy);ctx.moveTo(sx,sy-4);ctx.lineTo(sx,sy+4);ctx.moveTo(sx-3,sy-3);ctx.lineTo(sx+3,sy+3);ctx.moveTo(sx-3,sy+3);ctx.lineTo(sx+3,sy-3);ctx.stroke();}else if(maple){ctx.fillStyle='#f4d09a';ctx.beginPath();ctx.arc(x+14+(c%3)*12,y+18+(r%2)*8,3,0,Math.PI*2);ctx.fill();}else drawClover(x+14+(c%3)*12,y+18+(r%2)*8,5,'#f7f7d0');ctx.globalAlpha=1;}
   if(c===0){ctx.fillStyle='#eaf2c655';ctx.fillRect(x+3,y+12,2,CH-24);}
  }
  // Fine lane guides and the Heartroot-side luminous rail.
- ctx.strokeStyle='#f1f4cb30';ctx.lineWidth=1;for(let r=1;r<ROWS;r++){const y=BY+r*CH;ctx.beginPath();ctx.moveTo(BX,y);ctx.lineTo(BR,y);ctx.stroke();}
- const rail=ctx.createLinearGradient(BX-5,BY,BX,BB);rail.addColorStop(0,snow?'#e4fbff':'#d4e9a8');rail.addColorStop(1,snow?'#5791a8':'#648e5a');ctx.fillStyle=rail;ctx.fillRect(BX-5,BY,5,boardH);ctx.fillStyle=snow?'#eafcff':'#eff6c7';ctx.globalAlpha=.72;ctx.fillRect(BX-5,BY,1.5,boardH);ctx.globalAlpha=1;
+ ctx.strokeStyle=maple?'#fff0d030':'#f1f4cb30';ctx.lineWidth=1;for(let r=1;r<ROWS;r++){const y=BY+r*CH;ctx.beginPath();ctx.moveTo(BX,y);ctx.lineTo(BR,y);ctx.stroke();}
+ const rail=ctx.createLinearGradient(BX-5,BY,BX,BB);rail.addColorStop(0,snow?'#e4fbff':maple?'#ffe0a0':'#d4e9a8');rail.addColorStop(1,snow?'#5791a8':maple?'#a95e3e':'#648e5a');ctx.fillStyle=rail;ctx.fillRect(BX-5,BY,5,boardH);ctx.fillStyle=snow?'#eafcff':maple?'#ffdfa8':'#eff6c7';ctx.globalAlpha=.72;ctx.fillRect(BX-5,BY,1.5,boardH);ctx.globalAlpha=1;
  // Lane index jewels on the side rail.
- for(let r=0;r<ROWS;r++){const cy=BY+r*CH+CH/2;ctx.fillStyle='#e2efb9';ctx.shadowColor='#dff4b5';ctx.shadowBlur=6;ctx.beginPath();ctx.arc(BX-18,cy,4.3,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#618557';ctx.beginPath();ctx.arc(BX-18,cy,1.3,0,Math.PI*2);ctx.fill();}
+ for(let r=0;r<ROWS;r++){const cy=BY+r*CH+CH/2;ctx.fillStyle=maple?'#f0c17c':'#e2efb9';ctx.shadowColor=maple?'#e9ab63':'#dff4b5';ctx.shadowBlur=6;ctx.beginPath();ctx.arc(BX-18,cy,4.3,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle=maple?'#87513b':'#618557';ctx.beginPath();ctx.arc(BX-18,cy,1.3,0,Math.PI*2);ctx.fill();}
  // Spawn edge and tiny corner rivets.
- ctx.fillStyle='#e4efbd62';ctx.fillRect(BR+5,BY+6,2,boardH-12);
- for(const [x,y] of [[BX-1,BY-1],[BR+1,BY-1],[BX-1,BB+1],[BR+1,BB+1]]){ctx.fillStyle='#f2eab9';ctx.beginPath();ctx.arc(x,y,2.4,0,Math.PI*2);ctx.fill();}
- ctx.textAlign='center';ctx.font='900 9px system-ui';ctx.fillStyle='#d7ecaa';ctx.globalAlpha=.95;ctx.fillText('HEARTROOT',185,H-17);ctx.globalAlpha=1;
+ ctx.fillStyle=maple?'#f3c27c62':'#e4efbd62';ctx.fillRect(BR+5,BY+6,2,boardH-12);
+ for(const [x,y] of [[BX-1,BY-1],[BR+1,BY-1],[BX-1,BB+1],[BR+1,BB+1]]){ctx.fillStyle=maple?'#f3ca8e':'#f2eab9';ctx.beginPath();ctx.arc(x,y,2.4,0,Math.PI*2);ctx.fill();}
+ ctx.textAlign='center';ctx.font='900 9px system-ui';ctx.fillStyle=maple?'#ffdaa0':'#d7ecaa';ctx.globalAlpha=.95;ctx.fillText('HEARTROOT',185,H-17);ctx.globalAlpha=1;
 }
 function drawClover(x,y,s,color){ctx.fillStyle=color;ctx.beginPath();ctx.arc(x-s*.35,y-s*.16,s*.42,0,Math.PI*2);ctx.arc(x+s*.35,y-s*.16,s*.42,0,Math.PI*2);ctx.arc(x,y-s*.52,s*.4,0,Math.PI*2);ctx.fill();ctx.strokeStyle=color;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+1,y+s);ctx.stroke();}
 function drawPlant(p,t){
@@ -755,6 +932,29 @@ function drawPlant(p,t){
   }else if(p.type==='frost'){
    const g=ctx.createLinearGradient(-17,-69,18,-38);g.addColorStop(0,'#e2fbf5');g.addColorStop(.55,'#9bd9e4');g.addColorStop(1,'#66aeb7');ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(-19,-48);ctx.quadraticCurveTo(-25,-69,-4,-75);ctx.quadraticCurveTo(19,-80,20,-52);ctx.quadraticCurveTo(7,-37,-13,-43);ctx.closePath();ctx.fill();ctx.strokeStyle='#d9f8f0';ctx.lineWidth=1.5;ctx.stroke();ctx.fillStyle='#effffc';ctx.beginPath();ctx.ellipse(-3,-67,7,2,-.3,0,Math.PI*2);ctx.fill();drawFace(0,-51,10,'#345967');
   }else drawSproutHead(2,-49,0,t);
+ }else if(p.type==='archorot'){
+  ctx.strokeStyle='#718e4d';ctx.lineWidth=7;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(0,2);ctx.quadraticCurveTo(-5,-22,0,-41);ctx.stroke();
+  ctx.fillStyle='#819c56';ctx.beginPath();ctx.ellipse(-15,-21,15,6,-.55,0,Math.PI*2);ctx.ellipse(14,-14,14,5,.48,0,Math.PI*2);ctx.fill();
+  const ag=ctx.createLinearGradient(-16,-71,17,-39);ag.addColorStop(0,'#edf3ad');ag.addColorStop(.48,'#b9ca72');ag.addColorStop(1,'#708b4d');ctx.fillStyle=ag;ctx.beginPath();ctx.moveTo(-19,-47);ctx.lineTo(-15,-68);ctx.lineTo(-5,-60);ctx.lineTo(0,-77);ctx.lineTo(8,-61);ctx.lineTo(20,-68);ctx.lineTo(17,-45);ctx.quadraticCurveTo(0,-33,-19,-47);ctx.fill();ctx.strokeStyle='#e8f0b1';ctx.lineWidth=1.7;ctx.stroke();ctx.strokeStyle='#718b4d';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-12,-50);ctx.lineTo(13,-61);ctx.stroke();drawFace(0,-51,8,'#445334');
+  if(p.hp<p.maxHp*.5){ctx.strokeStyle='#e99a7d';ctx.globalAlpha=.5+.22*Math.sin(t*9);ctx.lineWidth=2.5;ctx.beginPath();ctx.arc(0,-31,34,0,Math.PI*2);ctx.stroke();ctx.globalAlpha=1;}
+ }else if(p.type==='bananabud'){
+  ctx.strokeStyle='#658e4d';ctx.lineWidth=7;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(0,2);ctx.quadraticCurveTo(-2,-20,0,-39);ctx.stroke();
+  ctx.fillStyle='#7fa95c';ctx.beginPath();ctx.ellipse(-17,-20,15,6,-.55,0,Math.PI*2);ctx.ellipse(17,-17,15,6,.48,0,Math.PI*2);ctx.fill();
+  for(let k=0;k<3;k++){const yy=-42-k*5;ctx.save();ctx.translate((k-1)*5,yy);ctx.rotate(-.22+k*.22);ctx.fillStyle=k===1?'#ffe47a':'#eccb4e';ctx.strokeStyle='#fff0a0';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(-16,4);ctx.quadraticCurveTo(-22,-7,-10,-11);ctx.quadraticCurveTo(2,-17,15,-4);ctx.quadraticCurveTo(4,8,-9,8);ctx.closePath();ctx.fill();ctx.stroke();ctx.fillStyle='#6f8f48';ctx.fillRect(-17,2,4,4);ctx.restore();}
+  ctx.fillStyle='#6f8f48';ctx.beginPath();ctx.ellipse(0,-52,7,5,0,0,Math.PI*2);ctx.fill();drawFace(0,-42,7,'#61452b');
+ }else if(p.type==='destroyer'){
+  ctx.strokeStyle='#6b9851';ctx.lineWidth=7;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(0,2);ctx.quadraticCurveTo(-4,-22,0,-40);ctx.stroke();
+  ctx.fillStyle='#76a45b';ctx.beginPath();ctx.ellipse(-16,-21,15,6,-.55,0,Math.PI*2);ctx.ellipse(15,-15,14,5,.5,0,Math.PI*2);ctx.fill();
+  const dg=ctx.createRadialGradient(-5,-55,2,0,-48,25);dg.addColorStop(0,'#f2ffc0');dg.addColorStop(.45,'#c4d979');dg.addColorStop(1,'#668f4c');ctx.fillStyle=dg;ctx.beginPath();ctx.moveTo(-22,-45);ctx.quadraticCurveTo(-27,-67,-8,-73);ctx.quadraticCurveTo(9,-82,21,-64);ctx.quadraticCurveTo(29,-47,12,-37);ctx.quadraticCurveTo(-7,-30,-20,-41);ctx.closePath();ctx.fill();ctx.strokeStyle='#eff6b5';ctx.lineWidth=1.8;ctx.stroke();ctx.fillStyle='#eaffb5';ctx.beginPath();ctx.arc(-8,-55,3,0,Math.PI*2);ctx.arc(7,-60,2.5,0,Math.PI*2);ctx.fill();drawFace(0,-51,9,'#3c5731');
+ }else if(p.type==='trapadvisor'){
+  ctx.fillStyle='#6b5942';ctx.beginPath();ctx.ellipse(0,1,28,9,0,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#b48b5b';ctx.strokeStyle='#ead0a1';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-24,-1);ctx.lineTo(-13,-32);ctx.lineTo(-3,-13);ctx.lineTo(5,-39);ctx.lineTo(15,-14);ctx.lineTo(24,-1);ctx.closePath();ctx.fill();ctx.stroke();
+  ctx.strokeStyle='#72543c';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-14,-3);ctx.lineTo(-6,-17);ctx.lineTo(2,-4);ctx.moveTo(7,-4);ctx.lineTo(14,-22);ctx.lineTo(20,-3);ctx.stroke();
+ }else if(p.type==='poisonbud'){
+  ctx.strokeStyle='#638f43';ctx.lineWidth=7;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(0,2);ctx.quadraticCurveTo(-5,-20,0,-39);ctx.stroke();
+  ctx.fillStyle='#6f9e49';ctx.beginPath();ctx.ellipse(-16,-20,15,6,-.55,0,Math.PI*2);ctx.ellipse(15,-14,14,5,.5,0,Math.PI*2);ctx.fill();
+  const pg=ctx.createRadialGradient(-5,-55,2,0,-48,25);pg.addColorStop(0,'#e4ff9a');pg.addColorStop(.45,'#a6d85d');pg.addColorStop(1,'#527d3c');ctx.fillStyle=pg;ctx.beginPath();ctx.moveTo(-22,-45);ctx.quadraticCurveTo(-28,-67,-8,-73);ctx.quadraticCurveTo(8,-81,20,-65);ctx.quadraticCurveTo(31,-48,13,-37);ctx.quadraticCurveTo(-6,-29,-20,-41);ctx.closePath();ctx.fill();ctx.strokeStyle='#dff99a';ctx.lineWidth=1.8;ctx.stroke();
+  ctx.fillStyle='#d9f58a';ctx.shadowColor='#c5ee68';ctx.shadowBlur=10;for(let k=0;k<5;k++){const a=k*2.4+t*.5;ctx.beginPath();ctx.arc(Math.cos(a)*11,-54+Math.sin(a)*10,2.1,0,Math.PI*2);ctx.fill();}ctx.shadowBlur=0;drawFace(0,-51,9,'#35532d');
  }else if(p.type==='bark'){
   ctx.fillStyle='#9a744d';ctx.beginPath();ctx.moveTo(-25,1);ctx.lineTo(-22,-49);ctx.quadraticCurveTo(-15,-63,0,-58);ctx.quadraticCurveTo(19,-63,23,-43);ctx.lineTo(25,2);ctx.closePath();ctx.fill();ctx.strokeStyle='#d0a878';ctx.lineWidth=2;ctx.stroke();
   ctx.strokeStyle='#d9b786';ctx.lineWidth=2.6;ctx.lineCap='round';for(let i=0;i<3;i++){ctx.beginPath();ctx.moveTo(-13+i*7,-49+i*12);ctx.quadraticCurveTo(-4+i*3,-37+i*9,-12+i*9,-27+i*12);ctx.stroke();}
@@ -766,7 +966,7 @@ function drawPlant(p,t){
  }
  // Hand-painted veins, enamel highlights, dew beads and species-specific finish.
  ctx.save();ctx.lineCap='round';ctx.lineJoin='round';
- if(p.type==='sunbud'||p.type==='sprout'||p.type==='twin'||p.type==='ember'){
+ if(p.type==='sunbud'||p.type==='sprout'||p.type==='twin'||p.type==='ember'||p.type==='poisonbud'||p.type==='archorot'||p.type==='bananabud'){
   ctx.strokeStyle='#e8f6c36b';ctx.lineWidth=1.35;ctx.beginPath();ctx.moveTo(-13,-20);ctx.quadraticCurveTo(-6,-18,-1,-7);ctx.moveTo(13,-14);ctx.quadraticCurveTo(7,-12,3,-5);ctx.stroke();
   ctx.fillStyle='#ffffff91';ctx.beginPath();ctx.ellipse(-10,-24,2.1,1.1,-.4,0,Math.PI*2);ctx.ellipse(15,-17,1.7,.9,.3,0,Math.PI*2);ctx.fill();
  }
@@ -780,16 +980,17 @@ function drawPlant(p,t){
  // Premium botanical finish: sculpted contours, layered veins, dew and species detail.
  drawBotanicalFinish(p,t);
  // Health strip when damaged.
- if(p.hp<p.maxHp*.96){rounded(-24,-82,48,4,2,'#2b4936');rounded(-24,-82,48*clamp(p.hp/p.maxHp,0,1),4,2,p.hp/p.maxHp>.45?'#a9df7b':'#ed9b77');}
+ if(p.type!=='trapadvisor'&&p.hp<p.maxHp*.96){rounded(-24,-82,48,4,2,'#2b4936');rounded(-24,-82,48*clamp(p.hp/p.maxHp,0,1),4,2,p.hp/p.maxHp>.45?'#a9df7b':'#ed9b77');}
+ if(p.healGlow>0){ctx.globalAlpha=clamp(p.healGlow,0,1)*.75;ctx.strokeStyle='#f6e77c';ctx.shadowColor='#f5e77c';ctx.shadowBlur=18;ctx.lineWidth=3;ctx.beginPath();ctx.arc(0,-34,35+Math.sin(t*14)*3,0,Math.PI*2);ctx.stroke();ctx.shadowBlur=0;ctx.globalAlpha=1;}
  if(p.flash>0){ctx.globalAlpha=p.flash*2;ctx.fillStyle='#fff7cb';ctx.beginPath();ctx.ellipse(0,-35,28,35,0,0,Math.PI*2);ctx.fill();}
  ctx.restore();
 }
 
 function drawBotanicalFinish(p,t){
  ctx.save();ctx.lineJoin='round';ctx.lineCap='round';
- const leaf=p.type==='frost'?'#b8f1e6':p.type==='ember'?'#a5c879':'#9ed27c';
+ const leaf=p.type==='frost'?'#b8f1e6':p.type==='ember'?'#a5c879':p.type==='poisonbud'?'#a9d65d':p.type==='archorot'?'#bdcf7c':p.type==='bananabud'?'#a2c46a':p.type==='destroyer'?'#bdd678':'#9ed27c';
  // Richly layered leaf blades with central ribs and branching veins.
- if(['sunbud','sprout','twin','ember'].includes(p.type)){
+ if(['sunbud','sprout','twin','ember','poisonbud','archorot','bananabud','destroyer'].includes(p.type)){
   for(const side of [-1,1]){ctx.save();ctx.translate(side*14,side<0?-21:-14);ctx.rotate(side<0?-.52:.48);const lg=ctx.createLinearGradient(-15,-7,15,8);lg.addColorStop(0,'#d4ef9b');lg.addColorStop(.32,leaf);lg.addColorStop(1,'#39784d');ctx.fillStyle=lg;ctx.beginPath();ctx.moveTo(-16,0);ctx.quadraticCurveTo(-5,-13,14,-3);ctx.quadraticCurveTo(7,9,-16,0);ctx.fill();ctx.strokeStyle='#e7f8b88c';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(-14,0);ctx.quadraticCurveTo(0,-1,12,-3);ctx.moveTo(-3,-1);ctx.lineTo(-1,-6);ctx.moveTo(4,-2);ctx.lineTo(7,-6);ctx.stroke();ctx.restore();}
  }
  // Delicate stem ridges and tiny thorns make silhouettes less toy-flat.
@@ -803,7 +1004,7 @@ function drawBotanicalFinish(p,t){
   ctx.strokeStyle='#ffffffb8';ctx.lineWidth=1.2;for(let k=0;k<4;k++){ctx.beginPath();ctx.moveTo(-13+k*8,-48);ctx.lineTo(-9+k*8,-62);ctx.lineTo(-4+k*8,-70);ctx.stroke();}ctx.fillStyle='#ffffff';ctx.globalAlpha=.72;ctx.beginPath();ctx.arc(-9,-68,2,0,Math.PI*2);ctx.arc(9,-60,1.8,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
  }else if(p.type==='bark'){
   const barkLines=[[-17,-42,-11,-15],[-7,-49,-3,-12],[7,-48,11,-17],[17,-42,15,-12]];ctx.strokeStyle='#4d352b';ctx.globalAlpha=.5;ctx.lineWidth=2;for(const a of barkLines){ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.bezierCurveTo(a[0]-3,a[1]+9,a[2]+5,a[3]-7,a[2],a[3]);ctx.stroke();}ctx.globalAlpha=1;ctx.strokeStyle='#e3c79a';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(-20,-47);ctx.lineTo(-14,-39);ctx.moveTo(14,-49);ctx.lineTo(20,-40);ctx.stroke();
- }else if(p.type==='ember'){
+ }else if(p.type==='destroyer'){ctx.strokeStyle='#f3ffd0';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(-8,-52);ctx.lineTo(0,-66);ctx.lineTo(9,-52);ctx.stroke();ctx.fillStyle='#fff6c4';ctx.globalAlpha=.7;ctx.beginPath();ctx.arc(12,-62,2,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;}else if(p.type==='archorot'){ctx.strokeStyle='#f1f4bd';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(-14,-49);ctx.lineTo(0,-70);ctx.lineTo(13,-51);ctx.stroke();ctx.fillStyle='#f8f5c6';ctx.globalAlpha=.65;ctx.beginPath();ctx.ellipse(-9,-57,4,1.7,-.5,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;}else if(p.type==='bananabud'){ctx.strokeStyle='#fff1a0';ctx.lineWidth=1.5;for(let k=0;k<3;k++){ctx.beginPath();ctx.moveTo(-13+k*10,-50);ctx.quadraticCurveTo(-6+k*8,-56,-2+k*9,-50);ctx.stroke();}}else if(p.type==='ember'){
   ctx.shadowColor='#ffb75e';ctx.shadowBlur=10;ctx.strokeStyle='#fff0b4';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(-8,-49);ctx.quadraticCurveTo(-16,-63,-5,-67);ctx.moveTo(7,-43);ctx.quadraticCurveTo(17,-57,9,-62);ctx.stroke();ctx.shadowBlur=0;
  }
  // Dew beads and small specular streaks add a polished, tactile finish.
@@ -812,9 +1013,9 @@ function drawBotanicalFinish(p,t){
 }
 function drawWitherlingFinish(e,t){
  ctx.save();ctx.lineJoin='round';ctx.lineCap='round';
- const giant=e.type==='rootmaw',spiny=e.type==='thornback',brute=e.type==='brute',fast=e.type==='ravager'||e.type==='skitter';
+ const giant=e.type==='rootmaw',spiny=e.type==='thornback'||e.type==='sapbrute',brute=e.type==='brute'||e.type==='sapbrute',fast=e.type==='ravager'||e.type==='skitter'||e.type==='maplescout';
  // Mottled hide: irregular freckles, pores and directional scars.
- const base=giant?'#d5bd8c':spiny?'#d1d0a0':brute?'#c2bd91':'#b6d49a';
+ const base=worldId==='maple'?'#e0ae7a':giant?'#d5bd8c':spiny?'#d1d0a0':brute?'#c2bd91':'#b6d49a';
  for(let i=0;i<18;i++){const a=i*2.399,rx=10+(i%4)*3,ry=17+(i%3)*4;ctx.globalAlpha=.12+(i%3)*.035;ctx.fillStyle=i%2?base:'#253e31';ctx.beginPath();ctx.ellipse(Math.cos(a)*rx,-24+Math.sin(a)*ry,1.2+(i%3)*.55,2+(i%2),a*.3,0,Math.PI*2);ctx.fill();}
  ctx.globalAlpha=1;
  // Deep facial sockets, luminous pupils and a more expressive jaw.
@@ -905,53 +1106,68 @@ function drawSnowEnemy(e,t){
 function drawEnemy(e,t){
  if(e.type==='icewisp'||e.type==='frostarcher'||e.type==='glacierwarden'){drawSnowEnemy(e,t);return;}
  const x=e.x,y=e.y+Math.sin(t*3+e.anim)*1.5;ctx.save();ctx.translate(x,y);
- const sc=e.type==='rootmaw'?1.52:e.type==='thornback'?1.3:e.type==='brute'?1.22:e.type==='ravager'?.88:e.type==='skitter'?.83:1;
+ const mapleWorld=worldId==='maple';
+ const sc=e.type==='rootmaw'?1.52:e.type==='sapbrute'?1.34:e.type==='thornback'?1.3:e.type==='brute'?1.22:e.type==='ravager'?.88:e.type==='skitter'||e.type==='maplescout'?.83:1;
  ctx.scale(sc,sc);
  // trailing roots / feet
  ctx.strokeStyle='#405340';ctx.lineWidth=4;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(-9,3);ctx.lineTo(-13,14+Math.sin(t*7+e.anim)*3);ctx.moveTo(8,2);ctx.lineTo(12,13-Math.sin(t*7+e.anim)*3);ctx.stroke();
  // body gradient
- const g=ctx.createLinearGradient(-24,-48,24,12);g.addColorStop(0,e.type==='rootmaw'?'#b7a27d':e.type==='thornback'?'#a4a078':e.type==='brute'?'#9c9a78':e.type==='skitter'?'#738e63':'#829d70');g.addColorStop(1,e.type==='rootmaw'?'#635440':e.type==='thornback'?'#58634a':e.type==='brute'?'#555f4c':e.type==='skitter'?'#3f664a':'#496d4d');
+ const g=ctx.createLinearGradient(-24,-48,24,12);g.addColorStop(0,mapleWorld?(e.type==='sapbrute'?'#d29a62':e.type==='amberstalker'?'#c98b52':'#c47a4e'):e.type==='rootmaw'?'#b7a27d':e.type==='thornback'?'#a4a078':e.type==='brute'?'#9c9a78':e.type==='skitter'?'#738e63':'#829d70');g.addColorStop(1,mapleWorld?(e.type==='sapbrute'?'#75432f':e.type==='amberstalker'?'#74432f':'#713c30'):e.type==='rootmaw'?'#635440':e.type==='thornback'?'#58634a':e.type==='brute'?'#555f4c':e.type==='skitter'?'#3f664a':'#496d4d');
  ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(0,-19,e.type==='brute'?24:18,e.type==='brute'?29:24,0,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#d1d0a34c';ctx.lineWidth=1.5;ctx.stroke();
  // moss cap and twig hair
- ctx.fillStyle=e.type==='brute'?'#a7a17d':'#6c945b';ctx.beginPath();ctx.ellipse(-1,-42,19,8,-.1,Math.PI,Math.PI*2);ctx.fill();
+ ctx.fillStyle=mapleWorld?(e.type==='sapbrute'?'#a85f3e':'#a65b3b'):e.type==='brute'?'#a7a17d':'#6c945b';ctx.beginPath();ctx.ellipse(-1,-42,19,8,-.1,Math.PI,Math.PI*2);ctx.fill();
  ctx.strokeStyle='#534f3b';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(-5,-47);ctx.quadraticCurveTo(-15,-60,-20,-53);ctx.moveTo(4,-47);ctx.quadraticCurveTo(12,-61,19,-54);ctx.stroke();
  // arms
  ctx.strokeStyle='#5a714f';ctx.lineWidth=e.type==='brute'?7:5;ctx.beginPath();ctx.moveTo(-14,-22);ctx.lineTo(-26,-12+Math.sin(t*5+e.anim)*3);ctx.moveTo(14,-22);ctx.lineTo(26,-10-Math.sin(t*5+e.anim)*3);ctx.stroke();
  // eye mask / expression
  ctx.fillStyle='#263c31';ctx.beginPath();ctx.ellipse(0,-27,13,8,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#e9d59a';ctx.beginPath();ctx.ellipse(-5,-28,3.1,3.8,0,0,Math.PI*2);ctx.ellipse(5,-28,3.1,3.8,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#313a2b';ctx.beginPath();ctx.arc(-4,-28,1.4,0,Math.PI*2);ctx.arc(6,-28,1.4,0,Math.PI*2);ctx.fill();
  ctx.strokeStyle='#293c2d';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-5,-12);ctx.quadraticCurveTo(0,-9,6,-13);ctx.stroke();
- if(e.type==='brute'){ctx.fillStyle='#a78c63';ctx.beginPath();ctx.moveTo(-16,-36);ctx.lineTo(-23,-49);ctx.lineTo(-7,-44);ctx.fill();ctx.beginPath();ctx.moveTo(10,-44);ctx.lineTo(22,-50);ctx.lineTo(17,-34);ctx.fill();}
+ if(e.type==='brute'||e.type==='sapbrute'){ctx.fillStyle=mapleWorld?'#b36f45':'#a78c63';ctx.beginPath();ctx.moveTo(-16,-36);ctx.lineTo(-23,-49);ctx.lineTo(-7,-44);ctx.fill();ctx.beginPath();ctx.moveTo(10,-44);ctx.lineTo(22,-50);ctx.lineTo(17,-34);ctx.fill();}
  // Distinct enemy silhouettes: thornback's shell and Rootmaw's crown of roots.
  if(e.type==='thornback'||e.type==='rootmaw'){
   ctx.fillStyle=e.type==='rootmaw'?'#776044':'#78815b';ctx.strokeStyle=e.type==='rootmaw'?'#d6b887':'#c6c18b';ctx.lineWidth=2;
   ctx.beginPath();ctx.moveTo(-20,-28);ctx.lineTo(-25,-44);ctx.lineTo(-12,-39);ctx.lineTo(-3,-52);ctx.lineTo(5,-39);ctx.lineTo(18,-48);ctx.lineTo(21,-28);ctx.quadraticCurveTo(0,-15,-20,-28);ctx.fill();ctx.stroke();
   if(e.type==='rootmaw'){ctx.strokeStyle='#594a35';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(-14,-39);ctx.quadraticCurveTo(-34,-62,-29,-67);ctx.moveTo(12,-40);ctx.quadraticCurveTo(32,-65,37,-58);ctx.stroke();ctx.fillStyle='#f2d28e';ctx.beginPath();ctx.arc(-5,-28,3.5,0,Math.PI*2);ctx.arc(6,-28,3.5,0,Math.PI*2);ctx.fill();}
  }
+ // Maple creatures carry autumn leaves, amber bark plates and small branch crests.
+ if(mapleWorld){ctx.strokeStyle='#71432f';ctx.lineWidth=2.4;ctx.beginPath();ctx.moveTo(-3,-47);ctx.lineTo(-8,-59);ctx.moveTo(4,-47);ctx.lineTo(11,-61);ctx.stroke();for(let k=0;k<3;k++){const lx=-10+k*10,ly=-57+(k===1?-6:0);ctx.fillStyle=['#c65a38','#e49a49','#ad4934'][k];ctx.beginPath();ctx.moveTo(lx,ly+5);ctx.lineTo(lx-4,ly);ctx.lineTo(lx-3,ly-4);ctx.lineTo(lx,ly-2);ctx.lineTo(lx+3,ly-6);ctx.lineTo(lx+4,ly-1);ctx.lineTo(lx+7,ly+1);ctx.lineTo(lx+3,ly+4);ctx.closePath();ctx.fill();}if(e.type==='amberstalker'){ctx.strokeStyle='#73442f';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(28,-34);ctx.lineTo(34,14);ctx.stroke();ctx.fillStyle='#efb76d';ctx.beginPath();ctx.arc(31,-43,6,0,Math.PI*2);ctx.fill();}}
  // Extra surface language: layered bark scoring, moss freckles and claw highlights.
- ctx.strokeStyle='#d4dbac66';ctx.lineWidth=1.15;ctx.beginPath();ctx.moveTo(-12,-42);ctx.quadraticCurveTo(-6,-31,-12,-18);ctx.moveTo(8,-40);ctx.quadraticCurveTo(2,-27,10,-12);ctx.stroke();
+ ctx.strokeStyle=mapleWorld?'#f1bf8466':'#d4dbac66';ctx.lineWidth=1.15;ctx.beginPath();ctx.moveTo(-12,-42);ctx.quadraticCurveTo(-6,-31,-12,-18);ctx.moveTo(8,-40);ctx.quadraticCurveTo(2,-27,10,-12);ctx.stroke();
  ctx.fillStyle='#b4d28b';for(let k=0;k<6;k++){ctx.globalAlpha=.34;ctx.beginPath();ctx.arc(-14+(k*11)%28,-47+(k*7)%18,1.5+(k%2),0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;
  ctx.strokeStyle='#d1c18b';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(-24,-10);ctx.lineTo(-29,-2);ctx.moveTo(23,-9);ctx.lineTo(28,-1);ctx.stroke();
  // Layered organic creature finish: plated hide, scars, teeth, claws and wet highlights.
  drawWitherlingFinish(e,t);
  // hp bar
  if(e.maxArmor&&e.armor>0){rounded(-22,-69,44,4,2,'#283b31');rounded(-22,-69,44*clamp(e.armor/e.maxArmor,0,1),4,2,'#d9c18a');}if(e.hp<e.maxHp*.98){rounded(-20,-62,40,4,2,'#2b4936');rounded(-20,-62,40*clamp(e.hp/e.maxHp,0,1),4,2,'#e69c73');}
+ if(e.poisonTimer>0){ctx.save();ctx.globalAlpha=.42+.18*Math.sin(t*12);ctx.strokeStyle='#c4ed68';ctx.lineWidth=3;ctx.shadowColor='#b5e85b';ctx.shadowBlur=10;ctx.beginPath();ctx.arc(0,-23,32,0,Math.PI*2);ctx.stroke();ctx.fillStyle='#c9ee70';for(let k=0;k<3;k++){const a=t*2+k*2.1;ctx.beginPath();ctx.arc(Math.cos(a)*28,-23+Math.sin(a)*20,2.2,0,Math.PI*2);ctx.fill();}ctx.restore();}
  if(e.slow>0){ctx.strokeStyle='#c8f5f3';ctx.globalAlpha=.8;ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,-23,29,0,Math.PI*2);ctx.stroke();}
  if(e.flash>0){ctx.globalAlpha=e.flash*2;ctx.fillStyle='#fffbdc';ctx.beginPath();ctx.ellipse(0,-20,22,29,0,0,Math.PI*2);ctx.fill();}
  ctx.restore();
 }
 function drawShots(){
- for(const s of shots){ctx.save();const color=s.kind==='ice'?'#c4f8f3':s.kind==='twin'?'#f5c4dc':'#c9f39a';ctx.shadowBlur=17;ctx.shadowColor=color;ctx.fillStyle=color;ctx.beginPath();ctx.ellipse(s.x,s.y,s.r*1.25,s.r,0,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.strokeStyle='#ffffffa8';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(s.x-14,s.y);ctx.lineTo(s.x-4,s.y);ctx.stroke();ctx.restore();}
- for(const q of enemyShots){ctx.save();const c=q.kind==='shard'?'#edffff':'#8be8ff';ctx.shadowColor=c;ctx.shadowBlur=18;ctx.fillStyle=c;ctx.beginPath();ctx.moveTo(q.x+10,q.y);ctx.lineTo(q.x,q.y-6);ctx.lineTo(q.x-12,q.y);ctx.lineTo(q.x,q.y+6);ctx.closePath();ctx.fill();ctx.shadowBlur=0;ctx.strokeStyle='#ffffff';ctx.lineWidth=1;ctx.stroke();ctx.strokeStyle='#8fe5fb88';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(q.x+12,q.y);ctx.lineTo(q.x+30,q.y);ctx.stroke();ctx.restore();}
+ for(const s of shots){ctx.save();const color=s.kind==='poison'?'#c4ed68':s.kind==='ice'?'#c4f8f3':s.kind==='twin'?'#f5c4dc':s.kind==='archorot'?'#d8e99a':s.kind==='destroyer'?'#eff58c':'#c9f39a';ctx.shadowBlur=s.kind==='destroyer'?10:17;ctx.shadowColor=color;ctx.fillStyle=color;ctx.beginPath();if(s.kind==='destroyer'){ctx.moveTo(s.x+9,s.y);ctx.lineTo(s.x-5,s.y-3);ctx.lineTo(s.x-9,s.y);ctx.lineTo(s.x-5,s.y+3);ctx.closePath();}else ctx.ellipse(s.x,s.y,s.r*1.25,s.r,0,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.strokeStyle='#ffffffa8';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(s.x-14,s.y);ctx.lineTo(s.x-4,s.y);ctx.stroke();ctx.restore();}
+ for(const q of enemyShots){ctx.save();const c=q.kind==='shard'?'#edffff':q.kind==='sap'?'#eeb260':'#8be8ff';ctx.shadowColor=c;ctx.shadowBlur=18;ctx.fillStyle=c;ctx.beginPath();ctx.moveTo(q.x+10,q.y);ctx.lineTo(q.x,q.y-6);ctx.lineTo(q.x-12,q.y);ctx.lineTo(q.x,q.y+6);ctx.closePath();ctx.fill();ctx.shadowBlur=0;ctx.strokeStyle='#ffffff';ctx.lineWidth=1;ctx.stroke();ctx.strokeStyle='#8fe5fb88';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(q.x+12,q.y);ctx.lineTo(q.x+30,q.y);ctx.stroke();ctx.restore();}
 }
-function drawDrops(t){for(const d of drops){const pulse=1+Math.sin(t*3+d.pulse)*.08;ctx.save();ctx.translate(d.x,d.y);ctx.scale(pulse,pulse);ctx.globalAlpha=clamp(d.life/1.4,0,1);const snow=worldId==='snow';ctx.shadowColor=snow?'#a8eeff':'#fff0a2';ctx.shadowBlur=18;const g=ctx.createLinearGradient(-8,-15,9,14);g.addColorStop(0,snow?'#ffffff':'#fff5ba');g.addColorStop(.45,snow?'#8fe8f7':'#f7ce60');g.addColorStop(1,snow?'#3f9dbb':'#d58a42');ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(0,-16);ctx.bezierCurveTo(13,-1,13,6,0,13);ctx.bezierCurveTo(-13,6,-13,-1,0,-16);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#fff8d6';ctx.globalAlpha*=.8;ctx.beginPath();ctx.ellipse(-4,-3,2.4,5,-.4,0,Math.PI*2);ctx.fill();ctx.restore();ctx.globalAlpha=1;}}
+function drawBeeFlights(t){for(const f of beeFlights){const progress=clamp(f.life/f.duration,0,1),x=f.sx+(f.tx-f.sx)*progress,y=f.sy+(f.ty-f.sy)*progress-Math.sin(progress*Math.PI)*27;ctx.save();ctx.translate(x,y);ctx.rotate(-.12+Math.sin(t*16)*.08);ctx.fillStyle='#e9f7efcc';ctx.beginPath();ctx.ellipse(-5,-7,5,7,Math.sin(t*24)*.5,0,Math.PI*2);ctx.ellipse(5,-7,5,7,-Math.sin(t*24)*.5,0,Math.PI*2);ctx.fill();ctx.fillStyle='#e9c64f';ctx.strokeStyle='#fff0a0';ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(0,0,8,5,0,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.strokeStyle='#59452b';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-2,-4);ctx.lineTo(-2,4);ctx.moveTo(3,-4);ctx.lineTo(3,4);ctx.stroke();ctx.strokeStyle='#59452b';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(7,0);ctx.lineTo(11,-2);ctx.stroke();ctx.restore();}}
+function drawBananaAlly(a,t){
+ ctx.save();ctx.translate(a.x,a.y+Math.sin(t*5+a.anim)*1.5);const damaged=a.hp<a.maxHp*.96;ctx.fillStyle='#254d2e55';ctx.beginPath();ctx.ellipse(0,4,17,5,0,0,Math.PI*2);ctx.fill();
+ ctx.strokeStyle='#557c43';ctx.lineWidth=3;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(-5,-2);ctx.lineTo(-8,5+Math.sin(t*8+a.anim)*2);ctx.moveTo(6,-2);ctx.lineTo(9,5-Math.sin(t*8+a.anim)*2);ctx.stroke();
+ const g=ctx.createLinearGradient(-13,-27,13,-3);g.addColorStop(0,'#fff09a');g.addColorStop(.45,'#f1cf52');g.addColorStop(1,'#c99435');ctx.fillStyle=g;ctx.strokeStyle='#fff0a0';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(-12,-13);ctx.quadraticCurveTo(-18,-27,-5,-29);ctx.quadraticCurveTo(9,-32,14,-18);ctx.quadraticCurveTo(13,-6,-1,-5);ctx.quadraticCurveTo(-10,-5,-12,-13);ctx.closePath();ctx.fill();ctx.stroke();
+ ctx.strokeStyle='#6c9148';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(7,-27);ctx.quadraticCurveTo(14,-35,18,-31);ctx.stroke();
+ ctx.fillStyle='#59452b';ctx.beginPath();ctx.arc(-4,-20,1.5,0,Math.PI*2);ctx.arc(5,-20,1.5,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#77522c';ctx.lineWidth=1.2;ctx.beginPath();ctx.arc(.5,-15,3,.12,Math.PI-.12);ctx.stroke();
+ if(damaged){ctx.fillStyle='#2b4936';ctx.fillRect(-12,-36,24,3);ctx.fillStyle='#e6ba56';ctx.fillRect(-12,-36,24*clamp(a.hp/a.maxHp,0,1),3);}if(a.flash>0){ctx.globalAlpha=Math.min(1,a.flash*2);ctx.fillStyle='#fff6c7';ctx.beginPath();ctx.ellipse(0,-17,14,15,0,0,Math.PI*2);ctx.fill();}ctx.restore();
+}
+function drawDrops(t){for(const d of drops){const pulse=1+Math.sin(t*3+d.pulse)*.08;ctx.save();ctx.translate(d.x,d.y);ctx.scale(pulse,pulse);ctx.globalAlpha=clamp(d.life/1.4,0,1);const snow=worldId==='snow',maple=worldId==='maple';ctx.shadowColor=snow?'#a8eeff':maple?'#ffc078':'#fff0a2';ctx.shadowBlur=18;const g=ctx.createLinearGradient(-8,-15,9,14);g.addColorStop(0,snow?'#ffffff':maple?'#fff0c3':'#fff5ba');g.addColorStop(.45,snow?'#8fe8f7':maple?'#e9a45a':'#f7ce60');g.addColorStop(1,snow?'#3f9dbb':maple?'#a95035':'#d58a42');ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(0,-16);ctx.bezierCurveTo(13,-1,13,6,0,13);ctx.bezierCurveTo(-13,6,-13,-1,0,-16);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#fff8d6';ctx.globalAlpha*=.8;ctx.beginPath();ctx.ellipse(-4,-3,2.4,5,-.4,0,Math.PI*2);ctx.fill();ctx.restore();ctx.globalAlpha=1;}}
 function drawParticles(){for(const p of particles){ctx.globalAlpha=clamp(p.life/.7,0,1);ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.r*clamp(p.life/.2,0.25,1),0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;for(const f of floating){ctx.globalAlpha=clamp(f.life/.3,0,1);ctx.font='900 11px system-ui';ctx.textAlign='center';ctx.fillStyle='#294332';ctx.fillText(f.text,f.x+1,f.y+1);ctx.fillStyle=f.color;ctx.fillText(f.text,f.x,f.y);}ctx.globalAlpha=1;}
 function drawDecor(t){
- const snow=worldId==='snow';
- ctx.fillStyle=snow?'#416b80':'#56784d';ctx.fillRect(BX,BY-19,CW*COLS,12);ctx.fillStyle=snow?'#ddf8ff':'#d8e9ae';ctx.globalAlpha=.72;ctx.fillRect(BX,BY-19,CW*COLS,2);ctx.globalAlpha=1;
- ctx.font='800 9px system-ui';ctx.textAlign='left';ctx.fillStyle=snow?'#effcff':'#f3f3cf';ctx.globalAlpha=.9;ctx.fillText(snow?'SNOWVEIL REACH · THE FROSTBOUND GARDEN':'THE MEADOW OF FIRST LIGHT',BX+10,BY-25);ctx.globalAlpha=1;
- if(!snow){for(let i=0;i<18;i++){const x=BX+i*54+Math.sin(i*3)*8,y=H-26+(i%3)*6;ctx.fillStyle=i%2?'#e7d78f':'#f3e5bb';ctx.beginPath();ctx.arc(x,y,3.3,0,Math.PI*2);ctx.arc(x+4,y+2,2.8,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#6d9a5c';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x+1,y+3);ctx.lineTo(x,y+14);ctx.stroke();}}
+ const snow=worldId==='snow',maple=worldId==='maple';
+ ctx.fillStyle=snow?'#416b80':maple?'#794b37':'#56784d';ctx.fillRect(BX,BY-19,CW*COLS,12);ctx.fillStyle=snow?'#ddf8ff':maple?'#f5c98d':'#d8e9ae';ctx.globalAlpha=.72;ctx.fillRect(BX,BY-19,CW*COLS,2);ctx.globalAlpha=1;
+ ctx.font='800 9px system-ui';ctx.textAlign='left';ctx.fillStyle=snow?'#effcff':maple?'#fff0d6':'#f3f3cf';ctx.globalAlpha=.9;ctx.fillText(snow?'SNOWVEIL REACH · THE FROSTBOUND GARDEN':maple?'MAPLE GATHERING · THE AMBERWOOD GROVE':'THE MEADOW OF FIRST LIGHT',BX+10,BY-25);ctx.globalAlpha=1;
+ if(!snow&&!maple){for(let i=0;i<18;i++){const x=BX+i*54+Math.sin(i*3)*8,y=H-26+(i%3)*6;ctx.fillStyle=i%2?'#e7d78f':'#f3e5bb';ctx.beginPath();ctx.arc(x,y,3.3,0,Math.PI*2);ctx.arc(x+4,y+2,2.8,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#6d9a5c';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x+1,y+3);ctx.lineTo(x,y+14);ctx.stroke();}}
  if(worldId==='meadow'&&weather==='Dewfall'){ctx.fillStyle='#c9e9ed0c';ctx.fillRect(0,0,W,H);for(let i=0;i<28;i++){const x=(i*83+t*31)%W,y=(i*47+t*55)%H;ctx.strokeStyle='#e9fff04d';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-3,y+9);ctx.stroke();}}
  if(worldId==='meadow'&&weather==='Crosswind'){for(let i=0;i<9;i++){const x=(i*149+t*45)%(W+100)-50,y=BY+((i*73)%460);ctx.strokeStyle='#effbd72c';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y);ctx.quadraticCurveTo(x+20,y-3,x+43,y+1);ctx.stroke();}}
+ if(maple&&weather==='Leaffall'){ctx.save();for(let i=0;i<34;i++){const x=(i*97+t*(17+(i%4)*5))%(W+30)-15,y=(i*59+t*(22+(i%5)*5))%(H+20);ctx.translate(0,0);ctx.save();ctx.translate(x,y);ctx.rotate(t*.8+i);ctx.fillStyle=['#eaa34e','#bb5738','#d77942','#f0c06e'][i%4];ctx.globalAlpha=.45;ctx.beginPath();ctx.moveTo(0,-5);ctx.lineTo(3,-2);ctx.lineTo(6,-3);ctx.lineTo(5,1);ctx.lineTo(2,2);ctx.lineTo(0,5);ctx.lineTo(-2,2);ctx.lineTo(-5,3);ctx.lineTo(-4,-1);ctx.lineTo(-1,-2);ctx.closePath();ctx.fill();ctx.restore();}ctx.restore();}
+ if(maple&&weather==='Golden haze'){ctx.fillStyle='#f9c17b10';ctx.fillRect(0,0,W,H);}
  if(snow&&weather==='Snow squall'){ctx.save();ctx.strokeStyle='#effcff65';ctx.lineWidth=1.2;for(let i=0;i<54;i++){const x=(i*91+t*120)%(W+30),y=(i*59+t*165)%H;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-11,y+9);ctx.stroke();}ctx.restore();}
  if(snow&&weather==='Aurora'){ctx.save();ctx.globalAlpha=.24;ctx.strokeStyle='#a4fbef';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(BX,BY-10);ctx.bezierCurveTo(430,0,730,14,BR,5);ctx.stroke();ctx.restore();}
 }
@@ -960,9 +1176,9 @@ function render(t){
  ctx.clearRect(0,0,W,H);ctx.save();if(shake>0)ctx.translate(rand(-shake,shake),rand(-shake,shake));
  drawBackground(t);drawDecor(t);drawBoard(t);
  for(const p of plants)drawPlant(p,t);
- drawShots();for(const e of enemies)drawEnemy(e,t);drawDrops(t);drawParticles();drawHover();
+ drawBeeFlights(t);drawShots();for(const a of allies)drawBananaAlly(a,t);for(const e of enemies)drawEnemy(e,t);drawDrops(t);drawParticles();drawHover();
  // low-key top-right level marker on canvas
- ctx.textAlign='right';ctx.font='900 9px system-ui';ctx.fillStyle=worldId==='snow'?'#effdff':'#f3f4d0';ctx.globalAlpha=.9;ctx.fillText(worldId==='snow'?'HOLD THE FROSTBOUND LINE':'DEFEND THE HEARTROOT',BR-7,H-18);ctx.globalAlpha=1;
+ ctx.textAlign='right';ctx.font='900 9px system-ui';ctx.fillStyle=worldId==='snow'?'#effdff':worldId==='maple'?'#fff0cf':'#f3f4d0';ctx.globalAlpha=.9;ctx.fillText(worldId==='snow'?'HOLD THE FROSTBOUND LINE':worldId==='maple'?'HOLD THE AMBERWOOD LINE':'DEFEND THE HEARTROOT',BR-7,H-18);ctx.globalAlpha=1;
  ctx.restore();
 }
 function frame(now){const dt=clamp((now-lastFrame)/1000||0,0,.05);lastFrame=now;update(dt);render(worldTime);animationId=requestAnimationFrame(frame);}
